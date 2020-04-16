@@ -144,3 +144,9 @@ jekyll-archives:
   permalinks:
     category: /categories/:name/
     tag: /tags/:name/
+
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "UA-163839531-1"
+    anonymize_ip: false # default
