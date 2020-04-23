@@ -1,15 +1,11 @@
 ---
-title: "Test"
-date: 2020-04-23T07:00:00-04:00
+title: "TIL - Validating Jenkins Pipeline from CLI"
+date: 2020-04-22
 categories:
-  - certifications
+  - TIL
 tags:
-  - kubernetes
-  - certifications
-  - ckad
+  - jenkins
 comments: true
-toc: true
-toc_label: "Observability"
 ---
 This is part 4 of my personal notes I've written during preparation to CKAD.
 
