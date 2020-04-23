@@ -32,4 +32,3 @@ now I'm receiving nice error messages, like:
 Errors encountered validating Jenkinsfile:
 WorkflowScript: 135: expecting '}', found '' @ line 135, column 1.
 ```
-
