@@ -1,6 +1,6 @@
 ---
 title: "TIL - Validating Jenkins Pipeline from CLI"
-date: 2020-04-22
+date: 2020-04-23
 categories:
   - TIL
 tags:
