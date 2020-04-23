@@ -19,10 +19,16 @@ trying to get them working.
 
 Here's commands what's worked for me:
 ```bash
-DOWNLOAD_URL=$(curl --silent "https://api.github.com/repos/kubernetes-incubator/metrics-server/releases/latest" | jq -r .tarball_url)
-DOWNLOAD_VERSION=$(grep -o '[^/v]*$' <<< $DOWNLOAD_URL)
-curl -Ls $DOWNLOAD_URL -o metrics-server-$DOWNLOAD_VERSION.tar.gz
-mkdir metrics-server-$DOWNLOAD_VERSION
-tar -xzf metrics-server-$DOWNLOAD_VERSION.tar.gz --directory metrics-server-$DOWNLOAD_VERSION --strip-components 1
-kubectl apply -f metrics-server-$DOWNLOAD_VERSION/deploy/1.8+/
+JENKINS_URL=https://jenkins.example.com
+USER=user
+PASSWORD=password
+JENKINS_CRUMB=`curl -s -u $USER:$PASSWORD "$JENKINS_URL/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)"`
+curl -X POST -u $USER:$PASSWORD -H $JENKINS_CRUMB -F "jenkinsfile=<Jenkinsfile" $JENKINS_URL/pipeline-model-converter/validate
+```
+
+I've integrated them into my Makefile and linting pipelines,and
+now I'm receiving nice error messages, like:
+```text
+Errors encountered validating Jenkinsfile:
+WorkflowScript: 135: expecting '}', found '' @ line 135, column 1.
 ```
