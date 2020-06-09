@@ -92,3 +92,7 @@ So I end up using following shortcuts:
 * `ctrl-\` - edit a local copy of selected resources in neovim
 * `ctrl-]` - edit `live` version of kubernetes  resource with default editor
 * `enter` - exit from fzf and print current selection
+* `shift-up` - move preview window line up
+* `shift-down` - move preview window line down
+
+![fzf-kubectl-repl2](/assets/images/fzf-kubectl-repl2.gif)
