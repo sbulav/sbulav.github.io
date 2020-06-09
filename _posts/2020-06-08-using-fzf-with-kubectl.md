@@ -1,6 +1,7 @@
 ---
 title: "Using fzf with kubectl as REPL"
 date: 2020-06-08
+last_modified_at: 2020-06-09
 categories:
   - kubernetes
 tags:
@@ -42,7 +43,7 @@ As you might guess, after you press `enter`, resulting jsonpath will pop in
 your command line. To make function work, put it into your `.bash_profile`
 
 
-# Using fzf as kubectl preview
+## Using fzf as kubectl preview
 
 Another cool feature I thought about was fuzzy finding kubernetes resources
 with live preview and ability to edit this resource without leaving fzf
@@ -64,3 +65,30 @@ passing selected resource name as parameter, and passing output to nvim(which ca
 read stdin without additional keys). I will think about adding `--export` option
 to kubectl or passing multiple files to nvim, or about refreshing fuzzy list without
 leaving fzf, but even now I'm really enjoying it.
+
+
+### Futher improvements
+
+After a few days after writing this post I've done following improvementes to `kg` function:
+
+```bash
+kg() {
+    kubectl get $* -o name | \
+        fzf --preview 'kubectl get {} -o yaml' \
+            --bind "ctrl-\:execute(kubectl get {+} -o yaml | nvim )" \
+            --bind "ctrl-r:reload(kubectl get $* -o name)" --header 'Press CTRL-R to reload' \
+            --bind "ctrl-]:execute(kubectl edit {+})";
+     }
+```
+
+* Replace {} with {+} to allow editing multiple files
+* Add new binding to edit `live` kubernetes resource
+* Add new binding to reload preview list
+
+So I end up using following shortcuts:
+* `tab` - multi-select entry under cursor
+* `ctrl-a` - select all
+* `ctrl-r` - reload preview list
+* `ctrl-\` - edit a local copy of selected resources in neovim
+* `ctrl-]` - edit `live` version of kubernetes  resource with default editor
+* `enter` - exit from fzf and print current selection
