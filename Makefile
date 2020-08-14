@@ -13,6 +13,7 @@ help:
 
 
 serve:
+	echo "#Use bash --login to initialize ruby 2.6 in rvm!!"
 	bundle exec jekyll serve -H 0.0.0.0 --watch --port 8080 --livereload
 
 clean:
