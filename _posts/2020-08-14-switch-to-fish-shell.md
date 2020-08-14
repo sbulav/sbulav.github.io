@@ -29,7 +29,6 @@ receiving a lot of variants, you can sort them with `ctrl+s`
 * Git prompt - out of the bot fish provides[git-prompt](https://fishshell.com/docs/current/cmds/fish_git_prompt.html)
 with a lot of customization options, like showing number of untacked file,
 uncommited changes, shortening branch name and many many more
-![fish autocompletion](/assets/images/fish-smart-completion.png)
 * History - fish stores all the history with massive 260k entries by default.
 * Path abbreviation - if your current path is deep enough, fish will shorten
 some of the path, so `~/dotfiles/fish` will become `~/d/fish`.
