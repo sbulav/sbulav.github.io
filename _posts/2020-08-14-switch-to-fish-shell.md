@@ -1,6 +1,6 @@
 ---
 title: "Switch to fish shell"
-date: 2020-08-03
+date: 2020-08-14
 categories:
   - fish
 tags:
