@@ -78,6 +78,39 @@ Here's an example of possible workaround:
     echo "::set-output name=logplan::$REPORT"
 ```
 
+Finally, we're not capturing error log and exit code to reflect it in PR comment.
+By default, pipeline will stop at first failed step. Since we're trying to grab
+all possible logs, we can use separate step to process data and `|| always()`
+to execute step even if one of previous steps failed.
+
+```yaml
+    - name: Terraform Plan
+      id: plan
+      run: |
+        terraform plan -no-color -out planfile 2>error.log
+        terraform show -no-color -json planfile > plan.json
+        changes=$(cat plan.json | jq -r '[.resource_changes[]? | { resource: .address, action: .change.actions[] } | select (.action != "no-op")]')
+        summary=$(echo $changes | jq -r '.   | "Environment has \(length) changes"')
+        details=$(echo $changes | jq -r '.[] | "* \(.resource) will be \(.action)d"')
+        echo "Summary: $summary " > plan.log
+        echo "${details}" >> plan.log
+
+    - name: Terraform Plan process
+      id: process
+      if: github.event_name == 'pull_request' || always()
+      run: |
+        REPORT="$(cat *.log)"
+        REPORT="${REPORT//'%'/'%25'}"
+        REPORT="${REPORT//$'\n'/'%0A'}"
+        REPORT="${REPORT//$'\r'/'%0D'}"
+        echo "::set-output name=logplan::$REPORT"
+```
+
+That gives us correct stage error status and error message available for further
+use:
+
+![Terraform pr comment](/assets/images/terraform-pr-comment.png)
+
 ### Working solution
 
 Wrapping it up, with workarounds for issues mentioned above I've came up with
@@ -104,7 +137,7 @@ following solution:
     - name: Terraform init
       id: init
       run: |
-        terraform init
+        terraform init -input=false
         terraform workspace new ${{ matrix.environment }} || true
         terraform workspace select ${{ matrix.environment }}
 
@@ -116,19 +149,25 @@ following solution:
         REPORT="${REPORT//'%'/'%25'}"
         REPORT="${REPORT//$'\n'/'%0A'}"
         REPORT="${REPORT//$'\r'/'%0D'}"
+        rm validate.log
         echo "::set-output name=logvalidate::$REPORT"
 
     - name: Terraform Plan
       id: plan
       run: |
-        terraform plan -no-color -out planfile | tee plan.out
+        terraform plan -no-color -out planfile 2>error.log
         terraform show -no-color -json planfile > plan.json
         changes=$(cat plan.json | jq -r '[.resource_changes[]? | { resource: .address, action: .change.actions[] } | select (.action != "no-op")]')
         summary=$(echo $changes | jq -r '.   | "Environment has \(length) changes"')
         details=$(echo $changes | jq -r '.[] | "* \(.resource) will be \(.action)d"')
         echo "Summary: $summary " > plan.log
         echo "${details}" >> plan.log
-        REPORT="$(cat plan.log)"
+
+    - name: Terraform Plan process
+      id: process
+      if: github.event_name == 'pull_request' || always()
+      run: |
+        REPORT="$(cat *.log)"
         REPORT="${REPORT//'%'/'%25'}"
         REPORT="${REPORT//$'\n'/'%0A'}"
         REPORT="${REPORT//$'\r'/'%0D'}"
@@ -152,7 +191,7 @@ following solution:
           #### Terraform Plan \`${{ steps.plan.outcome }}\`
           <details><summary>Show Plan</summary>
           \`\`\`
-            ${{steps.plan.outputs.logplan}}
+            ${{steps.process.outputs.logplan}}
           \`\`\`
           *You can see the complete command output [here](https://github.com/${{github.repository}}/actions/runs/${{github.run_id}})*
           </details>
@@ -164,5 +203,4 @@ following solution:
             body: output
           })
 ```
-
 
