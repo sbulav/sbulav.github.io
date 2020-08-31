@@ -1,6 +1,6 @@
 ---
 title: "WSL2/VM TSL Handhake failed"
-date: 2020-08-30
+date: 2020-08-31
 categories:
   - wsl
 tags:
@@ -37,6 +37,6 @@ sudo nmcli connection modify "Wired connection 1" 802-3-ethernet.mtu 1350
 Since WSL2 doesn't have init system running, put following command in .bashrc
 or, in my case, fish configuration file:
 
-```file:///~/.config/fish/config.fish
+```bash
 sudo ip link set dev eth0 mtu 1350
 ```
