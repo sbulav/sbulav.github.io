@@ -1,5 +1,5 @@
 ---
-title: "WSL2/VM TSL Handhake failed"
+title: "WSL2/VM TLS Handhake failed"
 date: 2020-08-31
 categories:
   - wsl
