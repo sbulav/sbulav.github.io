@@ -1,6 +1,6 @@
 ---
 title: "TIL - Retrieving Jenkins secrets"
-date: 2020-05-01
+date: 2020-09-23
 categories:
   - TIL
 tags:
