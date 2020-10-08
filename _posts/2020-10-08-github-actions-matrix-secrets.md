@@ -10,7 +10,7 @@ comments: true
 ---
 
 My team is continuing migration to GitHub Actions, and one of the pipelines we
-are working on is Terraform validation pipeline. I've described pipeline in
+are working on is Terraform validation pipeline. I've described this pipeline in
 [Terraform vs Github Actions](https://sbulav.github.io/terraform/terraform-vs-github-actions/)
 article.
 
@@ -39,13 +39,13 @@ stages for tst, acc, prd...
 ```
 - name: Terraform init
   env:
-    ARM_CLIENT_ID: ${{ secrets.TST_TF_ARM_CLIENT_ID }}
+    ARM_CLIENT_ID: \${{ secrets.TST_TF_ARM_CLIENT_ID }}
     ...
   id: init
   run: |
     terraform init -input=false -backend-config=<YOUR CONFIG>
-    terraform workspace new ${{ matrix.environment }} || true
-    terraform workspace select ${{ matrix.environment }}
+    terraform workspace new \${{ matrix.environment }} || true
+    terraform workspace select \${{ matrix.environment }}
   if: matrix.environment  == 'dev'
 ```
 
@@ -75,10 +75,10 @@ jobs:
             client_secret: PRD_TF_ARM_CLIENT_SECRET
             subscription_id: PRD_TF_ARM_SUBSCRIPTION_ID
     env:
-      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      ARM_CLIENT_ID: ${{ secrets[matrix.client_id] }}
-      ARM_CLIENT_SECRET: ${{ secrets[matrix.client_secret] }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets[matrix.subscription_id] }}
+      ARM_TENANT_ID: \${{ secrets.ARM_TENANT_ID }}
+      ARM_CLIENT_ID: \${{ secrets[matrix.client_id] }}
+      ARM_CLIENT_SECRET: \${{ secrets[matrix.client_secret] }}
+      ARM_SUBSCRIPTION_ID: \${{ secrets[matrix.subscription_id] }}
     ...
 ```
 
@@ -86,6 +86,6 @@ I'm using recently added [Include combinations syntax](https://docs.github.com/e
 to define unique matrix combinations with secret names as matrix parameters. In
 the example above I define 3 unique combinations, so there will be 3 parallel
 jobs. Later in global environments I reference secret name via matrix variable,
-for example: `${{ secrets[matrix.client_id] }}`
+for example: `\${{ secrets[matrix.client_id] }}`
 
 Using this approach I define environments only once and keep my code clean.
