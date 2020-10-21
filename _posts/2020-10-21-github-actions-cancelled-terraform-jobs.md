@@ -9,11 +9,11 @@ tags:
 comments: true
 ---
 
-Today I've faced small but nasty but in my Terraform solution. You can read
-about it in [Terraform vs Github Actions](https://sbulav.github.io/terraform/terraform-vs-github-actions/)
-article.
+Today I've faced small but nasty bug in my Terraform solution. You can read
+about solution in [Terraform vs Github Actions](https://sbulav.github.io/terraform/terraform-vs-github-actions/)
+and [Github actions matrix secrets](https://sbulav.github.io/terraform/github-actions-matrix-secrets/) articles.
 
-After one unsuccessful run, Terraform state became locked. Pipeline has
+After one unsuccessful run, Terraform state became locked. Pipeline had
 following message:
 
 ```
@@ -29,13 +29,13 @@ Error: The operation was canceled.
 As it turned out, Github actions uses `fail-fast` [strategy](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategyfail-fast)
 by default for matrix jobs.
 
-What that means, is that when one job will be failed, all other jobs will be
-cancelled. With Terraform, it results in `locked` state.
+With that strategy, when one job will be failed, all other jobs will be
+cancelled. Applied to Terraform, it results in permamently `locked` state.
 
-To fix this, we need disable `fail-first. With that, my matrix strategy looks
+To fix this, we need disable `fail-first`. With that, my matrix strategy looks
 following:
 
-``
+```
 jobs:
   validate-job:
     strategy:
@@ -55,4 +55,3 @@ jobs:
             client_secret: PRD_TF_ARM_CLIENT_SECRET
             subscription_id: PRD_TF_ARM_SUBSCRIPTION_ID`
 ```
-
