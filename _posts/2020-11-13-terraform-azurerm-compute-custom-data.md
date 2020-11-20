@@ -10,9 +10,9 @@ comments: true
 ---
 
 If you use [Azure RM Compute Module from Terraform Registry](https://registry.terraform.io/modules/Azure/compute/azurerm/latest)
-you were probably think of ways to configure VM during provisioning. And there's
-a bunch of, one of which is to use Azure Compute module's custom data to pass
-configuration script:
+you were probably thinking of ways to configure VM during provisioning. And
+there's a bunch of, one of which is to use Azure Compute module's custom data
+to pass configuration script:
 
 ```
  custom_data string
@@ -73,4 +73,4 @@ custom_data = filebase64("scripts/k8s-node.sh")
 * You can review cloud-init logs at `/var/log/cloud-init.log`. It will contain
    all outputs from your script.
 
-* Finally, for deep troubleshooting, follow (cloud-init-troubleshooting guide)[https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cloud-init-troubleshooting]
+* Finally, for deep troubleshooting, follow [cloud-init-troubleshooting guide](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cloud-init-troubleshooting)
