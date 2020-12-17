@@ -22,7 +22,8 @@ will share how kubeadm bootstrapped cluster can be configured to use gVisor.
 
 # Setting up gVisor
 
-I've tested steps below on Ubuntu 18.04 bootstrapped via kubeadm.
+I've tested steps below on Kubernetes cluster version 1.19 bootstrapped via
+kubeadm with Ubuntu 18.04 as master and worker nodes.
 
 ## Setting up prerequisites
 
