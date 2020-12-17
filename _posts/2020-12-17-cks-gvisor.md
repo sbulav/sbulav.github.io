@@ -1,5 +1,5 @@
 ---
-title: "CKS theory - setting up gVisor"
+title: "CKS preparation - setting up gVisor"
 date: 2020-12-17T06:00:00-04:00
 categories:
   - certifications
@@ -12,7 +12,7 @@ toc: true
 toc_label: "Setting up gVisor"
 ---
 
-One of topics for the Certifies Kubernetes Security Exam(CKS) is usage of
+One of the topics for the Certifies Kubernetes Security Exam(CKS) is usage of
 gVisor as container runtime. While in theory configuring gVisor shouldn't be
 hard, I've found it difficult to get up and running. gVisor
 [documentation](https://gvisor.dev/docs/user_guide/containerd/quick_start/)
@@ -128,7 +128,7 @@ EOF
 
 ## Configuring kubelet to use containerd as runtime
 
-All that we have to do is to configure `kubelet` to use proper runtime and
+All that's lef is to to configure `kubelet` to use proper runtime and
 endpoint:
 
 ```bash
