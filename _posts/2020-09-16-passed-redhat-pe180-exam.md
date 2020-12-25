@@ -1,6 +1,7 @@
 ---
 title: "Passed RedHat PE180 exam"
 date: 2020-09-16
+last_modified_at: 2020-12-25
 categories:
   - certifications
 tags:
@@ -34,6 +35,13 @@ prolongue my RHCA which will end in Jan 01,2021.
 However, after passing this exam my RHCA weren't leveled up and weren't
 prolongued. I've created a ticket for that - hopefully those issues will be
 sorted out.
+
+### Update - RHCA lvl 2
+
+Finally, after months of chatting with support, I receive my RHCA level up.
+Now I am officially `Red Hat Certified Architect in Infrastructure Level II`
+
+![RHCAlvl2](/assets/images/rhcalvl2.png)
 
 ## Purchasing the exam
 
