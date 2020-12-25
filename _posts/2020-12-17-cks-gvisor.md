@@ -129,7 +129,7 @@ EOF
 
 ## Configuring kubelet to use containerd as runtime
 
-All that's lef is to to configure `kubelet` to use proper runtime and
+All that's left is to to configure `kubelet` to use proper runtime and
 endpoint:
 
 ```bash
