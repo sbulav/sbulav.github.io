@@ -10,10 +10,10 @@ tags:
 comments: true
 ---
 
-When defining RBAC rules, there's one not obvious thing which can fail your CKS
-task.
+During my CKS preparations, I've faced with one not obvious thing - selection
+apiGroups in RBAC rules.
 
-In Kubernetes resources are associated with API Groups (for example, Pods
+Resources in Kubernetes are associated with API Groups (for example, Pods
 belong to the `core` API group whereas Deployments belong to the `apps` API
 group).
 
@@ -83,4 +83,17 @@ clusterroles                                        rbac.authorization.k8s.io   
 rolebindings                                        rbac.authorization.k8s.io      true         RoleBinding
 roles                                               rbac.authorization.k8s.io      true         Role
 ...
+```
+
+It's considered best practice to explicitly specify apiGroups/resources/verbs,
+but in rare cases(Like Velero backup solution) all permissions can be granted:
+
+```YAML
+rules:
+  - apiGroups:
+    - '*'
+    resources:
+    - '*'
+    verbs:
+    - '*'
 ```
