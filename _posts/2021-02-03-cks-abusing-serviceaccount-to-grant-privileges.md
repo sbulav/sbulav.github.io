@@ -1,6 +1,7 @@
 ---
 title: "CKS preparation - abusing ServiceAccount to grant privileges"
 date: 2021-02-03T06:00:00-04:00
+last_modified_at: 2021-02-04
 categories:
   - certifications
 tags:
@@ -169,4 +170,36 @@ which would generate alerts on John's actions:
   priority: INFO
   source: k8s_audit
   tags: [k8s]
+```
+
+## Update
+
+My colleague provide me with an even simpler way to do this - using kubectl
+inside the cluster:
+
+John could copy kubectl to the Pod:
+```bash
+$ kubectl cp $(which kubectl) pod-with-service-account:/ -n frontend
+```
+
+Once it's there, it's possible to use it to do all kind of manipulations with
+kubernetes entities:
+```bash
+# /kubectl --namespace=frontend create role podview  --verb=get --verb=list   --resource=pods
+role.rbac.authorization.k8s.io/podview created
+```
+
+If `kubectl` can't find $KUBECONFIG, it will use in-cluster configuration to work
+with kube-api:
+```
+# /kubectl cluster-info -v=10
+I0203 11:55:51.542573     193 merged_client_builder.go:121] Using in-cluster configuration
+I0203 11:55:51.543028     193 merged_client_builder.go:121] Using in-cluster configuration
+```
+
+[According to documentation](https://github.com/kubernetes/client-go/blob/master/examples/in-cluster-client-configuration/README.md#authenticating-inside-the-cluster):
+```
+client-go uses the Service Account token mounted inside the Pod at the
+/var/run/secrets/kubernetes.io/serviceaccount path when the
+rest.InClusterConfig() is used.
 ```
