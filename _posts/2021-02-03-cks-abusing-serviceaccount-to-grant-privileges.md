@@ -60,7 +60,8 @@ roleRef:
 ```
 
 Now, let's imagine that John wants to get more permissions. To do that, he has
-logged into this pod. To interact with kube-api John has to install curl:
+logged into this pod. To interact with kube-api John has to install curl(I am
+using alpine in the example):
 ```bash
 apk add curl
 ```
