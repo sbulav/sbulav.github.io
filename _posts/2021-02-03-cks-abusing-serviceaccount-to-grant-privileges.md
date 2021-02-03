@@ -197,7 +197,8 @@ I0203 11:55:51.542573     193 merged_client_builder.go:121] Using in-cluster con
 I0203 11:55:51.543028     193 merged_client_builder.go:121] Using in-cluster configuration
 ```
 
-[According to documentation](https://github.com/kubernetes/client-go/blob/master/examples/in-cluster-client-configuration/README.md#authenticating-inside-the-cluster):
+[According to documentation](https://github.com/kubernetes/client-go/blob/master/examples/in-cluster-client-configuration/README.md#authenticating-inside-the-cluster)
+to client-go(and kubectl is using client-go):
 ```
 client-go uses the Service Account token mounted inside the Pod at the
 /var/run/secrets/kubernetes.io/serviceaccount path when the
