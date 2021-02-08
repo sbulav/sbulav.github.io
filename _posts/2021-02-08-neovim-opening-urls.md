@@ -1,5 +1,5 @@
 ---
-title: "Neovim opening URLs
+title: "Neovim opening URLs"
 date: 2021-02-08
 categories:
   - vim
