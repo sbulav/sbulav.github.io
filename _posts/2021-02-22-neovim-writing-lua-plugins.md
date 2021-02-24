@@ -91,7 +91,7 @@ This is especially useful when you'd like to see contents of table.
 
 You can check out print output, as well as other messages:
 ```vim
-:messsages
+:messages
 ```
 
 Check `:h messages` to find out how to interact with this window.
