@@ -8,7 +8,9 @@ tags:
 comments: true
 ---
 
-Recently the neovim community has been experiencing a boom in new plugins. Those plugins are written in LUA, which is much, much more pleasant that VimL.
+Recently the Neovim community has been experiencing a boom in new plugins.
+Those plugins are written in LUA, which is much, much more pleasant to write
+than VimL.
 
 In this post I'll share my experience with writing my own plugins and share some
 suggestions how developer can improve writing experience.
@@ -26,48 +28,84 @@ to use it as a reference.
 Lua Language server is called `sumneko_lua` and it works like a charm. You can
 install language server manually, but I'd recommend using [anott03/nvim-lspinstall](https://github.com/anott03/nvim-lspinstall)
 
-It is a Neovim plugin, and you can simply run `:LspInstall sumneko_lua`
-Once Language server is installed, you need to configure it. Two options:
-1. use `nvim-lspconfig`, which will provide default configuration for
+It is a Neovim plugin, and once it's installed, you can simply run `:LspInstall
+sumneko_lua`.
+Also you have to configure Lua Language Server before you can use it. To do it,
+you have two options:
+1. use `nvim-lspconfig`, which will provide default LSP configuration for
    `sumneko_lua` server.
-2. use `tjdevries/nlua.nvim`, wrapper around `sumneko_lua`, with some additions
-   like `gf` on `require`, `K` redirecting you to correct help page and other
-   improvements.
+2. use `tjdevries/nlua.nvim`, wrapper around `sumneko_lua` LSP, with some
+   additions like `gf` on `require`, `K` redirecting you to correct help page
+   and other improvements.
 
-Nlua is not polished yet and documentation is lacking, but the experience is
-great.
+Nlua is not polished yet and documentation is lacking, but overall usage
+experience is great, so I recommend to use it.
 
-Next you'll probably want Automatic completion. I recommend using
-[hrsh7th/nvim-compe](https://github.com/hrsh7th/nvim-compe).
+Next you'll probably want to enable automatic completion. For this, I recommend
+using [hrsh7th/nvim-compe](https://github.com/hrsh7th/nvim-compe).
 
-Finally, if you like to use REPL, you can check out [bfredl/nvim-luadev](https://github.com/bfredl/nvim-luadev)
+Finally, if you like to use Lua REPL, you can check out [bfredl/nvim-luadev](https://github.com/bfredl/nvim-luadev)
 or [rafcamlet/nvim-luapad](https://github.com/rafcamlet/nvim-luapad). I haven't
-looked deeply into these plugins yet, and was using plain `lua` REPL.
+looked deeply into these plugins yet, and was using plain Lua REPL.
 
 
 # The flow
 
-A few not obvious things which can be helpful:
-## Include your plugin via local path.
+A few not obvious things which can be helpful.
+
+## Include your plugin via local path
 
 I use `packer.nvim`, so configuration can look like:
 ```vim
   use '~/projects/personal/hover.nvim'
 ```
 
-## Use modules.
+With this approach, you don't have to cd deep to `~/.local/share/nvim/site/pack/packer/`
+each time you want to change a file. Once development is finished, push changes
+to git, and point your Plugin Manager to repository.
 
-On one of ThePrimeagen twitch streams I heard that it's best practice to use
-modules, for example:
-```LUA
+## Use modules
+
+On one of the ThePrimeagen twitch streams I heard that it's best practice to 
+define your plugin as a module, for example:
+
+```lua
 local M = {}
 
 function M.myfunction()
 
 return M
 ```
+
 With that approach, all functions declared inside module M can be called from
-Nvim.
+Neovim.
+
+## Inspect values with vim.inspect
+
+It's easy to print object in human readable representation using `vim.inspect`:
+
+```lua
+:lua print(vim.inspect(type("test"))
+```
+This is especially useful when you'd like to see contents of table.
+
+You can check out print output, as well as other messages:
+```vim
+:messsages
+```
+
+Check `:h messages` to find out how to interact with this window.
+
+## Use command-line window for complex commands
+
+Editing commands in command line window(:h command-line) is much easier. You can exit
+to normal mode, jump where you'd like to, yank, delete, paste and other.
+
+To open command-line window, I'd like to:
+1. Press colon (:) and start typing command
+2. If I need to edit command, press <C-f>
+3. You can use `/` or `?` to search through command history
+4. <CR> to execute, <Esc> to exit command-line
 
 ## Reload plugins with [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 
@@ -93,9 +131,9 @@ and then run `luafile %`. `M.myfunction` will be executed and you'll see your
 output.
 
 To make reloading even quicker, I've have set up following function and
-keymap(imspired by Teej config):
+key mapping(inspired by Teej config):
 
-```viml
+```vim
 " Execute this file
 function! s:save_and_exec() abort
   if &filetype == 'vim'
@@ -113,20 +151,20 @@ endfunction
 nnoremap <leader><leader>x :call <SID>save_and_exec()<CR>
 ```
 
-Now when I press `<leader><leader>x`, lua file get executed.
+Now when I press `<leader><leader>x`, I either source vim configuration file or
+execute Lua one.
 
+## Understand Neovim API functions
 
-## Understand Nvim API functions
-
-At current moment, Nvim API can be confusing. The same action can be achieved
-in many ways, for example:
+At the current moment, Neovim API can be confusing. The same action can be
+achieved in many ways, for example:
 * vim.api.nvim_command()
 * vim.api.nvim_exec()
 * vim.call
 * vim.cmd
 * vim.fn.execute
 
-Some of the don't return output, some execute chunk of code. Refer to
+Some of them don't return output, some execute chunk of code. Refer to
 nvim-lua-guide and help pages to clarify and find suitable function.
 
 # My plugins
@@ -142,7 +180,7 @@ It's basically an implementation of [Romainl's Redir](https://gist.github.com/ro
 written for learn purposes in Lua.
 
 Here I was learning how you can execute Vim commands, create new buffers/windows
-and set keymappings.
+and set key mappings.
 
 ## Jump-ray
 
@@ -155,4 +193,13 @@ parsing Vim command output.
 
 # Conclusion
 
-TBD
+Vim is a tool which you tune to suit your needs. Using Lua in Neovim lets you tune
+almost every aspect of an editor, making it feel and look as you'd like.
+
+Entry barrier for writing Lua plugins is low and it's pretty fun.
+There are already a lot of Neovim only plugins and I see that more and more
+developers drop vim compatibility and convert to Lua init files.
+
+I am sure that Lua in Neovim has bright future and it's worth investing into it.
+
+P.S. A list of Lua Neovim plugins can be found [awesome-neovim](https://github.com/rockerBOO/awesome-neovim)
