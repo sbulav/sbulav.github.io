@@ -96,18 +96,18 @@ alias kubens='kubectl config set-context --current --namespace '
 
 I drop following lines to `.vimrc` to make work more comfortable:
 ```vim
-set ai et sw=2 sts=2 hidden
+:set ai et sw=2 sts=2 hidden
 ```
 
 Those options make work with YAML less painful:
-  - `ai` = `autoindend` - Copy indent from current line when starting a new line
-    (typing <CR> in Insert mode or when using the "o" or "O" command). 
-  - `et` = `expandtab` - In Insert mode: Use the appropriate number of spaces to
-    insert a <Tab>.
-  - `sw` = `shiftwidth` - Number of spaces to use for each step of (auto)indent.
-  - `sts` = `shifttabstop` - Number of spaces that a <Tab> counts for while
-    performing editing operations, like inserting a <Tab> or using <BS>.
-  - `hidden` - lets you jump between vim buffers without save, useful for `gf`
+    - `ai` = `autoindend` - Copy indent from current line when starting a new line
+      (typing <CR> in Insert mode or when using the "o" or "O" command). 
+    - `et` = `expandtab` - In Insert mode: Use the appropriate number of spaces to
+      insert a <Tab>.
+    - `sw` = `shiftwidth` - Number of spaces to use for each step of (auto)indent.
+    - `sts` = `shifttabstop` - Number of spaces that a <Tab> counts for while
+      performing editing operations, like inserting a <Tab> or using <BS>.
+    - `hidden` - lets you jump between vim buffers without save, useful for `gf`
 
 Before pasting block of code, use `:set paste` command to preserve formatting.
 
