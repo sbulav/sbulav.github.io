@@ -20,7 +20,7 @@ I choose Colemak-DH over Dvorak as it's easier to adapt and it let me use some
 heavily used shortcuts(like CTRL+X, CTRL+V), which are carved in my muscle
 memory.
 
-![colemac-dh](https://colemakmods.github.io/mod-dh/gfx/colemak_dh_main_matrix.png)
+!(rolemac-dh)[https://colemakmods.github.io/mod-dh/gfx/colemak_dh_main_matrix.png]
 
 In this post, I'll explain why I decide to switch and how I was learning new
 layout.
@@ -29,7 +29,7 @@ layout.
 
 I had three reasons to do the switch:
 
-#### Prevent (Repetitive Strain Injury RSI)[https://web.eecs.umich.edu/~cscott/rsi.html]
+#### Prevent [Repetitive Strain Injury RSI](https://web.eecs.umich.edu/~cscott/rsi.html)
 
 I spend 8-10 hours a day using my computer. During active phases of
 development, I can do the typing all that time. Sometimes by the end of the day
@@ -60,7 +60,7 @@ I've passed through the following stages:
 
 #### First hours of practice
 
-I didn't have `Colemak-DH` installed in the system and was using (keybr.com)[https://www.keybr.com/]
+I didn't have `Colemak-DH` installed in the system and was using [keybr.com](https://www.keybr.com/)
 for practice. This site has Colemak layout(not DH mod) emulation and a very
 good practice mode. You start with eight letters, and when you learn them(speed
 up and do fewer typos), more letters being added one by one.
@@ -90,7 +90,7 @@ to normal.
 #### Switching to `monkeytype`
 
 After I've practiced all the letters, it was time to practice punctuation.
-For this, I used (monkeytype)[https://monkeytype.com/]. I like its quote mode
+For this, I used [monkeytype](https://monkeytype.com/). I like its quote mode
 and overall site style.
 
 Another couple of hours and I had 45 WPM with punctuation enabled which is good
@@ -110,9 +110,9 @@ Vim user and its command mode became hell for me.
 
 After searching through forums, it looks like there are two approaches:
 * Remap keys so that you can use your muscle memory. There are even ready plugins
-that provide you with (such functionality)[https://github.com/theniceboy/nvim]
+that provide you with [such functionality](https://github.com/theniceboy/nvim)
 * Practice new keybindings and maps. I decide that I'll choose this approach
-as the new place of `hjkl` aren't that bad and, more importantly, it lets me (GROK)[https://gist.github.com/nifl/1178878]
+as the new place of `hjkl` aren't that bad and, more importantly, it lets me [GROK](https://gist.github.com/nifl/1178878)
 
 Here's VIM cheatsheet for Colemak-DH:
 
