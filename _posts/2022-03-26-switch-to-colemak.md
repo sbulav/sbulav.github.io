@@ -29,20 +29,20 @@ layout.
 
 I had three reasons to do the switch:
 
-1. Prevent (Repetitive Strain Injury (RSI))[https://web.eecs.umich.edu/~cscott/rsi.html]
+#### Prevent (Repetitive Strain Injury RSI)[https://web.eecs.umich.edu/~cscott/rsi.html]
 
 I spend 8-10 hours a day using my computer. During active phases of
 development, I can do the typing all that time. Sometimes by the end of the day
 I feel the pain. It was worse before I start using an ergonomic keyboard. Using
 `Colemak` my fingers tend to move less(especially pinky).
 
-2. Make typing more comfortable
+#### Make typing more comfortable
 
 Typing most of the words without having to move your fingers from home row
 feels nice. It's hard to describe, but sometimes I feel like my fingers
 are flying over the keyboard, not even touching it.
 
-3. Challenge myself
+#### Challenge myself
 
 By no means changing keyboard layout is an easy task. It requires hours and
 hours of practice, weeks or months during which you'll be less productive than
@@ -58,7 +58,7 @@ which is more than enough for me. To do the switch, I decide that I will practic
 
 I've passed through the following stages:
 
-1. First hours of practice
+#### First hours of practice
 
 I didn't have `Colemak-DH` installed in the system and was using (keybr.com)[https://www.keybr.com/]
 for practice. This site has Colemak layout(not DH mod) emulation and a very
@@ -71,7 +71,7 @@ motivation.
 
 At this stage, my typing speed dropped below 20WPM.
 
-2. Installing Colemak-DH to the system
+#### Installing Colemak-DH to the system
 
 Once you get to the keys which are different in `Colemak` and `Colemak-DH`, you
 have to disable emulation and use system layout.
@@ -87,7 +87,7 @@ to normal.
 
 ![40wpm](/assets/images/colemak-40wpm.png)
 
-3. Switching to `monkeytype`
+#### Switching to `monkeytype`
 
 After I've practiced all the letters, it was time to practice punctuation.
 For this, I used (monkeytype)[https://monkeytype.com/]. I like its quote mode
@@ -96,14 +96,14 @@ and overall site style.
 Another couple of hours and I had 45 WPM with punctuation enabled which is good
 enough for production use
 
-4. Using Colemak daily
+#### Using Colemak daily
 
 Using Colemak daily is both easier and harder than I thought. Doing
 plain typing is not a brainer, but there are so many shortcuts that I've practiced
 for years. At the moment it's still not easy for me to use shortcuts and requires
 `thinking` about it. But every day it's becoming easier and easier to use them
 
-5. Using Vim
+#### Using Vim
 
 That's probably the most difficult thing in the whole switching. I'm a heavy
 Vim user and its command mode became hell for me.
