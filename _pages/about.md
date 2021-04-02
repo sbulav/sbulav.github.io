@@ -51,9 +51,10 @@ layouts_gallery_code:
 toc: false
 ---
 
- I'm a Senior Systems Engineer at [EPAM](https://epam.com/).
- With lots of experience in Kubernetes, IaaS and networking I'm working on migrating
- migrating complex monolith applications to Kubernetes and Cloud.
+ I'm a Lead Systems Engineer at [EPAM](https://epam.com/).
+ With lots of experience in Kubernetes, IaaS and networking I'm working on
+ migrating complex monolith applications to Kubernetes and Cloud, automating
+ customers Infrastructure, and improving developers experience.
 
  Also I'm a [Red Hat Certified Architect in Infrastructure](https://www.redhat.com/rhtapps/services/verify?certId=160-186-458),
  Certified Kubernetes Administrator and Certified Kubernetes Application Developer.

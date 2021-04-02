@@ -19,7 +19,8 @@ nnoremap Q :quit<cr>
 ```
 
 This keymap:
-* Lets me close any window, help pages, or even Vim in a consistent way
+* Lets me close any window,including help pages, Fugitive windows or even Vim
+  in a consistent way
 * Feels very natural, easy to remember
 * Easy to trigger
 
