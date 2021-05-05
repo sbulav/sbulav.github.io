@@ -12,7 +12,7 @@ I'm a long-time Jenkins user. And I always thought that it's only possible to
 get secrets via some kind of expose from runner.
 
 However, there's an easy way(even scary how easy it is).
-If you have access to `/console`, you can run following snippet to retrieve ALL
+If you have access to Script Console `/scripts`, you can run following snippet to retrieve ALL
 secrets:
 
 ```
