@@ -12,14 +12,14 @@ Recently the Neovim community has been experiencing a boom in new plugins.
 Those plugins are written in LUA, which is much, much more pleasant to write
 than VimL.
 
-In this post I'll share my experience with writing my own plugins and share some
+In this post, I'll share my experience with writing my plugins and share some
 suggestions how developer can improve writing experience.
 
 # Theory
 
 Everything you need to know to start your first plugin can be found in
 [nvim-lua-guide](https://github.com/nanotee/nvim-lua-guide). It's an
-extensive guide to writing Lua in Neovim, covering large variety of topics. I
+extensive guide to writing Lua in Neovim, covering a large variety of topics. I
 had to read it multiple times to wrap my head around it, and kept coming back
 to use it as a reference.
 
@@ -39,14 +39,14 @@ you have two options:
    and other improvements.
 
 Nlua is not polished yet and documentation is lacking, but overall usage
-experience is great, so I recommend to use it.
+experience is great, so I recommend using it.
 
-Next you'll probably want to enable automatic completion. For this, I recommend
+Next, you'll probably want to enable automatic completion. For this, I recommend
 using [hrsh7th/nvim-compe](https://github.com/hrsh7th/nvim-compe).
 
 Finally, if you like to use Lua REPL, you can check out [bfredl/nvim-luadev](https://github.com/bfredl/nvim-luadev)
 or [rafcamlet/nvim-luapad](https://github.com/rafcamlet/nvim-luapad). I haven't
-looked deeply into these plugins yet, and was using plain Lua REPL.
+looked deeply into these plugins yet and was using plain Lua REPL.
 
 
 # The flow
@@ -101,17 +101,17 @@ Check `:h messages` to find out how to interact with this window.
 Editing commands in command line window(:h command-line) is much easier. You can exit
 to normal mode, jump where you'd like to, yank, delete, paste and other.
 
-To open command-line window, I'd like to:
+I like the following workflow when editing commands:
 1. Press colon (:) and start typing command
-2. If I need to edit command, press <C-f>
+2. If I need to edit complex command, press `<C-f>` to open command-line window
 3. You can use `/` or `?` to search through command history
 4. <CR> to execute, <Esc> to exit command-line
 
 ## Reload plugins with [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim)
 
 In Lua, `require` modules are cached. So, when you've updated your plugin you
-have to restart vim in order for new code to work. To do it live, you can use
-reload module from
+have to restart vim for new code to work. To do it live, you can use reload
+module from
 [plenary/reload.lua](https://github.com/nvim-lua/plenary.nvim/blob/master/lua/plenary/reload.lua).
 
 ```Lua
@@ -130,7 +130,7 @@ M.myfunction()
 and then run `luafile %`. `M.myfunction` will be executed and you'll see your
 output.
 
-To make reloading even quicker, I've have set up following function and
+To make reloading even quicker, I've set up the following function and
 key mapping(inspired by Teej config):
 
 ```vim
@@ -193,13 +193,13 @@ parsing Vim command output.
 
 # Conclusion
 
-Vim is a tool which you tune to suit your needs. Using Lua in Neovim lets you tune
+Vim is a tool that you tune to suit your needs. Using Lua in Neovim lets you tune
 almost every aspect of an editor, making it feel and look as you'd like.
 
-Entry barrier for writing Lua plugins is low and it's pretty fun.
+The entry barrier for writing Lua plugins is low and it's pretty fun.
 There are already a lot of Neovim only plugins and I see that more and more
 developers drop vim compatibility and convert to Lua init files.
 
-I am sure that Lua in Neovim has bright future and it's worth investing into it.
+I am sure that Lua in Neovim has a bright future and it's worth investing into it.
 
 P.S. A list of Lua Neovim plugins can be found [awesome-neovim](https://github.com/rockerBOO/awesome-neovim)
