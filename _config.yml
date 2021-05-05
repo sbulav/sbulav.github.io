@@ -67,7 +67,7 @@ plugins:
 author:
   name   : "Sergei Bulavintsev"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "DevOps, RHCA lvl II, CKA, CKAD"
+  bio    : "DevOps, RHCA lvl II, CKA, CKS, CKAD"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
