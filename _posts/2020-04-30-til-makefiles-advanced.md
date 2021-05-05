@@ -4,8 +4,8 @@ date: 2020-04-30
 categories:
   - TIL
 tags:
-  - Make
-  - Makefiles
+  - make
+  - makefiles
 comments: true
 ---
 

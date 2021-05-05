@@ -4,8 +4,8 @@ date: 2020-09-28
 categories:
   - Terraform
 tags:
-  - Terraform
-  - CosmosDb
+  - terraform
+  - cosmosdb
 comments: true
 ---
 

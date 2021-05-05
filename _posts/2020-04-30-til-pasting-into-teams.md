@@ -4,7 +4,7 @@ date: 2020-04-30
 categories:
   - TIL
 tags:
-  - Teams
+  - teams
 comments: true
 ---
 

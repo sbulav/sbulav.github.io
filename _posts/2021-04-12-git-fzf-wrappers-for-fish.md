@@ -4,8 +4,8 @@ date: 2021-04-12
 categories:
   - fish
 tags:
-  - TIL
-  - FZF
+  - til
+  - fzf
   - fish
 comments: true
 ---

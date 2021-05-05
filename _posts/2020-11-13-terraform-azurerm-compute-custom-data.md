@@ -4,8 +4,8 @@ date: 2020-11-13
 categories:
   - Terraform
 tags:
-  - Terraform
-  - Azure
+  - terraform
+  - azure
 comments: true
 ---
 

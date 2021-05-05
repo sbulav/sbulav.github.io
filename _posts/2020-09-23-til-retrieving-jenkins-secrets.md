@@ -4,7 +4,7 @@ date: 2020-09-23
 categories:
   - TIL
 tags:
-  - Jenkins
+  - jenkins
 comments: true
 ---
 

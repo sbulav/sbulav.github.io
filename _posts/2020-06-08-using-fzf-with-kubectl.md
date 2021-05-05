@@ -6,8 +6,8 @@ categories:
   - kubernetes
 tags:
   - kubernetes
-  - TIL
-  - FZF
+  - til
+  - fzf
 comments: true
 ---
 

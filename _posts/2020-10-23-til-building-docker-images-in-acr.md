@@ -4,8 +4,8 @@ date: 2020-10-23
 categories:
   - TIL
 tags:
-  - Docker
-  - Azure
+  - docker
+  - azure
 comments: true
 ---
 
