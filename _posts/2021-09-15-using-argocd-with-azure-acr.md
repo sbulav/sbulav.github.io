@@ -52,20 +52,20 @@ Just a short brief of all steps to authenticate and publish Helm 3 chart to ACR:
 # Enable OCI support for Helm 3
 export HELM_EXPERIMENTAL_OCI=1
 # Login to ACR
-echo ${{ secrets.AZUREACR_PUSH_TOKEN }} | helm registry login ${{ env.ACR_NAME }} --username ${{ secrets.AZUREACR_PUSH_USERNAME }} --password-stdin
+echo ${ env.AZUREACR_PUSH_TOKEN } | helm registry login ${ env.ACR_NAME } --username ${ env.AZUREACR_PUSH_USERNAME } --password-stdin
 # Update Chart dependencies
 helm dependency update ${CHART_DIR}
 # Save chart to Local cache
-helm chart save ${CHART_DIR} ${{ env.ACR_NAME }}/${CHART_DIR}:${CHART_VERSION}
+helm chart save ${CHART_DIR} ${ env.ACR_NAME }/${CHART_DIR}:${CHART_VERSION}
 # Push it to ACR registry
-helm chart push ${{ env.ACR_NAME }}/${CHART_DIR}:${CHART_VERSION}
+helm chart push ${ env.ACR_NAME }/${CHART_DIR}:${CHART_VERSION}
 ```
 
 Once the Chart is pushed to the ACR, you should see it both in the Portal and in
 the CLI:
 
 ```bash
-az acr repository show --name ${{ env.ACR_NAME }} --repository stable/test
+az acr repository show --name ${ env.ACR_NAME } --repository stable/test
 
 {
   "changeableAttributes": {
@@ -95,8 +95,8 @@ argocd repo add myregistry.azurecr.io \
   --type helm \
   --name stable \
   --enable-oci \
-  --username ${{ secrets.AZUREACR_PUSH_USERNAME }} \
-  --password ${{ ${{ secrets.AZUREACR_PUSH_TOKEN }}
+  --username ${ env.AZUREACR_PUSH_USERNAME } \
+  --password ${ env.AZUREACR_PUSH_TOKEN }
 ```
 
 The next step is to create an application using this registry:
