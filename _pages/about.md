@@ -51,13 +51,14 @@ layouts_gallery_code:
 toc: false
 ---
 
- I'm a Lead Systems Engineer at [EPAM](https://epam.com/).
+ I'm a Cloud Solutions Architect at [Altoros](https://www.altoros.com/).
  With lots of experience in Kubernetes, IaaS and networking I'm working on
- migrating complex monolith applications to Kubernetes and Cloud, automating
- customers Infrastructure, and improving developers experience.
+ migrating complex applications to Kubernetes and Cloud, automating customers
+ Infrastructure, and improving developers experience.
 
- Also I'm a [Red Hat Certified Architect in Infrastructure](https://www.redhat.com/rhtapps/services/verify?certId=160-186-458),
- Certified Kubernetes Administrator and Certified Kubernetes Application Developer.
+ Also I'm a [Red Hat Certified Architect in Infrastructure Level II](https://www.redhat.com/rhtapps/services/verify?certId=160-186-458),
+ Certified Kubernetes Administrator and Certified Kubernetes Application Developer and
+ Certified Kubernetes Security Specialist.
 
 {% include gallery id="layouts_gallery_platforms" caption="I work with Kubernetes and Azure on a daily basis, and I also have skills in a variety of Paas, IaaS and SaaS Platforms" %}
 
