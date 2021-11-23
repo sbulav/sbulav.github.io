@@ -27,7 +27,7 @@ which I use for markdown.
 
 To install LuaSnip with packer, following snippet can be used:
 
- ``` Lua
+ ``` lua
 use {
     'L3MON4D3/LuaSnip',
     after = 'nvim-cmp',
@@ -39,7 +39,7 @@ use {
 To use it with nvim-cmp(as a completion source), you will also have to install
 `saadparwaiz1/cmp_luasnip` plugin. So your Packer configuration might look like:
 
-``` Lua
+``` lua
 -- Installation
 use { 
   'hrsh7th/nvim-cmp',
@@ -61,7 +61,7 @@ also configure
 [Example-mappings](https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip)
 which will automatically expand snippet in the LSP menu on selection.
 
-``` Lua
+``` lua
 cmp.setup({
     ...
     sources = {
@@ -118,7 +118,7 @@ Snippet below will be:
 - automatically inserted by hitting enter
 
 
-``` Lua
+``` lua
 local ls = require("luasnip")
 -- some shorthands...
 local snip = ls.snippet
@@ -159,7 +159,7 @@ which will allow you to jump between input parameters.
 
 To do this, let's first define some shortcuts for jumping:
 
-``` Lua
+``` lua
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 keymap("i", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
@@ -174,7 +174,7 @@ see `:h mapmode-s`
 As an example, we will use snippet which will create YAML metadata for
 markdown. I use this meta snapshot for my blog posts:
 
-```Lua
+``` lua
 snip({
     trig = "meta",
     namr = "Metadata",
