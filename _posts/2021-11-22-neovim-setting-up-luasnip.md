@@ -266,5 +266,6 @@ snippets. For more information, check out:
 - [detailed DOC](https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md)
 - [Examples](https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets/tree/main/snippets) contains a lot of snippets which can be used in LuaSnip
+- [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua) small neovim starter config with LuaSnip configured  
 - [my snippets](https://github.com/sbulav/dotfiles/blob/master/nvim/lua/config/snippets.lua)
 
