@@ -10,27 +10,32 @@ tags:
 
 ---
 
-While everyone is hyped about GitHub's CoPilot, I've discovered
+While everyone is hyped about GitHub's Copilot, I've discovered
 [TabNine](https://www.tabnine.com/), an AI completion that I enjoy a lot.
 
 ![tabnine-go](/assets/images/tabnine-go.png)
 
-When CoPilot is aiming to write the whole function for you, TabNine is
-intelligently tries to complete just the current line.
+When Copilot is aiming to write the whole function for you, TabNine just
+tries to intelligently complete the current line.
 
 Furthermore, the current implementation of
-[CoPilot for vim](https://github.com/github/copilot.vim) looks pretty hacky and
-doesn't integrate with completion engines, TabNine provides a completion source
-for [nvim-cmp](https://github.com/tzachar/cmp-tabnine). Completion is provided
-by the local binary(which is installed automatically), so it feels really fast. 
+[Copilot for vim](https://github.com/github/copilot.vim) looks pretty hacky and
+doesn't integrate with completion engines, while TabNine provides a completion
+source [tzachar/cmp-tabnine](https://github.com/tzachar/cmp-tabnine) for
+[hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+
+Completion is provided by the local binary(which is installed automatically),
+so it feels really fast. 
 
 Installation is pretty straightforward and described in
 [README](https://github.com/tzachar/cmp-tabnine#install).
 
 In short, following steps are required:
-1. Install `hrsh7th/nvim-cmp` nvim completion engine
-2. Install `tzachar/cmp-tabnine` nvim-cmp completion source. Under the hood
-   installation script will [download and install binary](https://github.com/tzachar/cmp-tabnine/blob/main/install.sh#L28)
+1. Install [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) nvim
+   completion engine
+2. Install [tzachar/cmp-tabnine](https://github.com/tzachar/cmp-tabnine)
+   nvim-cmp completion source. Under the hood installation script will
+   [download and install binary](https://github.com/tzachar/cmp-tabnine/blob/main/install.sh#L28)
 3. Configure `nvim-cmp` to use TabNine source, i.e.:
 ```lua
 cmp.setup {
