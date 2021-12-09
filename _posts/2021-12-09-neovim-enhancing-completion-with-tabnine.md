@@ -63,7 +63,8 @@ Enabling PRO version is possible, though not obvious. To do this:
 3. Type `TabNine::config`
 
 A new browser window should pop up:
-![tabnine-pro](/assets/images/tabnine-pro.png)
+
+![tabnine-upgrade](/assets/images/tabnine-upgrade.png)
 
 Check [This Issue](https://github.com/tzachar/cmp-tabnine/issues/12) for more info
 
