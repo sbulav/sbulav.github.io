@@ -57,6 +57,16 @@ Terraform or even with markdown.
 It's free for individuals, so I highly recommend trying it. If you'll like it,
 you can [consider pro options](https://www.tabnine.com/pricing)
 
-You can check out my configuration for:
+Enabling PRO version is possible, though not obvious. To do this:
+1. Open a new buffer
+2. Enter `INSERT` mode
+3. Type `TabNine::config`
+
+A new browser window should pop up:
+![tabnine-pro](/assets/images/tabnine-pro.png)
+
+Check [This Issue](https://github.com/tzachar/cmp-tabnine/issues/12) for more info
+
+If you're interested, feel free to check out my config files:
 - [nvim-cmp](https://github.com/sbulav/dotfiles/blob/0dabd397ca572f4a4e354fac5f0e161936c189df/nvim/lua/config/cmp.lua#L42)
 - [cmp-tabnine](https://github.com/sbulav/dotfiles/blob/0dabd397ca572f4a4e354fac5f0e161936c189df/nvim/lua/config/cmp_tabnine.lua#L6)
