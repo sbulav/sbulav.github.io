@@ -24,7 +24,9 @@ Here's a POC Video showing that I can add videos to any markdown file, even to
 the blog posts:
 
 
-![embedded video](https://user-images.githubusercontent.com/28604639/146938627-beb71c68-b6d6-4d9f-a7eb-2d23c5b95e14.mov)
+<video src="https://user-images.githubusercontent.com/28604639/146938627-beb71c68-b6d6-4d9f-a7eb-2d23c5b95e14.mov" controls="controls" style="max-width: 730px;">
+</video>
+
 
 This makes it super convenient to create usage demos, using a native MacOS
 recording via QuickTime. The only downside for me is that I have to use web
@@ -39,4 +41,9 @@ Here's a quick guide how this can be done on MacOS:
 6. Video will be automatically converted and new
    `https://user-images.githubusercontent.com/...` link will be pasted into the
    markdown file
-7. Embed video with tags `![name](link)`
+7. Embed video with tags `![name](link)` for readme, or to the `<video` tags for blog:
+
+```HTML
+<video src="LINK" controls="controls" style="max-width: 730px;">
+</video>
+```
