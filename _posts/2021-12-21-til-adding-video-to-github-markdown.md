@@ -47,3 +47,5 @@ Here's a quick guide how this can be done on MacOS:
 <video src="LINK" controls="controls" style="max-width: 730px;">
 </video>
 ```
+
+Kudos for embedding solution to the [cazzulino's blog](https://www.cazzulino.com/github-pages-embed-video.html)
