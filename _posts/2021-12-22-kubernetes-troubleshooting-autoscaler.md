@@ -23,7 +23,7 @@ debugged in cloud provider.
 I came up with the draw.io scheme, and I thought it might be useful
 for someone:
 
-![Debugging autoscaler]()
+![troubleshooting-autoscaler drawio](https://user-images.githubusercontent.com/28604639/147072904-4391ae5c-cf41-4a69-b890-6579fade2f5b.png)
 
 
 You can also check scheme in `.drawio` format from my Google drive:
