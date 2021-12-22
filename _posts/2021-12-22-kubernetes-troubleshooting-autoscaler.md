@@ -8,7 +8,7 @@ tags:
 comments: true
 ---
 
-To understand what's goining on on the market, it's useful to apply
+To understand what's going on on the market, it's useful to apply
 to open positions from time to time.
 
 This provides an opportunity to:
@@ -26,5 +26,5 @@ for someone:
 ![Debugging autoscaler]()
 
 
-You can also check scheme in `.drawio` format from my Google drive: 
+You can also check scheme in `.drawio` format from my Google drive:
 [troubleshooting-autoscaler](https://drive.google.com/file/d/1xCivP85MiuiAwmHt13E30Wtz6eo-4bE0/view?usp=sharing)
