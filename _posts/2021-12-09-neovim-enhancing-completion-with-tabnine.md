@@ -2,7 +2,7 @@
 title: Neovim enhancing completion with TabNine
 author: Sergei Bulavintsev
 date: 2021-12-09
-cathegories: 
+categories: 
 - vim
 lastmod: 2021-12-09
 tags:

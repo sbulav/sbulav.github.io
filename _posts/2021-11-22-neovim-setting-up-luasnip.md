@@ -2,7 +2,7 @@
 title: Neovim setting up snippets with luasnip
 author: Sergei Bulavintsev
 date: 2021-11-22
-cathegories: 
+categories: 
 - vim
 lastmod: 2021-11-22
 tags:
@@ -185,7 +185,7 @@ snip({
     "title: "}), insert(1, "note_title"), text({"", 
     "author: "}), insert(2, "author"), text({"", 
     "date: "}), func(date, {}), text({"",
-    "cathegories: ["}), insert(3, ""), text({"]",
+    "categories: ["}), insert(3, ""), text({"]",
     "lastmod: "}), func(date, {}), text({"",
     "tags: ["}), insert(4), text({"]",
     "comments: true",
