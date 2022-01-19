@@ -13,6 +13,10 @@ I've became a technical reviewer for the book [Kubernetes – An Enterprise Guid
 
 Today I've received my printed copy of the book:
 
+![book01](https://user-images.githubusercontent.com/28604639/150093342-118f72e8-7d59-4d92-ace3-fc903241feda.jpg)
+
+![book02](https://user-images.githubusercontent.com/28604639/150093483-072eee36-8d56-46ff-8689-a4b67a88f9db.jpg)
+
 I thought that I should share my thoughts if it's worth it.
 
 When you agree to became a technical reviewer, you sign a contract with Packt.
@@ -36,3 +40,5 @@ proud of.
 
 Even though working on the book was time-consuming, I really enjoyed the process
 and the result.
+
+
