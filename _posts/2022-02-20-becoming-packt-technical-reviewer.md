@@ -27,7 +27,7 @@ For me, the benefits were:
 
 This may sound like a good deal, but don't forget that you will spend a lot of
 hours troubleshooting broken scripts, not starting Docker images, etc...
-Multiply those hours to a rate of a high-grade engineer, and the deal don't look
+Multiply those hours to a rate of a high-grade engineer, and the deal doesn't look
 good anymore.
 
 What's really great about becoming a technical reviewer is that you will meet
