@@ -59,7 +59,7 @@ maybe you will find a hidden gem.
 Prizes are pretty cool, besides the swag, you receive a 150$, which you can
 donate to Open Source.
 
-I've spent my prize to support my [favorite text editor](github.com/neovim/)
+I've spent my prize to support my [favorite text editor](github.com/neovim/):
 
-
+<img width="482" alt="Screenshot 2022-01-17 at 10 44 07" src="https://user-images.githubusercontent.com/28604639/150086730-661d16e6-2a86-4d35-aa31-96823a0eb984.png">
 
