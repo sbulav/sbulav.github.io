@@ -2,6 +2,7 @@
 title: Neovim enhancing completion with TabNine
 author: Sergei Bulavintsev
 date: 2021-12-09
+last_modified_at: 2022-01-20
 categories: 
 - vim
 lastmod: 2021-12-09
@@ -71,3 +72,11 @@ Check [This Issue](https://github.com/tzachar/cmp-tabnine/issues/12) for more in
 If you're interested, feel free to check out my config files:
 - [nvim-cmp](https://github.com/sbulav/dotfiles/blob/0dabd397ca572f4a4e354fac5f0e161936c189df/nvim/lua/config/cmp.lua#L42)
 - [cmp-tabnine](https://github.com/sbulav/dotfiles/blob/0dabd397ca572f4a4e354fac5f0e161936c189df/nvim/lua/config/cmp_tabnine.lua#L6)
+
+
+## Update 2020-06-09
+
+In [PR #35](https://github.com/tzachar/cmp-tabnine/pull/35) a new command
+`:CmpTabnineHub` was introduced.
+
+This command makes in really easy to access the TabNine Hub
