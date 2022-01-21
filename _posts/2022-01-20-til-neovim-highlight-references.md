@@ -11,7 +11,8 @@ comments: true
 Today I learned a pretty cool LSP feature - automatic highlighting of
 references for the current text position:
 
-https://user-images.githubusercontent.com/28604639/150479658-c0ce731f-251d-4f25-a276-da42c0f3e42f.mov
+<video src="https://user-images.githubusercontent.com/28604639/150479658-c0ce731f-251d-4f25-a276-da42c0f3e42f.mov" controls="controls" style="max-width: 730px;">
+</video>
 
 To make it work, a few requirements have to be met:
 * Your LSP must support such capabilities
