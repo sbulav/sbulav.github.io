@@ -51,7 +51,7 @@ layouts_gallery_code:
 toc: false
 ---
 
- I'm a Cloud Solutions Architect at [Altoros](https://www.altoros.com/).
+ I'm a DevOps at [GlobalDots](https://www.globaldots.com/).
  With lots of experience in Kubernetes, IaaS and networking I'm working on
  migrating complex applications to Kubernetes and Cloud, automating customers
  Infrastructure, and improving developers experience.
