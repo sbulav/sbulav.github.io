@@ -69,3 +69,13 @@ local sources = {
 
 If you'll use both `filetype.nvim` and `vim-terraform`, you'll be formatting
 terraform files twice on each save.
+
+## Adding Tabnine and CoPilot
+
+To speed up writing Terraform files, I'm using [TabNine](https://sbulav.github.io/vim/neovim-enhancing-completion-with-tabnine/).
+It works great, but you can go even further and combine it with CoPilot.
+
+With the recently introduced [copilot.lua](https://github.com/zbirenbaum/copilot.lua)
+and the completion source [copilot-cmp](https://github.com/zbirenbaum/copilot-cmp),
+writing Terraform files is now as easy as writing Go code:
+
