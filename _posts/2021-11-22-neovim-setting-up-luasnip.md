@@ -4,7 +4,7 @@ author: Sergei Bulavintsev
 date: 2021-11-22
 categories: 
 - vim
-lastmod: 2021-11-22
+lastmod: 2022-04-06
 tags:
 - vim
 
@@ -23,9 +23,15 @@ so many features that it can be difficult to set up. In this blog post,
 I'll share how I've configured LuaSnip and will provide a few example snippets
 which I use for markdown.
 
+**NOTE**
+As of 20.03.2022, LuaSnip introduced breaking changes in the way how `ls.snippets`
+are defined. I've updated the article accordingly to the changes.
+See [issuecomment-1073301357](https://github.com/L3MON4D3/LuaSnip/issues/81#issuecomment-1073301357)
+for more info
+
 # Installation
 
-To install LuaSnip with packer, following snippet can be used:
+To install LuaSnip with Packer, following snippet can be used:
 
  ``` lua
 use {
@@ -131,7 +137,7 @@ local dynamicn = ls.dynamic_node
 
 local date = function() return {os.date('%Y-%m-%d')} end
 
-ls.snippets = {
+ls.add_snippets(nil, {
     all = {
         snip({
             trig = "date",
@@ -139,7 +145,7 @@ ls.snippets = {
             dscr = "Date in the form of YYYY-MM-DD"
         },
     }
-}
+})
 ```
 
 For example:
