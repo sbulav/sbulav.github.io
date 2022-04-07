@@ -20,17 +20,21 @@ My audience slowly grew from zero, recently passing 1k unique visitors.
 Gaining a large audience was never my goal, so for me, that's a pretty big
 number.
 
+<img width="669" alt="01" src="https://user-images.githubusercontent.com/28604639/162155733-cb9449f7-6a35-4e0a-9128-631f8960ea4f.png">
 
 Most of my views are from the USA, with India in the second place.
 
+<img width="1672" alt="02" src="https://user-images.githubusercontent.com/28604639/162155757-b3c7bc7c-cf65-4acd-8570-97595ac2dd8d.png">
 
 By far, most of my audience came from organic search, i.e. Google and DuckDuckGo:
 
+<img width="721" alt="03" src="https://user-images.githubusercontent.com/28604639/162155817-ff0696d1-1bac-43d1-a3b6-e8400fc66d89.png">
 
 ## Blog posts
 
 Here are some statistics about my blog posts:
 
+<img width="633" alt="04" src="https://user-images.githubusercontent.com/28604639/162155860-6a0cb498-8fe0-47e1-a995-eb2135e07d5c.png">
 
 Among my posts, the most popular one is [passed RedHat PE180](https://sbulav.github.io/certifications/passed-redhat-pe180-exam/).
 When I wrote this post, there was little to no information about this
