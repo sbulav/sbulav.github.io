@@ -2,11 +2,11 @@
 title: "CKAD theory pt.2 - Configuration"
 date: 2020-04-17T06:00:00-04:00
 categories:
-  - #certifications
+  - certifications
 tags:
-  - #kubernetes
-  - #certifications
-  - #ckad
+  - kubernetes
+  - certifications
+  - ckad
 comments: true
 toc: true
 toc_label: "Configuration"

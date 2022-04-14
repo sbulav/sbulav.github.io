@@ -2,11 +2,11 @@
 title: "My attempt on Certified Kubernetes Security beta Exam"
 date: 2020-11-20
 categories:
-  - #certifications
+  - certifications
 tags:
-  - #kubernetes
-  - #certifications
-  - #cks
+  - kubernetes
+  - certifications
+  - cks
 comments: true
 ---
 
@@ -32,10 +32,10 @@ I will share a few thoughts on exam preparations below.
 
 ## Important topics
 
-- #make sure you're familiar with kube-bench and CIS k8s Benchmarks. You must
+- Make sure you're familiar with kube-bench and CIS k8s Benchmarks. You must
   know how to apply kube-bench recommendations to secure you kube-api, kubelet
   and other k8s components
-- #make sure you have a good knowledge of RBAC. How to map role to entity, how to
+- Make sure you have a good knowledge of RBAC. How to map role to entity, how to
   minimize user/serviceaccount permissions.
 - Usage of Admission controllers is also a must.
 - NSP, PSP, Audit Policies

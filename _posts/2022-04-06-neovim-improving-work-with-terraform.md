@@ -2,9 +2,9 @@
 title: "Improving work with Terraform in Neovim"
 date: 2022-04-06
 categories:
-  - #vim
+  - vim
 tags:
-  - #vim
+  - vim
 comments: true
 ---
 

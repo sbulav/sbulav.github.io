@@ -2,9 +2,9 @@
 title: "Adding blog to search engines."
 date: 2020-04-24
 categories:
-  - #blog
+  - blog
 tags:
-  - #thoughts
+  - thoughts
 comments: true
 ---
 

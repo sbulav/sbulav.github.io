@@ -2,9 +2,9 @@
 title: "TIL - Pasting into Teams"
 date: 2020-04-30
 categories:
-  - #TIL
+  - TIL
 tags:
-  - #teams
+  - teams
 comments: true
 ---
 

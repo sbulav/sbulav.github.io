@@ -2,10 +2,10 @@
 title: "Passing Custom Data to Terraform Azure RM Compute Module"
 date: 2020-11-13
 categories:
-  - #Terraform
+  - Terraform
 tags:
-  - #terraform
-  - #azure
+  - terraform
+  - azure
 comments: true
 ---
 

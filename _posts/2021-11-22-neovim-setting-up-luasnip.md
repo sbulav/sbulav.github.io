@@ -3,10 +3,10 @@ title: Neovim setting up snippets with luasnip
 author: Sergei Bulavintsev
 date: 2021-11-22
 categories: 
-- #vim
+- vim
 lastmod: 2022-04-06
 tags:
-- #vim
+- vim
 
 ---
 

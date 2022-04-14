@@ -2,9 +2,9 @@
 title: TIL - Conventional Commits
 author: Sergei Bulavintsev
 date: 2021-11-30
-categories: [#TIL]
+categories: [TIL]
 lastmod: 2021-11-30
-tags: [#git]
+tags: [git]
 comments: true
 ---
 

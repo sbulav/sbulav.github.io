@@ -2,9 +2,9 @@
 title: TIL - Adding mp4 mov to Github markdown files/blog posts
 author: Sergei Bulavintsev
 date: 2021-12-21
-categories: [#TIL]
+categories: [TIL]
 lastmod: 2021-12-21
-tags: [#github]
+tags: [github]
 comments: true
 ---
 

@@ -2,11 +2,11 @@
 title: "CKAD theory pt.7 - State persistence"
 date: 2020-05-08
 categories:
-  - #certifications
+  - certifications
 tags:
-  - #kubernetes
-  - #certifications
-  - #ckad
+  - kubernetes
+  - certifications
+  - ckad
 comments: true
 toc: true
 toc_label: "State Persistence"

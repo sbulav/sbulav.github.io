@@ -3,11 +3,11 @@ title: "Using fzf with kubectl as REPL"
 date: 2020-06-08
 last_modified_at: 2020-06-09
 categories:
-  - #kubernetes
+  - kubernetes
 tags:
-  - #kubernetes
-  - #til
-  - #fzf
+  - kubernetes
+  - til
+  - fzf
 comments: true
 ---
 

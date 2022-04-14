@@ -2,10 +2,10 @@
 title: "Github actions cancelled terraform jobs"
 date: 2020-10-21
 categories:
-  - #terraform
+  - terraform
 tags:
-  - #terraform
-  - #github actions
+  - terraform
+  - github actions
 comments: true
 ---
 

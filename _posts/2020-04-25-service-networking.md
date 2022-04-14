@@ -2,11 +2,11 @@
 title: "CKAD theory pt.6 - Service Networking"
 date: 2020-04-27
 categories:
-  - #certifications
+  - certifications
 tags:
-  - #kubernetes
-  - #certifications
-  - #ckad
+  - kubernetes
+  - certifications
+  - ckad
 comments: true
 toc: true
 toc_label: "Service Networking"

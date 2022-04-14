@@ -2,10 +2,10 @@
 title: "Setting up FZF on Fedora"
 date: 2020-05-06
 categories:
-  - #tools
+  - tools
 tags:
-  - #fzf
-  - #ripgrep
+  - fzf
+  - ripgrep
 comments: true
 ---
 

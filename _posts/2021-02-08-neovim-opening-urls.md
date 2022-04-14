@@ -2,9 +2,9 @@
 title: "Neovim opening URLs"
 date: 2021-02-08
 categories:
-  - #vim
+  - vim
 tags:
-  - #vim
+  - vim
 comments: true
 ---
 

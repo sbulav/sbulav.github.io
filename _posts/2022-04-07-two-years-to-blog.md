@@ -2,9 +2,9 @@
 title: "Two years to the blog"
 date: 2022-04-15
 categories:
-  - #blog
+  - blog
 tags:
-  - #blog
+  - blog
 comments: true
 ---
 

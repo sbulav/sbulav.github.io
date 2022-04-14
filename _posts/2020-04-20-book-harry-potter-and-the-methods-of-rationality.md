@@ -2,9 +2,9 @@
 title: "Book - Harry Potter and the Methods of Rationality"
 date: 2020-04-20T05:00:00-04:00
 categories:
-  - #books
+  - books
 tags:
-  - #books
+  - books
 comments: true
 ---
 

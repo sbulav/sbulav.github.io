@@ -2,9 +2,9 @@
 title: "TIL - Neovim lsp uses tag stack"
 date: 2022-01-13
 categories:
-  - #TIL
+  - TIL
 tags:
-  - #vim
+  - vim
 comments: true
 ---
 

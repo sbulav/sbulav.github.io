@@ -2,9 +2,9 @@
 title: "TIL - Firefox clear recent history"
 date: 2020-05-25
 categories:
-  - #TIL
+  - TIL
 tags:
-  - #firefox
+  - firefox
 comments: true
 ---
 

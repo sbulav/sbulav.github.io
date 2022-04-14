@@ -2,10 +2,10 @@
 title: "TIL - Helm respect current replicas"
 date: 2021-06-18
 categories:
-  - #TIL
+  - TIL
 tags:
-  - #helm
-  - #kubernetes
+  - helm
+  - kubernetes
 comments: true
 ---
 

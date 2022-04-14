@@ -2,9 +2,9 @@
 title: "Book - The Complete Software Developers Career Guide"
 date: 2020-05-07
 categories:
-  - #books
+  - books
 tags:
-  - #books
+  - books
 comments: true
 ---
 

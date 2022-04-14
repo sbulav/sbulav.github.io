@@ -2,10 +2,10 @@
 title: "Kubectl plugin manager"
 date: 2020-05-18
 categories:
-  - #tools
+  - tools
 tags:
-  - #kubectl
-  - #krew
+  - kubectl
+  - krew
 comments: true
 ---
 

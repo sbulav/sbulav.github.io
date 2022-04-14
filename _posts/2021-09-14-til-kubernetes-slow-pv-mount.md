@@ -1,10 +1,10 @@
 ---
-title: "TIL - #kubernetes slow PV mount"
+title: "TIL - Kubernetes slow PV mount"
 date: 2021-09-15
 categories:
-  - #TIL
+  - TIL
 tags:
-  - #kubernetes
+  - kubernetes
 comments: true
 ---
 

@@ -3,11 +3,11 @@ title: "CKS preparation - abusing ServiceAccount to grant privileges"
 date: 2021-02-03T06:00:00-04:00
 last_modified_at: 2021-02-04
 categories:
-  - #certifications
+  - certifications
 tags:
-  - #kubernetes
-  - #certifications
-  - #cks
+  - kubernetes
+  - certifications
+  - cks
 comments: true
 ---
 

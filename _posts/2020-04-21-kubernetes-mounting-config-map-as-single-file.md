@@ -2,9 +2,9 @@
 title: "Mounting ConfigMap as single file"
 date: 2020-04-21T06:00:00-04:00
 categories:
-  - #kubernetes
+  - kubernetes
 tags:
-  - #kubernetes
+  - kubernetes
 comments: true
 ---
 

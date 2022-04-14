@@ -2,10 +2,10 @@
 title: "Kubernetes rewrites"
 date: 2020-06-03
 categories:
-  - #kubernetes
+  - kubernetes
 tags:
-  - #kubernetes
-  - #ingress
+  - kubernetes
+  - ingress
 comments: true
 ---
 

@@ -2,9 +2,9 @@
 title: "Neovim train motions"
 date: 2021-01-21
 categories:
-  - #vim
+  - vim
 tags:
-  - #vim
+  - vim
 comments: true
 ---
 

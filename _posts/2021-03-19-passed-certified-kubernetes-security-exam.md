@@ -2,11 +2,11 @@
 title: "Passed Certified Kubernetes Security Exam"
 date: 2021-03-19
 categories:
-  - #certifications
+  - certifications
 tags:
-  - #kubernetes
-  - #certifications
-  - #cks
+  - kubernetes
+  - certifications
+  - cks
 comments: true
 ---
 
@@ -38,10 +38,10 @@ I will share more details how I was preparing to CKS exam below.
 ## Important topics
 
 They are the same as they were on beta:
-- #make sure you're familiar with `kube-bench` tool and CIS k8s Benchmarks. You
+- Make sure you're familiar with `kube-bench` tool and CIS k8s Benchmarks. You
   must know how to apply `kube-bench` recommendations to secure your
   `kube-api`, `kubelet` and other k8s components
-- #make sure you have a good knowledge of RBAC. How to map role to entity, how to
+- Make sure you have a good knowledge of RBAC. How to map role to entity, how to
   minimize user/serviceAccount permissions.
 - Usage of Admission controllers is also a must.
 - NSP, PSP, OPA, Audit Policies
