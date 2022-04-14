@@ -4,10 +4,10 @@ author: Sergei Bulavintsev
 date: 2021-12-09
 last_modified_at: 2022-01-20
 categories: 
-- vim
+- #vim
 lastmod: 2021-12-09
 tags:
-- vim
+- #vim
 
 ---
 

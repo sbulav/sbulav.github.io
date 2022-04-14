@@ -2,10 +2,10 @@
 title: "Github actions matrix secrets"
 date: 2020-10-08
 categories:
-  - terraform
+  - #terraform
 tags:
-  - terraform
-  - github actions
+  - #terraform
+  - #github actions
 comments: true
 ---
 

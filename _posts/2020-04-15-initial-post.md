@@ -2,10 +2,10 @@
 title: "Initial post"
 date: 2020-04-15T05:00:00-04:00
 categories:
-  - blog
+  - #blog
 tags:
-  - thoughts
-  - update
+  - #thoughts
+  - #update
 comments: true
 ---
 

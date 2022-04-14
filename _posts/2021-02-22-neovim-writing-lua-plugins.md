@@ -2,10 +2,10 @@
 title: "Neovim Telescope Github plugin"
 date: 2021-06-07
 categories:
-  - vim
+  - #vim
 tags:
-  - vim
-  - github actions
+  - #vim
+  - #github actions
 comments: true
 ---
 

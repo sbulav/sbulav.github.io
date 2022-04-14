@@ -2,10 +2,10 @@
 title: "Using ArgoCD with Azure ACR"
 date: 2021-09-15
 categories:
-  - azure
+  - #azure
 tags:
-  - kubernetes
-  - argocd
+  - #kubernetes
+  - #argocd
 comments: true
 ---
 

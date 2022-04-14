@@ -2,11 +2,11 @@
 title: "CKS preparation - setting up gVisor"
 date: 2020-12-17T06:00:00-04:00
 categories:
-  - certifications
+  - #certifications
 tags:
-  - kubernetes
-  - certifications
-  - cks
+  - #kubernetes
+  - #certifications
+  - #cks
 comments: true
 toc: true
 toc_label: "Setting up gVisor"

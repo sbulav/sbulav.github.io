@@ -2,10 +2,10 @@
 title: "Terraform and Azure CosmosDB"
 date: 2020-09-28
 categories:
-  - Terraform
+  - #Terraform
 tags:
-  - terraform
-  - cosmosdb
+  - #terraform
+  - #cosmosdb
 comments: true
 ---
 

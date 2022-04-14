@@ -2,10 +2,10 @@
 title: "Becoming Packt's technical reviewer"
 date: 2022-01-20
 categories:
-  - kubernetes
+  - #kubernetes
 tags:
-  - kubernetes
-  - packt
+  - #kubernetes
+  - #packt
 comments: true
 ---
 

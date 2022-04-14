@@ -2,9 +2,9 @@
 title: "Neovim writing LUA plugins"
 date: 2021-02-22
 categories:
-  - vim
+  - #vim
 tags:
-  - vim
+  - #vim
 comments: true
 ---
 

@@ -2,9 +2,9 @@
 title: "TIL - Commenting current command in shell"
 date: 2021-02-26
 categories:
-  - TIL
+  - #TIL
 tags:
-  - fish
+  - #fish
 comments: true
 ---
 

@@ -2,11 +2,11 @@
 title: "Git fzf wrappers for fish"
 date: 2021-04-12
 categories:
-  - fish
+  - #fish
 tags:
-  - til
-  - fzf
-  - fish
+  - #til
+  - #fzf
+  - #fish
 comments: true
 ---
 

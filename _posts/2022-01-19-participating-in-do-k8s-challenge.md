@@ -2,10 +2,10 @@
 title: "Participating in Digital Ocean Kubernetes Challenge"
 date: 2022-01-19
 categories:
-  - kubernetes
+  - #kubernetes
 tags:
-  - kubernetes
-  - digital-ocean
+  - #kubernetes
+  - #digital-ocean
 comments: true
 ---
 

@@ -2,10 +2,10 @@
 title: "Restarting GitHub action from CLI"
 date: 2021-04-08
 categories:
-  - TIL
+  - #TIL
 tags:
-  - github
-  - github actions
+  - #github
+  - #github actions
 comments: true
 ---
 

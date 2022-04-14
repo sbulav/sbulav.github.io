@@ -2,9 +2,9 @@
 title: "Fedora 32 and github pages"
 date: 2020-06-03
 categories:
-  - blog
+  - #blog
 tags:
-  - blog
+  - #blog
 comments: true
 ---
 

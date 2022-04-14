@@ -2,11 +2,11 @@
 title: "Rancher Certified Operator"
 date: 2020-07-03
 categories:
-  - certifications
+  - #certifications
 tags:
-  - kubernetes
-  - rancher
-  - certifications
+  - #kubernetes
+  - #rancher
+  - #certifications
 comments: true
 ---
 

@@ -2,10 +2,10 @@
 title: "TIL - Helm chart-testing custom values"
 date: 2021-08-02
 categories:
-  - TIL
+  - #TIL
 tags:
-  - helm
-  - kubernetes
+  - #helm
+  - #kubernetes
 comments: true
 ---
 

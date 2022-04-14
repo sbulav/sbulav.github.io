@@ -2,9 +2,9 @@
 title: "Vim my favourite keymapping"
 date: 2021-04-02
 categories:
-  - vim
+  - #vim
 tags:
-  - vim
+  - #vim
 comments: true
 ---
 

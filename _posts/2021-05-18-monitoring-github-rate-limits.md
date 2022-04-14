@@ -2,11 +2,10 @@
 title: "Monitoring GitHub Rate limits"
 date: 2021-05-18
 categories:
-  - monitoring
+  - #monitoring
 tags:
-  - github
-  - prometheus
-
+  - #github
+  - #prometheus
 comments: true
 ---
 

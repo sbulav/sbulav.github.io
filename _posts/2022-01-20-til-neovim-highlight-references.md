@@ -2,9 +2,9 @@
 title: "TIL - Neovim automatic highlighting references with LSP"
 date: 2022-01-20
 categories:
-  - TIL
+  - #TIL
 tags:
-  - vim
+  - #vim
 comments: true
 ---
 

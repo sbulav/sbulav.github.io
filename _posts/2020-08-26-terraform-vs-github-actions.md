@@ -2,10 +2,10 @@
 title: "Terraform vs Github Actions"
 date: 2020-08-26
 categories:
-  - terraform
+  - #terraform
 tags:
-  - terraform
-  - github actions
+  - #terraform
+  - #github actions
 comments: true
 ---
 

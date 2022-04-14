@@ -2,11 +2,11 @@
 title: "CKAD theory pt.5 - Observability"
 date: 2020-04-24
 categories:
-  - certifications
+  - #certifications
 tags:
-  - kubernetes
-  - certifications
-  - ckad
+  - #kubernetes
+  - #certifications
+  - #ckad
 comments: true
 toc: true
 toc_label: "Observability"

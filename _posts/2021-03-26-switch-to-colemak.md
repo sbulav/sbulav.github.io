@@ -2,10 +2,10 @@
 title: "Switch to Colemak"
 date: 2021-03-26
 categories:
-  - typing
+  - #typing
 tags:
-  - colemak
-  - layout
+  - #colemak
+  - #layout
 comments: true
 ---
 

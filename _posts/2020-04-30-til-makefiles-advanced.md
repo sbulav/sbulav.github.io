@@ -1,11 +1,11 @@
 ---
-title: "TIL - Makefiles advanced usage"
+title: "TIL - #makefiles advanced usage"
 date: 2020-04-30
 categories:
-  - TIL
+  - #TIL
 tags:
-  - make
-  - makefiles
+  - #make
+  - #makefiles
 comments: true
 ---
 

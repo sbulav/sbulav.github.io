@@ -2,11 +2,11 @@
 title: "Comparing Enterprise vs Community MongoDB K8S Operators"
 date: 2020-08-03
 categories:
-  - kubernetes
+  - #kubernetes
 tags:
-  - kubernetes
-  - mongodb
-  - operators
+  - #kubernetes
+  - #mongodb
+  - #operators
 comments: true
 ---
 

@@ -2,11 +2,11 @@
 title: "CKAD theory pt.3 - Multi Container Pods"
 date: 2020-04-22T06:00:00-04:00
 categories:
-  - certifications
+  - #certifications
 tags:
-  - kubernetes
-  - certifications
-  - ckad
+  - #kubernetes
+  - #certifications
+  - #ckad
 comments: true
 toc: true
 toc_label: "Multi Container Pods"

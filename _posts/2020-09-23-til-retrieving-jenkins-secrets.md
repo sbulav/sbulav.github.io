@@ -2,9 +2,9 @@
 title: "TIL - Retrieving Jenkins secrets"
 date: 2020-09-23
 categories:
-  - TIL
+  - #TIL
 tags:
-  - jenkins
+  - #jenkins
 comments: true
 ---
 

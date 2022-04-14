@@ -2,9 +2,9 @@
 title: "TIL - Neovim Highlight yanked text"
 date: 2020-05-25
 categories:
-  - TIL
+  - #TIL
 tags:
-  - vim
+  - #vim
 comments: true
 ---
 

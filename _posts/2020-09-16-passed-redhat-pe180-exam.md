@@ -3,10 +3,10 @@ title: "Passed RedHat PE180 exam"
 date: 2020-09-16
 last_modified_at: 2020-12-25
 categories:
-  - certifications
+  - #certifications
 tags:
-  - redhat
-  - pe180
+  - #redhat
+  - #pe180
 comments: true
 ---
 
@@ -90,8 +90,8 @@ government license.
 ## Preparing for the exam
 
 Since PE180 is a preliminary exam, preparing for it is pretty simple:
-- Make sure that you know how to use `podman` and all of it's keys and arguments
-- Make sure that you know how to write `Dockerfiles`, build docker images and
+- #make sure that you know how to use `podman` and all of it's keys and arguments
+- #make sure that you know how to write `Dockerfiles`, build docker images and
   tag images.
 
 Good description of PE180 topics can be found here:
@@ -102,7 +102,7 @@ Good description of PE180 topics can be found here:
 Network connectivity was fine for me and I was able to pass all checks pretty
 quickly. Most annoying thing for me was that my laptop is 13'3 inches running
 1920x1080 resolution. I find it hard to read such small letters. And, as usual,
-not working keymapping - make sure that you don't press `ctrl+w` or `alt-tab`
+not working keymapping - #make sure that you don't press `ctrl+w` or `alt-tab`
 
 Exam is only 1 hour long and I've used all available time.
 

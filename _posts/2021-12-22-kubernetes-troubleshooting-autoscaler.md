@@ -2,9 +2,9 @@
 title: "Kubernetes debug autoscaler issues"
 date: 2021-12-22
 categories:
-  - kubernetes
+  - #kubernetes
 tags:
-  - kubernetes
+  - #kubernetes
 comments: true
 ---
 

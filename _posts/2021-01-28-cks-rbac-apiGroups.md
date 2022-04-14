@@ -2,11 +2,11 @@
 title: "CKS preparation - RBAC apiGroups"
 date: 2021-01-28T06:00:00-04:00
 categories:
-  - certifications
+  - #certifications
 tags:
-  - kubernetes
-  - certifications
-  - cks
+  - #kubernetes
+  - #certifications
+  - #cks
 comments: true
 ---
 

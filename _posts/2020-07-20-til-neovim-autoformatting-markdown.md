@@ -2,9 +2,9 @@
 title: "TIL - Neovim automatically wrapping long lines"
 date: 2020-07-20
 categories:
-  - TIL
+  - #TIL
 tags:
-  - vim
+  - #vim
 comments: true
 ---
 

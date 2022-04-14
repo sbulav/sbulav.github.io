@@ -2,12 +2,12 @@
 title: "Preparation for CKA/CKA"
 date: 2020-04-15T06:00:00-04:00
 categories:
-  - certifications
+  - #certifications
 tags:
-  - kubernetes
-  - certifications
-  - cka
-  - ckad
+  - #kubernetes
+  - #certifications
+  - #cka
+  - #ckad
 comments: true
 ---
 

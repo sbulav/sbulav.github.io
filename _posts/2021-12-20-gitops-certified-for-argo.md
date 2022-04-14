@@ -2,11 +2,11 @@
 title: "GitOps Certified for Argo"
 date: 2021-12-20
 categories:
-  - certifications
+  - #certifications
 tags:
-  - kubernetes
-  - gitops
-  - certifications
+  - #kubernetes
+  - #gitops
+  - #certifications
 comments: true
 ---
 
