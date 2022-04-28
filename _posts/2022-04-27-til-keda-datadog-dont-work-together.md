@@ -24,6 +24,12 @@ to the IAM permissions. As it turns out:
 
 With the new EKS cluster w/o DataDog installed, everything worked like a charm.
 
+Update:
+* DataDog will register APIService `v1beta1.external.metrics.k8s.io` only if
+  ClusterAgent is Enabled and `clusterAgent.metricsProvider.enabled` = true(
+  false by default)
+* `k8s-cloudwatch-adapter` and KEDA will not work together
+
 Corresponding issues:
 - [KEDA might break existing deployment on cluster which already has another External Metrics Adapter installed]( https://github.com/kedacore/keda/issues/470)
 - [failing or missing response from https://IP:6443/apis/external.metrics.k8s.io/v1beta1](https://github.com/kedacore/keda/issues/1827)
