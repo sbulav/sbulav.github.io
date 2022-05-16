@@ -85,7 +85,8 @@ gpgconf --reload gpg-agent
 If you've configured everything correctly, you'll see `Enter passphrase`
 in the NeoVim:
 
-[IMG]
+<img width="1055" alt="Screenshot 2022-05-16 at 14 55 19" src="https://user-images.githubusercontent.com/28604639/168592427-fd315633-169c-4ddd-a3e1-e5ae41898733.png">
+
 
 This approach works with any Git plugin, such as Fugitive or LazyGit. By using
 cache with TTL 28800, the password has to be entered only once per day.
@@ -98,7 +99,7 @@ git log --show-signature
 
 You should see something like this:
 
-[IMG]
+<img width="995" alt="Screenshot 2022-05-16 at 14 55 52" src="https://user-images.githubusercontent.com/28604639/168592463-d082432f-9195-4b95-bd2f-cb4f3270248b.png">
 
 ## Signing commits for multiple emails
 
