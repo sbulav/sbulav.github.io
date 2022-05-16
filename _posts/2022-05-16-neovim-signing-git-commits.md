@@ -38,7 +38,7 @@ Next step is to amend your `.gitconfig` so that every commit is signed:
 ```gitconfig
 [user]
   ; Make sure that email matches one in the GPG key
-  email = bulavintsev.sergey@gmail.com
+  email = personal_email@gmail.com
   name = Sergei Bulavintsev
   ; GPG key ID
   signingkey = 7C43420F61CECAAA
