@@ -99,7 +99,7 @@ git log --show-signature
 
 You should see something like this:
 
-<img width="995" alt="Screenshot 2022-05-16 at 14 55 52" src="https://user-images.githubusercontent.com/28604639/168592463-d082432f-9195-4b95-bd2f-cb4f3270248b.png">
+<img width="1071" alt="Screenshot 2022-05-16 at 15 33 46" src="https://user-images.githubusercontent.com/28604639/168593376-07f83da6-5c50-4fec-8947-bf10c191d8e8.png">
 
 ## Signing commits for multiple emails
 
