@@ -35,7 +35,7 @@ as per the article.
 
 Next step is to amend your `.gitconfig` so that every commit is signed:
 
-```gitconfig
+```text
 [user]
   ; Make sure that email matches one in the GPG key
   email = personal_email@gmail.com
@@ -123,7 +123,7 @@ for each repository:
   settings.
 
 For example:
-```gitconfig
+```text
 [user]
   ; Use this email by default
   email = personal_email@gmail.com
@@ -140,7 +140,7 @@ For example:
 
 And the included file `.gitconfig_work` might look like:
 
-```gitconfig
+```text
 [user]
   email = work_email@organization.com
   signingKey = A54F12F0D4D73FAA
