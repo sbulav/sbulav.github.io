@@ -76,7 +76,7 @@ cmp.setup({
         ...
     },
     mapping = {
-        ["<cr>"] = cmp.mapping.confirm(),
+        ["<CR>"] = cmp.mapping.confirm { select = true },
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -142,9 +142,11 @@ ls.add_snippets(nil, {
         snip({
             trig = "date",
             namr = "Date",
-            dscr = "Date in the form of YYYY-MM-DD"
-        },
-    }
+            dscr = "Date in the form of YYYY-MM-DD",
+        }, {
+            func(date, {}),
+        }),
+    },
 })
 ```
 

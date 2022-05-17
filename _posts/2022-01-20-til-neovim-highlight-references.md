@@ -1,7 +1,7 @@
 ---
 title: "TIL - Neovim automatic highlighting references with LSP"
 date: 2022-01-20
-lastmod: 2022-05-16
+last_modified_at: 2022-05-16
 categories:
   - TIL
 tags:
