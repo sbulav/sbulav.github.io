@@ -1,6 +1,7 @@
 ---
 title: "Signing Git commits in NeoVim"
 date: 2022-05-16
+last_modified_at: 2022-05-19
 categories:
   - vim
 tags:
@@ -100,6 +101,28 @@ git log --show-signature
 You should see something like this:
 
 <img width="1071" alt="Screenshot 2022-05-16 at 15 33 46" src="https://user-images.githubusercontent.com/28604639/168593376-07f83da6-5c50-4fec-8947-bf10c191d8e8.png">
+
+## Trust GitHub public keys
+
+When you use GitHub web interface, it will automatically sign your
+commits using user [web-flow](https://github.com/web-flow). In the web interface,
+you'll see all your commits as signed and verified. However, while
+checking commits with `--show-signature` flag, web commits will not be checked:
+
+<IMG>
+
+To fix this, import GPG key of the user `web-flow`(kudos to [Stack Overflow](https://stackoverflow.com/a/60482908)):
+```bash
+$ curl https://github.com/web-flow.gpg | gpg --import
+$ gpg --edit-key noreply@github.com
+gpg> trust
+gpg> save
+$ gpg --lsign-key noreply@github.com
+```
+
+After importing the key:
+
+<IMG>
 
 ## Signing commits for multiple emails
 

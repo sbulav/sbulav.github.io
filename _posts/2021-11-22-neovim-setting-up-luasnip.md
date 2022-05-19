@@ -4,7 +4,7 @@ author: Sergei Bulavintsev
 date: 2021-11-22
 categories: 
 - vim
-lastmod: 2022-04-06
+last_modified_at: 2022-05-16
 tags:
 - vim
 
