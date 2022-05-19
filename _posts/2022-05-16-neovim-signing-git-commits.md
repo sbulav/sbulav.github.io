@@ -109,7 +109,7 @@ commits using user [web-flow](https://github.com/web-flow). In the web interface
 you'll see all your commits as signed and verified. However, while
 checking commits with `--show-signature` flag, web commits will not be checked:
 
-<IMG>
+<img width="1054" alt="Screenshot 2022-05-19 at 11 15 43" src="https://user-images.githubusercontent.com/28604639/169246773-9c201e43-64cf-4caf-ad41-97b3ee395419.png">
 
 To fix this, import GPG key of the user `web-flow`(kudos to [Stack Overflow](https://stackoverflow.com/a/60482908)):
 ```bash
@@ -122,7 +122,7 @@ $ gpg --lsign-key noreply@github.com
 
 After importing the key:
 
-<IMG>
+<img width="1020" alt="Screenshot 2022-05-19 at 11 15 23" src="https://user-images.githubusercontent.com/28604639/169246880-1cd9d92e-fdea-4d1b-8e93-24d87177ce96.png">
 
 ## Signing commits for multiple emails
 
