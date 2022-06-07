@@ -98,7 +98,7 @@ spec:
   calicoNetwork:
     bgp: Disabled
     ipPools:
-      - cidr: 192.168.0.0/16
+      - cidr: 172.16.0.0/16
         encapsulation: VXLANCrossSubnet
 ```
 
