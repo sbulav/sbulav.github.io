@@ -64,7 +64,8 @@ not to the cluster SGs):
 * TCP 5473 Incoming(Though documentation says that only incoming ports are required,
   I had to open the outgoing port as well to make `aws-node` work.
 
-[IMG]
+<img width="1819" alt="Screenshot 2022-06-07 at 14 39 22" src="https://user-images.githubusercontent.com/28604639/172375150-bd7a7f57-f166-4bea-b026-f78b29ea5a8b.png">
+
 
 3. Install the Operator
 
@@ -123,7 +124,7 @@ cluster must be recreated. This can be done in a few ways:
 kubectl get pods -n calico-system -o wide
 ```
 
-[IMG]
+<img width="1781" alt="Screenshot 2022-06-07 at 14 43 49" src="https://user-images.githubusercontent.com/28604639/172375218-8cd551db-0041-46a5-b548-b3bffbe6e406.png">
 
 7. Verify that Pods on different nodes can communicate with each other
 
@@ -139,11 +140,11 @@ Pick two Pods running on different nodes and notice their IPs:
 kubectl get pods -o wide
 ```
 
-[IMG]
+<img width="1212" alt="Screenshot 2022-06-07 at 15 09 16" src="https://user-images.githubusercontent.com/28604639/172375439-f4730f71-7419-49b9-8a11-cc1891948a26.png">
 
 SSH into one Pod and ping another:
 
-[IMG]
+<img width="943" alt="Screenshot 2022-06-07 at 14 50 27" src="https://user-images.githubusercontent.com/28604639/172375352-ab457a16-f751-45b8-8295-8e499ba65cab.png">
 
 For me, this was sufficient, however, you might need to disable
 [Source/Destination IP
