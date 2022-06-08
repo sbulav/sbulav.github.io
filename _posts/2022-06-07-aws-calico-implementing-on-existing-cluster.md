@@ -1,6 +1,7 @@
 ---
 title: "Implementing Calico CNI on existing cluster"
 date: 2022-06-07
+last_modified_at: 2022-06-08
 categories:
   - AWS
 tags:
@@ -113,6 +114,14 @@ In this yaml, there are a few parameters that I'd like to clarify:
   to VXLANCrossSubnet, we perform encapsulation selectively, and only for
   traffic crossing subnet(node) boundaries.
 
+Calico uses route aggregation to reduce the number of routes when possible. The
+/26 corresponds to the default block size that Calico IPAM (IP Address
+Management) allocates on-demand as nodes need pod IP addresses. (If desired,
+the block size can be configured in Calico IPAM settings.)
+
+If nodes use all the IPs from the /26 block, an additional block will be
+allocated to the node.
+
 ### Recreate all nodes in the node group
 
 For `calico-node` to properly configure iptables, each node in the
@@ -129,6 +138,19 @@ kubectl get pods -n calico-system -o wide
 ```
 
 <img width="1781" alt="Screenshot 2022-06-07 at 14 43 49" src="https://user-images.githubusercontent.com/28604639/172375218-8cd551db-0041-46a5-b548-b3bffbe6e406.png">
+
+* calico-node: Calico-node runs on every Kubernetes cluster node as a
+  DaemonSet. It is responsible for enforcing network policy, setting up routes
+  on the nodes, plus managing any virtual interfaces for IPIP, VXLAN, or
+  WireGuard.
+* calico-typha: Typha is a stateful proxy for the Kubernetes API server. It's
+  used by every calico-node pod to query and watch Kubernetes resources without
+  putting excessive load on the Kubernetes API server.  The Tigera Operator
+  automatically scales the number of Typha instances as the cluster size grows.
+* calico-kube-controllers: Runs a variety of Calico specific controllers that
+  automate synchronization of resources. For example, when a Kubernetes node is
+  deleted, it tidies up any IP addresses or other Calico resources associated
+  with the node.
 
 ### Verify that Pods on different nodes can communicate with each other
 
@@ -189,6 +211,12 @@ For more info, check out [CNI Increase IP addresses](https://docs.aws.amazon.com
 
 
 ## Conclusion
+
+If you plan to use Calico, I strongly recommend going through the [Certified
+Calico Operator: Level 1](https://courses.academy.tigera.io) course by Tigera.
+It's pretty short(a few hours), but does a good job explaining various apects of Calico.
+
+And as a bonus, you'll receive a free CCO-L1 certification.
 
 Calico is a great tool offering network policy, IP address management
 capabilities, and much more. Hopefully, this post made the installation of Calico
