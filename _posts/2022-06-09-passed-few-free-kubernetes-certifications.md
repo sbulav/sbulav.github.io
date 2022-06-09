@@ -24,7 +24,8 @@ need to run mission critical workloads in production.
 I liked this course, it took me 4 hours and it was worth the investment even
 if you don't use Calico.
 
-[IMG]
+<img width="798" alt="Screenshot 2022-06-09 at 15 02 58" src="https://user-images.githubusercontent.com/28604639/172842434-7c80f91c-2978-4710-a114-67aee9a4b52a.png">
+
 
 ## Certified Calico Operator: AWS Expert
 
@@ -38,7 +39,7 @@ Again, if you work with AWS and are interested in eBPF, then this course can she
 some light on it. It also explains in simple words how you can face IP address
 exhaustion with VPC CNI and how you can prevent it using Calico.
 
-[IMG]
+<img width="798" alt="Screenshot 2022-06-09 at 15 03 39" src="https://user-images.githubusercontent.com/28604639/172842540-cf188a61-5aa6-4994-8348-4df927e80007.png">
 
 ## Kyverno Fundamentals Certification
 
@@ -50,4 +51,5 @@ definitions, results, and security.
 This is an in-depth Quiz on Kyverno, helping you to reveal your weaknesses. If
 you work with Kyverno, check yourself, and try to pass it.
 
-[IMG]
+<img width="1166" alt="Screenshot 2022-06-09 at 15 00 05" src="https://user-images.githubusercontent.com/28604639/172841935-111b6136-74dd-45ce-bc9c-777b8f13d07f.png">
+
