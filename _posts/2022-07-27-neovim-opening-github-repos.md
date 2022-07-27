@@ -20,7 +20,6 @@ example, when you're browsing your Packer configuration, plugins looks like
 this:
 
 ```lua
--- Telescope fuzzy finder{{{
 use {
 		"nvim-telescope/telescope.nvim",
 		requires = {
@@ -61,5 +60,7 @@ Here's the logic:
 
 Overall, I'm pretty happy with how it works:
 
-<video src="https://user-images.githubusercontent.com/28604639/150479658-c0ce731f-251d-4f25-a276-da42c0f3e42f.mov" controls="controls" style="max-width: 730px;">
+<video src="https://user-images.githubusercontent.com/28604639/181198693-f62fd6a2-b85f-4662-a89d-a0249f367948.mov" controls="controls" style="max-width: 730px;">
 </video>
+
+
