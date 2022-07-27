@@ -60,3 +60,6 @@ Here's the logic:
 5. Set keymap to open the link through the `vim.fn.jobstart`
 
 Overall, I'm pretty happy with how it works:
+
+<video src="https://user-images.githubusercontent.com/28604639/150479658-c0ce731f-251d-4f25-a276-da42c0f3e42f.mov" controls="controls" style="max-width: 730px;">
+</video>
