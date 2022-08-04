@@ -32,7 +32,9 @@ name.
 
 ## Installation
 
-1. Enable metrics reporting(This can be done via YAML at Calico installation step):
+#### Enable metrics reporting
+
+This can be done via YAML at Calico installation step:
 
 ```sh
 kubectl patch felixconfiguration default --type merge --patch '{"spec":{"prometheusMetricsEnabled": true}}'
@@ -40,9 +42,10 @@ kubectl patch installation default --type=merge -p '{"spec": {"typhaMetricsPort"
 kubectl patch kubecontrollersconfiguration default --type=merge  --patch '{"spec":{"prometheusMetricsPort": 9095}}'
 ```
 
-2. Create `calico-typha` and `calico-felix` services that will expose
-   metrics-port( `calico-kube-controllers-metrics` service will be created
-   automatically):
+#### Create `calico-typha` and `calico-felix` services
+
+They will expose metrics-port( `calico-kube-controllers-metrics` service will
+be created automatically):
 
 ```yaml
 apiVersion: v1
@@ -76,10 +79,11 @@ spec:
     k8s-app: calico-node
 ```
 
-3. Create ServiceMonitor watching for all Calico services(we need to add label
-   `release: kube-stack-prometheus` for Prometheus to pick up this
-   ServiceMonitor):
-   
+#### Create ServiceMonitor watching for all Calico services
+
+We need to add label `release: kube-stack-prometheus` for Prometheus to pick
+up this ServiceMonitor:
+
 ```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -98,11 +102,10 @@ spec:
       values: [ "calico-felix", "calico-typha","calico-kube-controllers" ]
 ```
 
-4. (Optional) Add Calico to your Grafana:
+#### (Optional) Add Calico to your Grafana:
 
-    Select + → Import → Enter 12175 ([Pre-built Felix Dashboard](https://grafana.com/grafana/dashboards/12175))
+Select + → Import → Enter 12175 ([Pre-built Felix Dashboard](https://grafana.com/grafana/dashboards/12175))
 
 If everything works, you should see something like this:
 
 <img width="1911" alt="image-20220804-074932" src="https://user-images.githubusercontent.com/28604639/182797953-b85a32e6-5474-4d15-a4da-05068ecd7579.png">
-
