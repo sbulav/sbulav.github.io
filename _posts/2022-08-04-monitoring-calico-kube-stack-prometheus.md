@@ -44,7 +44,7 @@ kubectl patch kubecontrollersconfiguration default --type=merge  --patch '{"spec
    metrics-port( `calico-kube-controllers-metrics` service will be created
    automatically):
 
-```YAML
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -79,7 +79,8 @@ spec:
 3. Create ServiceMonitor watching for all Calico services(we need to add label
    `release: kube-stack-prometheus` for Prometheus to pick up this
    ServiceMonitor):
-```YAML
+   
+```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
