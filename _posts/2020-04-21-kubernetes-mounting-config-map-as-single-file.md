@@ -14,7 +14,7 @@ existing folder inside a Pod as a single file.
 In order to do so, you have to specify [subPath](https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath).
 
 For example, to replace nginx's config with one from ConfigMap:
-```YAML
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:

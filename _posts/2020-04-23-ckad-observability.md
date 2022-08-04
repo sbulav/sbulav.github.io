@@ -39,7 +39,7 @@ There are three types of checks that k8s can perform:
 `livenessProbe` - performs sanity check, that application is running and in normal operational state. If
 check is failed, kubelet will kill the Container.
 
-```YAML
+```yaml
 spec:
   containers:
     - name: nginx-1
@@ -55,7 +55,7 @@ spec:
 `readinessProbe` - performs ready to serve check, that application is ready to handle requests. When readiness
 probe succeeds, container's IP address is added to Service Endpoints.
 
-```YAML
+```yaml
 spec:
   containers:
     - name: nginx-1

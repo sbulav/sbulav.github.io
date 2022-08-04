@@ -25,7 +25,7 @@ storage to a pod that exists beyond the life of container.
 
 Here's an example of using `emptyDir` volume:
 
-```YAML
+```yaml
 piVersion: v1
 kind: Pod
 metadata:
@@ -83,7 +83,7 @@ In AKS, two StorageClasses:
 By default(no StorageClass), `default` is used.
 
 Example of using premium + Retain:
-```YAML
+```yaml
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
@@ -111,7 +111,7 @@ Each `PV` contains spec and status. Among important spec parameters:
 - mountOptions - additional mount options if supported
 
 Example PVs:
-```YAML
+```yaml
 kind: PersistentVolume
 apiVersion: v1
 metadata:
@@ -126,7 +126,7 @@ spec:
     path: "/mnt/data"
 ```
 
-```YAML
+```yaml
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
@@ -150,7 +150,7 @@ Each `PVC` contains spec and status. Among important spec parameters:
 
 An example of defining PVCs:
 
-```YAML
+```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -164,7 +164,7 @@ spec:
       storage: 5Gi
 ```
 
-```YAML
+```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -180,7 +180,7 @@ spec:
 
 ### Consuming storage in a POD
 
-```YAML
+```yaml
 kind: Pod
 apiVersion: v1
 metadata:
@@ -199,7 +199,7 @@ spec:
       claimName: my-pvc
 ```
 
-```YAML
+```yaml
 kind: Pod
 apiVersion: v1
 metadata:

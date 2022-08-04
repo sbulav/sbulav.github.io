@@ -172,7 +172,7 @@ couldn't find sandbox.
 But as it turns out, this don't stop kubernetes to run containers with proper
 runtime. As in documentation, we will create RuntimeClass:
 
-```YAML
+```yaml
 apiVersion: node.k8s.io/v1beta1
 kind: RuntimeClass
 metadata:
@@ -183,7 +183,7 @@ EOF
 
 And run pod with gVisor RuntimeClass:
 
-```YAML
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:

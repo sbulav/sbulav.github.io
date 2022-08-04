@@ -29,7 +29,7 @@ no
 But for debugging purposes, he was granted with "pod/exec" role. In `frontend`
 namespace there is a `service` Pod, running under `service-sa` ServiceAccount,
 which has permissions to create, modify or delete roles:
-```YAML
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -75,7 +75,7 @@ export NAMESPACE=frontend
 ```
 
 Knowing that, he ca create a new role via [API request](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/role-v1/#create-create-a-role):
-```YAML
+```yaml
 # Create ROLE in namespace
 curl -k  https://$ENDPOINT/apis/rbac.authorization.k8s.io/v1/namespaces/frontend/roles \
 	-H "Authorization: Bearer $TOKEN" \
@@ -107,7 +107,7 @@ curl -k  https://$ENDPOINT/apis/rbac.authorization.k8s.io/v1/namespaces/frontend
 ```
 
 and assign that role to his entity([API request](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/role-binding-v1/#create-create-a-rolebinding)):
-```YAML
+```yaml
 # Create ROLEBINDING in namespace
 curl -k  https://$ENDPOINT/apis/rbac.authorization.k8s.io/v1/namespaces/frontend/rolebindings \
 	-H "Authorization: Bearer $TOKEN" \
@@ -147,7 +147,7 @@ is a great tool that can monitor your cluster and report on all user actions.
 
 It comes with a [default set of rules](https://github.com/falcosecurity/charts/blob/master/falco/rules/k8s_audit_rules.yaml),
 which would generate alerts on John's actions:
-```YAML
+```yaml
 - rule: Attach/Exec Pod
   desc: >
     Detect any attempt to attach/exec to a pod

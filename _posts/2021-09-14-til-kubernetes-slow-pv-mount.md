@@ -27,7 +27,7 @@ for more details.
 If your clusters are on 1.20+ you can use `fsGroupChangePolicy` to skip
 recursive chown if root of the volume has the correct permissions:
 
-```YAML
+```yaml
 securityContext:
   runAsUser: 1000
   runAsGroup: 3000

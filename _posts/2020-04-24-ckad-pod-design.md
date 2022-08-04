@@ -33,7 +33,7 @@ carry the same label.
 
 To attach `label` to object, put key:value in metadata:
 
-```YAML
+```yaml
 metadata:
   name: my-production-pod
   labels:
@@ -69,7 +69,7 @@ Annotations are similar to labels in that they can be used to store custom metad
 unlike labels, annotations cannot be used to select or group objects in Kubernetes. External tools can read,
 write and interact with annotations.
 
-```YAML
+```yaml
 metadata:
   name: my-annotation-pod
   annotations:
@@ -95,7 +95,7 @@ be able to manage old PODs. Selector shouldn't be modified during Deployment lif
 
 An example of Deployment:
 
-```YAML
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -160,7 +160,7 @@ PODs. When the job is finished, POD(s) will remain in `completed` state. This is
 inspect job logs. You have to remove old jobs manually.
 
 An example of job definition:
-```YAML
+```yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -191,7 +191,7 @@ kubectl run hello --schedule="*/1 * * * *" --restart=OnFailure --image=busybox -
 ```
 
 or by defining full spec:
-```YAML
+```yaml
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:

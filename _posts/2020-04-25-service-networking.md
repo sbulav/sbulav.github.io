@@ -48,7 +48,7 @@ There are four service types in Kubernetes:
 For example, to redirect traffic incoming to Service on port 80 to any pods with
 label `app=MyApp` to port 9376 define following YAML:
 
-```YAML
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -107,7 +107,7 @@ Ingress and egress supports four kind of selectors to determine what to add to w
 - `ipBlock` - CIDR range of IPs
 
 Here's an example of NetworkPolicy in YAML:
-```YAML
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:

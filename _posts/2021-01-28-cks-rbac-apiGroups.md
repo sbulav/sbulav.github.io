@@ -19,7 +19,7 @@ group).
 
 As an illustration: this example will not work, as there are no resource
 "deployments" in core API group:
-```YAML
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -31,7 +31,7 @@ rules:
 ```
 
 This example will work, as Deployments are in "apps" API group:
-```YAML
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -88,7 +88,7 @@ roles                                               rbac.authorization.k8s.io   
 It's considered best practice to explicitly specify apiGroups/resources/verbs,
 but in rare cases(Like Velero backup solution) all permissions can be granted:
 
-```YAML
+```yaml
 rules:
   - apiGroups:
     - '*'

@@ -57,7 +57,7 @@ SECONDNAME=Test
 
 Example ConfigMap in YAML:
 
-```YAML
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -75,7 +75,7 @@ One or multiple ConfigMaps can be assigned to pod and populated as environment v
 
 You can assign a specific value from ConfigMap as environment variable:
 
-```YAML
+```yaml
 spec:
   containers:
   - name: myapp-container
@@ -90,7 +90,7 @@ spec:
 
 Also it's possible to assign all of the ConfigMaps's data as container environment variables
 
-```YAML
+```yaml
 spec:
   containers:
     - name: test-container
@@ -103,7 +103,7 @@ spec:
 
 #### Assigning ConfigMaps as volumes
 
-```YAML
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -148,7 +148,7 @@ Options to set:
 
 Run any containers in the POD(all their processes) with UID 1000 and GID 3000 in the POD. It also sets secondary group
 to 2000.
-```YAML
+```yaml
 spec:
   securityContext:
     runAsUser: 1000
@@ -160,7 +160,7 @@ spec:
 
 Use privileged mode to gain full access to underlying worker host.
 
-```YAML
+```yaml
 spec:
   securityContext:
     privileged: true
@@ -191,7 +191,7 @@ So with incorrect requests, you can run a very underutilized cluster.
 
 An example of container that requires 64 Megabytes of memory and 0.25CPU to run:
 
-```YAML
+```yaml
 spec:
   containers:
   - name: myapp-container
@@ -206,7 +206,7 @@ spec:
 
 An example of container that limits usage by 128 Megabytes of memory and 0.5CPU:
 
-```YAML
+```yaml
 spec:
   containers:
   - name: myapp-container
@@ -236,7 +236,7 @@ kubectl create secret generic my-secret --from-literal=key1=supersecret
 
 Secrets can be created using base64 encrypted values using `data` field or in unencrypted version using `stringData` field:
 
-```YAML
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -254,7 +254,7 @@ Secrets can be mounted as volumes or exposed as Environment variables to a POD.
 
 #### Assigning Secrets as volumes
 
-```YAML
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -275,7 +275,7 @@ spec:
 
 #### Assigning Secrets as Environment variables
 
-```YAML
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -314,7 +314,7 @@ kubectl create serviceaccount my-service-account
 
 ### Assign ServiceAccount to a POD
 
-```YAML
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
