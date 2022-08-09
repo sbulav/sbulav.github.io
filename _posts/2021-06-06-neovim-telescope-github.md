@@ -85,7 +85,7 @@ Neovim.
 It's easy to print object in human readable representation using `vim.inspect`:
 
 ```lua
-:lua print(vim.inspect(type("test"))
+:lua print(vim.inspect(type("test")))
 ```
 This is especially useful when you'd like to see contents of table.
 
