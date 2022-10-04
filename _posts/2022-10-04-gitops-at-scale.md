@@ -1,0 +1,37 @@
+---
+title: "GitOps Certified for Argo II"
+date: 2022-10-04
+categories:
+  - certifications
+tags:
+  - kubernetes
+  - gitops
+  - certifications
+comments: true
+---
+
+I've passed the course [GitOps at Scale](https://learning.codefresh.io/course/gitops-at-scale)
+and follow up exam: ![GitOps at Scale lvl2]()
+
+This is a [second course on ArgoCD](https://sbulav.github.io/certifications/gitops-certified-for-argo/). It
+has short and precise materials, useful advices on deploying and managing
+ArgoCD. Team did a great job on this course!
+
+During this course you'll learn:
+- How to manage external clusters with ArgoCD
+- How to use the app-of-apps pattern to group similar applications
+- How to use ApplicationSets to automatically generate applications
+- How to organize your GitOps repositories
+- How to promote releases between environments
+- How to use Argo Image Updater
+- How to customize the diff process in ArgoCD
+- How to use sync hooks and waves for resource ordering
+- How to use sync windows to disable/enable deployment periods
+- How to employ ArgoCD notifications
+
+The course itself is pretty long and gives you ability to test
+everything in practice.
+
+Final test has 50 questions with passing score at 85%.
+
+I highly recommend this course to anyone interested in GitOps/ArgoCD.
