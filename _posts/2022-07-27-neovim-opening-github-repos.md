@@ -1,6 +1,7 @@
 ---
 title: "Neovim opening GitHub repos URLs"
 date: 2022-07-27
+lastmod: date
 categories:
   - vim
 tags:
@@ -36,7 +37,7 @@ I've refactored my old solution to do this:
 ```lua
 local function url_repo()
     local cursorword = vim.fn.expand "<cfile>"
-    if string.find(cursorword, "^[a-zA-Z0-9.-]*/[a-zA-Z0-9.-]*$") then
+    if string.find(cursorword, "^[a-zA-Z0-9.-_]*/[a-zA-Z0-9.-_]*$") then
         cursorword = "https://github.com/" .. cursorword
     end
     return cursorword or ""
