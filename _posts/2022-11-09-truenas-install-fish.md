@@ -53,4 +53,5 @@ Type help for instructions on how to use fish
 4. Set fish as [default user shell](https://www.truenas.com/docs/core/coretutorials/changingdefaultshell/)
 in the Web UI(fish will appear in the list of available shells after installation):
 
-[link]
+<img width="860" alt="Screenshot 2022-11-09 at 09 20 52" src="https://user-images.githubusercontent.com/28604639/200755661-d6359f35-53ae-4512-ad24-9b6bbf3b4b44.png">
+
