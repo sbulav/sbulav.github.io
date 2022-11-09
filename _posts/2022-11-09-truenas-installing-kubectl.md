@@ -26,11 +26,11 @@ However, this way:
 I think that more convenient solution is to install kubectl, k9s and
 configure user kubeconfig. Here's how you can do this:
 
-1. Make sure that shell knows about `~/bin` path. For fish, it's:
+1. Make sure that shell knows about `~/bin` path.  For fish, it's:
 ```sh
+#To persist changes, $PATH in fish can be changed in `~/.config/fish/config.fish`
 set -a PATH "$HOME/bin/"
 ```
-This line can be added to `~/.config/fish/config.fish`
 2. Download kubectl
 ```
 mkdir ~/bin
@@ -80,6 +80,7 @@ mv k9s ~/bin/
 ## Connecting to TrueNas k3s remotely
 
 Exposing k3s can be risky, please make sure that you understand what you're doing.
+
 As of now, k3s in TrueNas listens on all ports:
 ```sh
 sab@truenas ~> ss -tlen | grep :6443
@@ -89,10 +90,14 @@ But it's protected by the IPTABLES.
 
 So, to grant access to the Kubernetes API:
 1. remove DROP rule from the IPTABLES:
+This can be done via the [Truetool](https://github.com/truecharts/truetool/), which is a collection of useful bash scripts
+```sh
+./truetool.sh  --kubeapi-enable
 ```
+Or directly through the iptaples command:
+```sh
 iptables -D INPUT -p tcp -m tcp --dport 6443 -m comment --comment "iX Custom Rule to drop connection requests to k8s cluster from external sources" -j DROP
 ```
-By the way, you can [Truetool](https://github.com/truecharts/truetool/) script to do the same.
 2. copy kubeconfig from `/etc/rancher/k3s/k3s.yaml`  to your local machine
 3. configure `KUBECONFIG` environment variable to point to this file:
 ```sh
@@ -110,3 +115,5 @@ tc-system         Active   41h
 ix-grafana        Active   38h
 ix-loki           Active   23h
 ```
+
+Also worth noticing, that this is not persistent, and after reboot iptables will be reverted to initial state. To persist those changes, add your command/script to the [Init/Shutdown Scripts](https://www.truenas.com/docs/core/uireference/tasks/initshutdownscripts/)
