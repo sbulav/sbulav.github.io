@@ -32,16 +32,12 @@ So to install fish:
 wget http://ftp.debian.org/debian/pool/main/p/pcre2/libpcre2-32-0_10.22-3_amd64.deb
 wget http://ftp.debian.org/debian/pool/main/f/fish/fish_3.5.1+ds-1_amd64.deb
 ```
-
 2. Install packages:
-
 ```sh
 dpkg -i libpcre2-32-0_10.22-3_amd64.deb
 dpkg -i fish-3.5.1+ds-1_amd64.deb
 ```
-
 3. Make sure that fish is installed and can be opened:
-
 ```sh
 root@truenas[~]# which fish
 /usr/bin/fish
@@ -49,7 +45,6 @@ root@truenas[~]# fish
 Welcome to fish, the friendly interactive shell
 Type help for instructions on how to use fish
 ```
-
 4. Set fish as [default user shell](https://www.truenas.com/docs/core/coretutorials/changingdefaultshell/)
 in the Web UI(fish will appear in the list of available shells after installation):
 
