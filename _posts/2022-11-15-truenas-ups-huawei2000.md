@@ -68,7 +68,6 @@ apt install nut-modbus libmodbus-dev libusb-dev
 git clone https://github.com/networkupstools/nut.git --depth=1
 cd nut
 ```
-
 5. Run autogen to generate files
 
 Please notice that in my TrueNas Scale version `Bluefin-BETA kernel 5.15.62`
