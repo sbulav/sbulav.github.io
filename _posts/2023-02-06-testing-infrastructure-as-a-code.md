@@ -1,6 +1,6 @@
 ---
 title: "Testing Infrastructure as Code: How to Solve The Common Challenges"
-date: 2022-10-04
+date: 2023-02-06
 categories:
   - webinar
 tags:
@@ -11,7 +11,9 @@ comments: true
 ---
 
 If you're interested in Testing Infrastructure as Code, join me Feb 27 2023,
-1:00pm with the [Technical Deep Dive Webinar](https://www.brighttalk.com/webcast/18905/573868)
+1:00pm with the 
+
+[![Technical Deep Dive Webinar](https://cdn.brighttalk.com/ams/california/images/communication/573574/image_900784.jpg?width=640&height=360)](https://www.brighttalk.com/webcast/18905/573868)
 
 By watching this webinar, you will learn:
 
