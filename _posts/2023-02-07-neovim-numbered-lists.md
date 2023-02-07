@@ -12,12 +12,16 @@ When writing markdown, it's super common that you need numbered lists.
 (Neo)Vim has built-in support which makes creating numbered lists like
 a breeze.
 
-[Making list of numbers](https://vim.fandom.com/wiki/Making_a_list_of_numbers)
+[Making a list of numbers](https://vim.fandom.com/wiki/Making_a_list_of_numbers)
 article covers many approaches to creating lists, but it's hard to find
 the true gem - automatic numbering.
+
 See `:help v_g_CTRL-A`
+
 ```text
-{Visual}g CTRL-A	Add [count] to the number or alphabetic character in the
+{Visual}g CTRL-A
+
+Add [count] to the number or alphabetic character in the
 highlighted text. If several lines are highlighted, each one will be
 incremented by an additional [count] (so effectively creating a [count]
 incrementing sequence).
@@ -39,7 +43,7 @@ And you want to turn it into a numbered list. You can do by:
 2. Press `SHIFT-I` for a visual block insert, see `:help v_b_I`
 3. Type `1.` and exit insert mode
 4. Reselect the selection by `gv`, see `:gv`
-5. Exclude first character by pressing `o`, followed by `j`
+5. Exclude first line by pressing `o`, followed by `j`
 5. Automatically increment the numbers by typing `g` followed by `CTRL-A`.
 
 
