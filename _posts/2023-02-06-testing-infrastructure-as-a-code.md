@@ -27,4 +27,6 @@ By watching this webinar, you will learn:
 
 Update:
 
-The webinar is available on-demand: ![webinar](https://www.youtube.com/watch?v=U16mIcLTfgM)
+The webinar is now available on-demand:
+
+[![On-demand Webinar](https://cdn.brighttalk.com/ams/california/images/communication/573574/image_900784.jpg?width=640&height=360)]([https://www.brighttalk.com/webcast/18905/573868](https://www.youtube.com/watch?v=U16mIcLTfgM))
