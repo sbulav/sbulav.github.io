@@ -1,6 +1,7 @@
 ---
 title: "Testing Infrastructure as Code: How to Solve The Common Challenges"
 date: 2023-02-06
+last_modified_at: 2023-03-01
 categories:
   - webinar
 tags:
@@ -22,3 +23,8 @@ By watching this webinar, you will learn:
 * Techniques for running tests in parallel and generating test reports
 * Strategies for testing various configurations and keeping things simple
 * How to add "CI magic" to automate the testing process
+
+
+Update:
+
+The webinar is available on-demand: ![webinar](https://www.youtube.com/watch?v=U16mIcLTfgM)
