@@ -25,7 +25,9 @@ I couldn't find an existing solution for this.
 So I've created a custom layout based on the [DreymaR's Big Bag of Keyboard
 Tricks](https://github.com/DreymaR/BigBagKbdTrixXKB].
 
+
 1. Create layout file `symbols/colemak_dh` with the DH symbols:
+
 ```text
 default partial alphanumeric_keys
 
@@ -51,7 +53,9 @@ xkb_symbols "dh" {
     key <CAPS> { [    Escape,    Escape,       Escape,        Escape ] };
 };
 ```
+
 2. Define extra custom layouts that will be included in the xkb configuration:
+
 ```nix
 services.xserver.extraLayouts.dh = {
   description = "Colemak-DH ergo";
@@ -59,6 +63,7 @@ services.xserver.extraLayouts.dh = {
   symbolsFile = ../symbols/colemak_dh;
 };
 ```
+
 3. Define keyboard layout for xserver:
 ```nix
 services.xserver = {
@@ -66,6 +71,7 @@ services.xserver = {
   xkbOptions = "terminate:ctrl_alt_bksp";
 };
 ```
+
 4. Configure layouts for your Display Server(I am using Hyprland):
 ```nix
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -74,6 +80,7 @@ input {
     kb_options = caps:none,grp:win_space_toggle,caps:escape
 }
 ```
+
 5. Finally, configure icons and switch in your bar(I am using Waybar):
 ```nix
 "hyprland/language" = {
