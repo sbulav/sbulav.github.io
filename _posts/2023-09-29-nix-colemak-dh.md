@@ -26,7 +26,6 @@ So I've created a custom layout based on the [DreymaR's Big Bag of Keyboard
 Tricks](https://github.com/DreymaR/BigBagKbdTrixXKB].
 
 1. Create layout file `symbols/colemak_dh` with the DH symbols:
-
 ```text
 ../symbols/colemak_dh;
 
@@ -56,7 +55,6 @@ xkb_symbols "dh" {
 ```
 
 2. Define extra custom layouts that will be included in the xkb configuration:
-
 ```nix
 services.xserver.extraLayouts.dh = {
   description = "Colemak-DH ergo";
@@ -66,7 +64,6 @@ services.xserver.extraLayouts.dh = {
 ```
 
 3. Define keyboard layout for xserver:
-
 ```nix
 services.xserver = {
   layout = "dh,ru";
@@ -75,7 +72,6 @@ services.xserver = {
 ```
 
 4. Configure layouts for your Display Server(I am using Hyprland):
-
 ```nix
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
 input {
@@ -85,7 +81,6 @@ input {
 ```
 
 5. Finally, configure icons and switch in your bar(I am using Waybar):
-
 ```nix
 "hyprland/language" = {
   "format-en" = "  dh";
