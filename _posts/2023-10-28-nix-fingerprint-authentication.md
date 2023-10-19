@@ -17,10 +17,11 @@ authentication. I couldn't find any articles on setting up fprintd on NixOS, so
 I'll share how I've done it.
 
 I am using [regreet](https://github.com/rharish101/ReGreet) for my
-login manager, and, unfortunately, it doesn't support fingrerprint
-authentication at the moment.
+login manager, and, while it don't have any documentation about supporting
+fingerprint login, it worked flawlessly for me without any additional
+configuration.
 
-But, for my lock screen [swaylock](https://github.com/swaywm/swaylock) it is
+For my lock screen [swaylock](https://github.com/swaywm/swaylock) it is
 supported.
 
 ## Installing fprintd
@@ -62,6 +63,9 @@ I didn't mess with PAM or anything else to get this working.
 
 To configure fingerprint for login manager, check out corresponding documentation.
 For example, [SDDM](https://wiki.archlinux.org/title/SDDM#Using_a_fingerprint_reader)
+
+As I already mentioned, ReGreet worked without any additional configuraiton.
+![PXL_20231019_071308433 MP](https://github.com/sbulav/sbulav.github.io/assets/28604639/5b00ec92-cc09-438c-b8ae-b5ffd83ddd8d)
 
 To unlocking Laptop with SwayLock, just place your finger on the scanner.
 
