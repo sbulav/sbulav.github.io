@@ -249,3 +249,5 @@ Hopefully, if everything is configured correctly, your Gitlab runner will:
 - Kubedock will spin up new kubedock containers, for example database
 - Kubedock will proxy requests from tests into the database
 - After successful tests, test containers(database) will be removed.
+
+<img width="833" alt="Screenshot 2024-08-20 at 11 20 31" src="https://github.com/user-attachments/assets/312e54f1-230f-4764-b8fb-64cf0ac7a01e">
