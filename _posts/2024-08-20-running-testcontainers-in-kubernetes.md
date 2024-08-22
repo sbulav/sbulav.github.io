@@ -165,8 +165,8 @@ In this Deployment, I am configuring Kubedock to listen for incoming connections
 on port 2475. I also disable dind(docker in docker) and expose ports of created
 test containers via the built-in reverse-proxy.
 
-Test duration is limited with 20 minutes, and after 60 minutes completed or
-failed test containers will be removed.
+Spinning new container time is limited with 20 minutes, and after 60 minutes
+completed or failed test containers will be removed.
 
 
 Final missing piece is headless Kubernetes service:
