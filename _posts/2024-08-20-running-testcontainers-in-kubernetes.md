@@ -49,7 +49,7 @@ There are two ways to run Kubedock:
 Kubedock's documentation doesn't have good examples(or any examples) of how you
 can run Kubedock as a standalone service, however in my opinion this is the
 most comfortable way to integrate Testcontainers in your CI. Also I couldn't
-find any article discribing this setup, so I decided to describe my way of
+find any article describing this setup, so I decided to describe my way of
 doing it in this blog post.
 
 Let's dive in and see how you can implement this.
@@ -146,7 +146,7 @@ spec:
           ports:
             - containerPort: 2475
           args: [
-              # Configuration options decribed here:
+              # Configuration options described here:
               # https://github.com/joyrex2001/kubedock/blob/master/config.md
               "server",
               "--namespace=gitlab-runner",
@@ -161,7 +161,7 @@ spec:
             ]
 ```
 
-In this Deployment, I cmonfiguring Kubedock to listen for incoming connections
+In this Deployment, I am configuring Kubedock to listen for incoming connections
 on port 2475. I also disable dind(docker in docker) and expose ports of created
 test containers via the built-in reverse-proxy.
 
