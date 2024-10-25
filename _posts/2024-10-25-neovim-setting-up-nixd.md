@@ -152,5 +152,5 @@ Using this config, I'm:
 
 Example completion:
 
+<img width="925" alt="Screenshot 2024-10-25 at 09 53 25" src="https://github.com/user-attachments/assets/146ed0cd-23b7-4fd8-bcc9-e7dad33660a5">
 
-[img placeholder]
