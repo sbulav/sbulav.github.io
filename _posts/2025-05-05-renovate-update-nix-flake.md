@@ -51,35 +51,23 @@ effectively.
   ]
 }
 
-``
+```
 
 ## Configuration Explained
 
-- config:recommended:
-
-This base configuration applies sensible defaults, enabling dependency updates
+- config:recommended: This base configuration applies sensible defaults, enabling dependency updates
 and grouping rules for easier management.
 
-- :semanticCommitTypeAll(chore):
-
-Renovate commits will consistently use chore, aiding in clear and predictable
+- :semanticCommitTypeAll(chore): Renovate commits will consistently use chore, aiding in clear and predictable
 commit histories.
 
-- Lockfile Maintenance:
+- Lockfile Maintenance: Weekly lockfile updates ensure dependencies stay fresh without overwhelming maintainers.
 
-Weekly lockfile updates ensure dependencies stay fresh without overwhelming maintainers.
+- Nix-Specific Configuration: Explicitly enabling Nix support ensures Renovate correctly manages Nix Flake dependencies.
 
-- Nix-Specific Configuration:
-
-Explicitly enabling Nix support ensures Renovate correctly manages Nix Flake dependencies.
-
-- Ignoring Problematic Dependencies:
-
-Ignoring specific dependencies (for me it was stable) avoids known Renovate
+- Ignoring Problematic Dependencies: Ignoring specific dependencies (for me it was stable) avoids known Renovate
 issues. Renovate incorrectly attempts to update stable to version tags like
-v208, causing update failures such as:
-
-`WARN: Error updating branch: update failure (branch="renovate/stable-208.x")`
+v208, causing update failures such as: `WARN: Error updating branch: update failure (branch="renovate/stable-208.x")`
 
 Explicitly listing these dependencies in ignoreDeps circumvents this problem.
 Furthermore, I only want to bump stable inputs, for example from 24.05 to 24.11
@@ -87,6 +75,8 @@ when I'm ready to upgrade my system.
 
 If you want to do so, you can use renovate [packagerules](https://docs.renovatebot.com/configuration-options/#packagerules)
 to carefully filter your updates.
+
+
 
 # Conclusion
 
