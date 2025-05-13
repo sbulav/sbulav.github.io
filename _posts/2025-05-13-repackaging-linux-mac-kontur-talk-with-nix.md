@@ -36,7 +36,7 @@ We then utilize pkgs.appimageTools.wrapType2, a convenient NixOS helper to
 automate extraction and wrapping of AppImages, enabling the binary to integrate
 seamlessly with the system.
 
-```
+```nix
 pkgs.appimageTools.wrapType2 rec {
   inherit pname version src desktopItem;
 
@@ -122,7 +122,7 @@ installPhase = ''
 To complete our derivation, we defined consistent metadata across both Linux
 and macOS:
 
-```
+```nix
 meta = with lib; {
   description = ''Kontur talk, communication platform'';
   longDescription = ''
@@ -143,7 +143,7 @@ meta = with lib; {
 
 Here's the complete Nix derivation integrating both platforms:
 
-```
+```nix
 {
   pkgs,
   lib,
