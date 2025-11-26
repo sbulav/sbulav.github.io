@@ -117,9 +117,14 @@ defaults:
       author_profile: true
 
 comments:
-  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman_v2", "staticman", "utterances", "custom"
-  disqus:
-    shortname            : "sbulav"
+  provider               : "giscus"
+  giscus:
+    repo_id              : "MDEwOlJlcG9zaXRvcnkyNTU4MTM5MDE="
+    category_name        : "General"
+    category_id          : "DIC_kwDODz9pDc4CzD1l"
+    discussion_term      : "pathname"
+    reactions_enabled    : "1"
+    theme                : "preferred_color_scheme"
 
 category_archive:
   type: liquid
