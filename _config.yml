@@ -19,9 +19,8 @@
 title: Cloud Alchemist
 email: bulavintsev.sergey@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Personal blog with empasys on technology, by an engineer
-  experienced in techs like Kubernetes, Azure, Terraform,
-  Packer, Python and Pytest.
+  Personal blog with emphasis on cloud-native technologies, by a Senior DevOps Engineer
+  experienced in AWS, Kubernetes, Terraform, ArgoCD, and NixOS.
 twitter_username:
 github_username: sbulav
 search: true
@@ -67,7 +66,7 @@ plugins:
 author:
   name   : "Sergei Bulavintsev"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "DevOps, RHCA lvl II, CKA, CKS, CKAD"
+  bio    : "Senior DevOps Engineer | AWS, Kubernetes, GitOps"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
@@ -81,6 +80,9 @@ author:
     - label: "Linkedin"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/sergey-bulavintsev-3001ba45/"
+    - label: "RSS"
+      icon: "fas fa-fw fa-rss-square"
+      url: "/feed.xml"
 
 # footer:
 #   links:
@@ -113,14 +115,6 @@ defaults:
     values:
       layout: single
       author_profile: true
-
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
-
 
 comments:
   provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman_v2", "staticman", "utterances", "custom"
