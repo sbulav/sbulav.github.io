@@ -141,7 +141,7 @@ tag_archive:
 analytics:
   provider: "google-gtag"
   google:
-    tracking_id: "UA-163839531-1"
+    tracking_id: "G-P20LFSLH20"
     anonymize_ip: false # default
 
 # SEO Related
