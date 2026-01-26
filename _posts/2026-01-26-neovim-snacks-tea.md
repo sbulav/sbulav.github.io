@@ -1,5 +1,5 @@
 ---
-title: "snacks-tea.nvim — Forgejo integration for Neovi"
+title: "snacks-tea.nvim — Forgejo integration for Neovim"
 date: 2026-01-26
 categories:
   - neovim
