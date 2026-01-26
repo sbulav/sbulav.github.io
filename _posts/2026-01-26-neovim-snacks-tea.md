@@ -26,7 +26,7 @@ replicate this flow.
 
 Enter **[snacks-tea.nvim](https://github.com/sbulav/snacks-tea.nvim)** — a
 small Neovim plugin that wraps around the
-[`tea`](https://codeberg.org/forgejo/tea) CLI to bring Forgejo/Gitea
+[`tea`](https://gitea.com/gitea/tea) CLI to bring Forgejo/Gitea
 functionality directly into Neovim.
 
 <img width="3070" height="2196" alt="ss_1769422957" src="https://github.com/user-attachments/assets/3c57db80-101c-4ca0-b817-4fa8fffcda62" />
@@ -37,7 +37,7 @@ functionality directly into Neovim.
 
 `snacks.gh` provides an elegant GitHub integration via
 [`gh`](https://cli.github.com/).  Forgejo has its own command-line tool,
-[`tea`](https://codeberg.org/forgejo/tea), with feature parity for most Git
+[`tea`](https://gitea.com/gitea/tea), with feature parity for most Git
 operations (issues, pull requests, repositories, notifications, etc.).  So the
 idea was simple: **keep the same UX and flow from snacks, but swap out the
 backend.**
@@ -87,7 +87,7 @@ Example Flow
 :TeaPR
 ```
 2. Press <CR> to open a PR preview.
-3. Press <CR> to get a list of available actions on PR(Approve, Modify)
+3. Press <CR> to get a list of available actions on PR(Approve, Checkout, View Diff, etc..)
 4. Jump to the repository or PR in the browser if you need full context.
 
 ## Why Wrap tea Instead of Re-implementing the API?
