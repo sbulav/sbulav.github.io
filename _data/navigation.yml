@@ -5,6 +5,8 @@ main:
     url: /categories/
   - title: "Tags"
     url: /tags/
+  - title: "Calico NP Visualizer"
+    url: /calico-visualizer/
   - title: "About"
     url: /about/
   - title: "RSS"
