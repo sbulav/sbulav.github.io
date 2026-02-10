@@ -35,7 +35,7 @@ client-side, no data leaves your browser. You can try it out at
 [sbulav.github.io/calico-visualizer](https://sbulav.github.io/calico-visualizer/).
 
 <!-- TODO: upload screenshot to GitHub and replace src with user-attachments URL -->
-<img src="/assets/images/calico-policy-visualiser.png" alt="Calico Policy Visualiser screenshot" width="100%" />
+<img width="3750" height="2150" alt="Calico Policy Visualiser screenshot" width="100%" src="https://github.com/user-attachments/assets/bce9bd3a-03f3-4ce3-98fd-d4fc0308508e" />
 
 The interface has three synchronized panels:
 
