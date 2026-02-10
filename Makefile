@@ -11,7 +11,7 @@ help:
 	@echo "  serve          Build site and serve locally on http://0.0.0.0:8080"
 	@echo "  clean          Removes all generated files"
 	@echo "  clean-branches Removes all merged branches"
-	@echo "  calico-policy  Build Calico Visualizer and copy into ./calico-visualizer"
+	@echo "  calico-policy  Build Calico Visualiser and copy into ./calico-visualiser"
 
 
 serve:
@@ -24,8 +24,8 @@ clean:
 clean-branches:
 	git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d
 
-calico-policy: ## Build Calico Visualizer and copy into ./calico-visualizer
-	cd $(VISUALISER_DIR) && npx vite build --base=/calico-visualizer/
-	rm -rf calico-visualizer
-	cp -r $(VISUALISER_DIR)/dist calico-visualizer
-	@echo "Calico Visualizer built and copied to ./calico-visualizer"
+calico-policy: ## Build Calico Visualiser and copy into ./calico-visualiser
+	cd $(VISUALISER_DIR) && npx vite build --base=/calico-visualiser/
+	rm -rf calico-visualiser
+	cp -r $(VISUALISER_DIR)/dist calico-visualiser
+	@echo "Calico Visualiser built and copied to ./calico-visualiser"

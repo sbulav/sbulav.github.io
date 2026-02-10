@@ -32,7 +32,7 @@ There's nothing free and open for the community. So I built my own.
 The idea is simple: paste or import your Calico YAML, get an interactive graph
 and a plain-English explanation of what the policy does. Everything runs
 client-side, no data leaves your browser. You can try it out at
-[sbulav.github.io/calico-visualizer](https://sbulav.github.io/calico-visualizer/).
+[sbulav.github.io/calico-visualiser](https://sbulav.github.io/calico-visualiser/).
 
 <!-- TODO: upload screenshot to GitHub and replace src with user-attachments URL -->
 <img width="3750" height="2150" alt="Calico Policy Visualiser screenshot" width="100%" src="https://github.com/user-attachments/assets/bce9bd3a-03f3-4ce3-98fd-d4fc0308508e" />
