@@ -1,5 +1,5 @@
 {
-  description = "Dev env for sbulav.github.io blog (Jekyll + GitHub Pages)";
+  description = "Dev env for sbulav.github.io blog (Astro)";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -16,62 +16,63 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        node = pkgs.nodejs_22;
-        ruby = pkgs.ruby_3_3;
       in
       {
         devShells.default = pkgs.mkShell {
           name = "sbulav-github-io";
-          buildInputs = [
-            ruby
-            node
-            pkgs.gnumake
-            pkgs.git
 
-            # Native dependencies for gem compilation
-            pkgs.pkg-config
-            pkgs.libxml2
-            pkgs.libxslt
-            pkgs.zlib
-            pkgs.openssl
-            pkgs.libffi
-            pkgs.libyaml
+          packages = with pkgs; [
+            nodejs_22
+            git
+            bun
+            just
+            starship
           ];
 
           shellHook = ''
             export LANG=en_US.UTF-8
-            export BUNDLE_PATH=vendor/bundle
 
-            # Build nokogiri against system libraries instead of vendored ones
-            export NOKOGIRI_USE_SYSTEM_LIBRARIES=1
+            # npm aliases
+            alias dev="npm run dev"
+            alias build="npm run build"
+            alias preview="npm run preview"
+            alias clean="rm -rf dist/ node_modules/.cache"
 
-            # Create .bundle/config if it doesn't exist
-            if [ ! -f .bundle/config ]; then
-              mkdir -p .bundle
-              echo '---' > .bundle/config
-              echo 'BUNDLE_PATH: "vendor/bundle"' >> .bundle/config
-            fi
-
-            echo "[sbulav.github.io] devshell ready."
+            echo "══════════════════════════════════════════════════════"
+            echo "  ~/sbulav git:(astro)"
+            echo "══════════════════════════════════════════════════════"
             echo ""
-            echo "  bundle install    # Install Jekyll and dependencies (first run)"
-            echo "  make serve        # Serve site locally on http://0.0.0.0:8080"
-            echo "  make help         # Show all targets"
+            echo "  Available commands:"
+            echo "    dev        - Start dev server (http://localhost:4321)"
+            echo "    build      - Build for production"
+            echo "    preview    - Preview production build"
+            echo "    clean      - Clean dist and cache"
+            echo ""
+            echo "  Keyboard shortcuts in browser:"
+            echo "    [P]osts  [C]ategories  [T]ags  [A]bout"
+            echo "    :help     - Command palette help"
+            echo ""
           '';
         };
 
         apps.serve = {
           type = "app";
-          program = "${pkgs.writeShellScript "serve" ''
-            set -euo pipefail
-            export PATH="${ruby}/bin:$PATH"
-            export BUNDLE_PATH=vendor/bundle
-            export NOKOGIRI_USE_SYSTEM_LIBRARIES=1
-            echo "Installing dependencies..."
-            bundle install --quiet
-            echo "Starting Jekyll server..."
-            bundle exec jekyll serve -H 0.0.0.0 --watch --port 8080
-          ''}";
+          program = (
+            pkgs.writeShellScriptBin "serve" ''
+              set -euo pipefail
+              exec npm run dev
+            ''
+          );
+        };
+
+        apps.build = {
+          type = "app";
+          program = (
+            pkgs.writeShellScriptBin "build" ''
+              set -euo pipefail
+              exec npm run build
+            ''
+          );
         };
       }
     );

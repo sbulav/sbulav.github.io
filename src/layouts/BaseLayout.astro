@@ -1,0 +1,64 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import CommandPalette from '../components/CommandPalette.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Personal blog with emphasis on cloud-native technologies' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <ViewTransitions />
+  </head>
+  <body class="bg-bg text-fg font-mono min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-8">
+      <slot />
+    </main>
+    <CommandPalette />
+    
+    <script is:inline>
+      function setDarkMode() {
+        const theme = localStorage.getItem('theme') || 'dark';
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      
+      setDarkMode();
+      document.addEventListener('astro:after-swap', setDarkMode);
+    </script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P20LFSLH20"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-P20LFSLH20');
+    </script>
+  </body>
+</html>

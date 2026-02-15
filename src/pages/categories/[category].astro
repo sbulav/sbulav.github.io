@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../utils/helpers';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const categories = new Set<string>();
+  
+  posts.forEach((post) => {
+    post.data.categories.forEach((cat) => categories.add(cat));
+  });
+  
+  return Array.from(categories).map((category) => ({
+    params: { category },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const posts = await getCollection('blog', ({ data }) => !data.draft && data.categories.includes(category));
+const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title={`${category} Posts`} description={`Posts in ${category} category`}>
+  <div class="mb-6">
+    <a href="/categories/" class="text-fg/60 hover:text-accent transition-colors text-sm">
+      ← Back to categories
+    </a>
+  </div>
+  
+  <h1 class="text-2xl font-bold mb-6 flex items-center gap-2">
+    <span class="text-accent">$</span> ls {category}/
+  </h1>
+  
+  <div class="space-y-4">
+    {sortedPosts.map((post) => (
+      <a 
+        href={`/posts/${post.slug}/`}
+        class="block post-card"
+      >
+        <div class="flex items-start justify-between gap-4">
+          <h2 class="font-semibold text-lg hover:text-accent transition-colors">
+            {post.data.title}
+          </h2>
+          <time class="text-sm text-fg/50 whitespace-nowrap">
+            {formatDate(post.data.date)}
+          </time>
+        </div>
+        
+        {post.data.description && (
+          <p class="text-fg/60 text-sm mt-2 line-clamp-2">
+            {post.data.description}
+          </p>
+        )}
+      </a>
+    ))}
+  </div>
+</BaseLayout>

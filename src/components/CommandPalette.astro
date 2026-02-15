@@ -1,0 +1,224 @@
+---
+---
+
+<div 
+  id="command-palette" 
+  class="fixed bottom-0 left-0 right-0 z-50 transition-transform duration-200 ease-out"
+>
+  <div class="max-w-4xl mx-auto px-4 pb-4">
+    <div class="bg-bg border border-border rounded-t-lg shadow-lg">
+      <div class="flex items-center gap-2 px-4 py-3 border-b border-border">
+        <span class="text-accent">$</span>
+        <input
+          type="text"
+          id="cmd-input"
+          class="flex-1 bg-transparent border-none outline-none text-fg placeholder-fg/40 font-mono text-sm"
+          placeholder="Type :help for commands, / to search..."
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button 
+          id="cmd-toggle"
+          class="text-fg/50 hover:text-fg transition-colors text-sm"
+          title="Toggle (Esc)"
+        >
+          × 
+        </button>
+      </div>
+      
+      <div id="cmd-help" class="hidden px-4 py-3 border-b border-border text-sm">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-fg/70">
+          <div><span class="text-accent">/</span> search</div>
+          <div><span class="text-accent">:p</span> posts</div>
+          <div><span class="text-accent">:c</span> categories</div>
+          <div><span class="text-accent">:t</span> tags</div>
+          <div><span class="text-accent">:a</span> about</div>
+          <div><span class="text-accent">:v</span> visualizer</div>
+          <div><span class="text-accent">gg</span> top</div>
+          <div><span class="text-accent">G</span> bottom</div>
+          <div><span class="text-accent">Esc</span> hide</div>
+        </div>
+      </div>
+      
+      <div id="cmd-search" class="hidden px-4 py-3">
+        <input
+          type="text"
+          id="search-input"
+          class="w-full bg-bg-light/5 border border-border rounded px-3 py-2 text-fg placeholder-fg/40 font-mono text-sm outline-none focus:border-accent/50"
+          placeholder="Search posts..."
+          autocomplete="off"
+        />
+        <div id="search-results" class="mt-2 max-h-60 overflow-y-auto"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const palette = document.getElementById('command-palette');
+  const input = document.getElementById('cmd-input') as HTMLInputElement;
+  const help = document.getElementById('cmd-help');
+  const searchPanel = document.getElementById('cmd-search');
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const searchResults = document.getElementById('search-results');
+  const toggleBtn = document.getElementById('cmd-toggle');
+  
+  let isVisible = true;
+  let lastSearch = '';
+  
+  function hide() {
+    palette?.classList.add('translate-y-full');
+    isVisible = false;
+  }
+  
+  function show() {
+    palette?.classList.remove('translate-y-full');
+    isVisible = true;
+    input?.focus();
+  }
+  
+  function toggle() {
+    if (isVisible) hide();
+    else show();
+  }
+  
+  toggleBtn?.addEventListener('click', toggle);
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+      return;
+    }
+    
+    if (e.key === 'Escape') {
+      hide();
+      return;
+    }
+    
+    if (e.key === ':' || e.key === '/') {
+      e.preventDefault();
+      show();
+      if (e.key === '/') {
+        input.value = '/';
+        showSearch();
+      }
+      return;
+    }
+    
+    if (e.key === 'g') {
+      const nextKey = (e as KeyboardEvent).repeat ? '' : 'g';
+      if (nextKey && e.getModifierState('Shift')) {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }
+      return;
+    }
+    
+    if (e.key === 'G' && !e.getModifierState('Shift')) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      return;
+    }
+    
+    if (!isVisible && (e.key === 'h' || e.key === 'H')) {
+      show();
+      input.value = ':help';
+      showHelp();
+      return;
+    }
+  });
+  
+  let isDoubleG = false;
+  document.addEventListener('keydown', (e) => {
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+    
+    if (e.key === 'g' && !e.repeat) {
+      setTimeout(() => { isDoubleG = false; }, 300);
+      if (!isDoubleG) {
+        isDoubleG = true;
+        return;
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      isDoubleG = false;
+    }
+  });
+  
+  function showHelp() {
+    help?.classList.remove('hidden');
+    searchPanel?.classList.add('hidden');
+  }
+  
+  function showSearch() {
+    help?.classList.add('hidden');
+    searchPanel?.classList.remove('hidden');
+    searchInput?.focus();
+  }
+  
+  input?.addEventListener('input', () => {
+    const val = input.value;
+    
+    if (val.startsWith('/')) {
+      showSearch();
+      return;
+    }
+    
+    if (val === ':help' || val === ':h') {
+      showHelp();
+      return;
+    }
+    
+    const commands: Record<string, string> = {
+      ':p': '/posts/',
+      ':posts': '/posts/',
+      ':c': '/categories/',
+      ':categories': '/categories/',
+      ':t': '/tags/',
+      ':tags': '/tags/',
+      ':a': '/about/',
+      ':about': '/about/',
+      ':v': '/calico-visualiser/',
+      ':visualiser': '/calico-visualiser/',
+      ':rss': '/rss.xml',
+    };
+    
+    if (commands[val]) {
+      window.location.href = commands[val];
+      return;
+    }
+    
+    help?.classList.add('hidden');
+    searchPanel?.classList.add('hidden');
+  });
+  
+  input?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const val = input.value;
+      
+      if (val.startsWith('/')) {
+        const query = val.slice(1).toLowerCase();
+        window.location.href = `/posts/?search=${encodeURIComponent(query)}`;
+        return;
+      }
+      
+      const commands: Record<string, string> = {
+        ':p': '/posts/',
+        ':posts': '/posts/',
+        ':c': '/categories/',
+        ':categories': '/categories/',
+        ':t': '/tags/',
+        ':tags': '/tags/',
+        ':a': '/about/',
+        ':about': '/about/',
+        ':v': '/calico-visualiser/',
+        ':visualiser': '/calico-visualiser/',
+        ':rss': '/rss.xml',
+      };
+      
+      if (commands[val]) {
+        window.location.href = commands[val];
+      }
+    }
+    
+    if (e.key === 'Escape') {
+      input.blur();
+      hide();
+    }
+  });
+</script>

@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-bg text-fg;
+  }
+  
+  a {
+    @apply text-accent hover:underline transition-colors;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-fg;
+  }
+  
+  code {
+    @apply bg-bg-light/10 px-1.5 py-0.5 rounded text-sm;
+  }
+  
+  pre {
+    @apply bg-bg-light/5 p-4 rounded-lg overflow-x-auto border border-border;
+  }
+  
+  pre code {
+    @apply bg-transparent p-0;
+  }
+  
+  blockquote {
+    @apply border-l-4 border-accent pl-4 italic text-fg/80;
+  }
+  
+  img {
+    @apply rounded-lg max-w-full h-auto;
+  }
+  
+  hr {
+    @apply border-border my-8;
+  }
+  
+  ul, ol {
+    @apply pl-6 my-4;
+  }
+  
+  ul {
+    @apply list-disc;
+  }
+  
+  ol {
+    @apply list-decimal;
+  }
+  
+  li {
+    @apply my-1;
+  }
+  
+  table {
+    @apply w-full border-collapse my-4;
+  }
+  
+  th, td {
+    @apply border border-border px-4 py-2 text-left;
+  }
+  
+  th {
+    @apply bg-bg-light/5 font-semibold;
+  }
+}
+
+@layer components {
+  .nav-shortcut {
+    @apply text-accent/70 hover:text-accent transition-colors;
+  }
+  
+  .post-card {
+    @apply border border-border p-4 rounded-lg hover:border-accent/50 transition-colors;
+  }
+  
+  .prose {
+    @apply max-w-none;
+  }
+  
+  .prose h1 {
+    @apply text-3xl font-bold mt-8 mb-4;
+  }
+  
+  .prose h2 {
+    @apply text-2xl font-bold mt-6 mb-3;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-semibold mt-4 mb-2;
+  }
+  
+  .prose p {
+    @apply my-4 leading-relaxed;
+  }
+  
+  .prose a {
+    @apply text-accent underline;
+  }
+  
+  .prose ul, .prose ol {
+    @apply my-4;
+  }
+  
+  .prose li {
+    @apply my-2;
+  }
+  
+  .prose pre {
+    @apply my-4;
+  }
+  
+  .prose code {
+    @apply bg-bg-light/10 px-1.5 py-0.5 rounded text-sm;
+  }
+  
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
+  
+  .prose img {
+    @apply rounded-lg my-4;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-accent pl-4 italic my-4;
+  }
+  
+  .prose table {
+    @apply w-full border-collapse my-4;
+  }
+  
+  .prose th, .prose td {
+    @apply border border-border px-4 py-2 text-left;
+  }
+  
+  .prose th {
+    @apply bg-bg-light/5 font-semibold;
+  }
+}
+
+@layer utilities {
+  .command-palette-hidden {
+    @apply translate-y-full opacity-0;
+  }
+}

@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Calico Network Policy Visualizer" description="Interactive Calico Network Policy Visualizer">
+  <div class="iframe-container">
+    <iframe 
+      src="/apps/calico-visualiser/index.html" 
+      class="w-full h-[600px] border border-border rounded-lg"
+      title="Calico Network Policy Visualizer"
+    ></iframe>
+  </div>
+  
+  <style>
+    .iframe-container {
+      min-height: 600px;
+    }
+    iframe {
+      background: #0d0d0d;
+    }
+  </style>
+</BaseLayout>

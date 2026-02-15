@@ -1,0 +1,58 @@
+---
+const navItems = [
+  { label: 'Posts', href: '/posts/', shortcut: 'P' },
+  { label: 'Categories', href: '/categories/', shortcut: 'C' },
+  { label: 'Tags', href: '/tags/', shortcut: 'T' },
+  { label: 'Visualizer', href: '/calico-visualiser/', shortcut: 'V' },
+  { label: 'About', href: '/about/', shortcut: 'A' },
+  { label: 'RSS', href: '/rss.xml', shortcut: 'R' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-border bg-bg/95 backdrop-blur sticky top-0 z-50">
+  <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3 group">
+      <span class="text-accent font-bold text-lg group-hover:opacity-80 transition-opacity">
+        ~/sbulav
+      </span>
+      <span class="text-fg/50">git {Astro.url.pathname === '/' ? '(master)' : ''}</span>
+    </a>
+    
+    <nav class="flex items-center gap-1">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="px-2 py-1 text-sm hover:text-accent transition-colors"
+          title={`[${item.shortcut}] ${item.label}`}
+        >
+          <span class="nav-shortcut">[{item.shortcut}]</span>{item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('keydown', (e) => {
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+      return;
+    }
+    
+    const key = e.key.toUpperCase();
+    const shortcuts: Record<string, string> = {
+      'P': '/posts/',
+      'C': '/categories/',
+      'T': '/tags/',
+      'V': '/calico-visualiser/',
+      'A': '/about/',
+      'R': '/rss.xml',
+      '/': '/posts/',
+    };
+    
+    if (shortcuts[key]) {
+      window.location.href = shortcuts[key];
+    }
+  });
+</script>

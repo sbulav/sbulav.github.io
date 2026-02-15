@@ -1,6 +1,34 @@
+# Astro
+dist/
+.astro/
+
+# Node
+node_modules/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Jekyll (legacy)
 _site/
 .sass-cache/
 .jekyll-metadata
-*DS_Store
 .bundle/
 vendor/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.env.*.local
