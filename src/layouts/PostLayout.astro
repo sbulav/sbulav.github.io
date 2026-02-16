@@ -14,11 +14,14 @@ interface Props {
   comments?: boolean;
   body?: string;
   headings?: Array<{ depth: number; slug: string; text: string }>;
+  slug?: string;
 }
 
-const { title, date, categories, tags, toc = false, comments = true, body = '', headings = [] } = Astro.props;
+const { title, date, categories, tags, toc = false, comments = true, body = '', headings = [], slug = '' } = Astro.props;
 const readTime = readingTime(body);
 const catPath = categories.map(c => c.toLowerCase()).join('/');
+// Extract filename from slug (e.g., "til/til-webrtc-landing-page" -> "til-webrtc-landing-page.md")
+const filename = slug ? slug.split('/').pop() + '.md' : title.toLowerCase().replace(/\s+/g, '-').slice(0, 40) + '.md';
 ---
 
 <BaseLayout title={title} description={`${title} - Cloud Alchemist blog post`}>
@@ -32,7 +35,7 @@ const catPath = categories.map(c => c.toLowerCase()).join('/');
         <span class="text-accent">~/blog{catPath ? `/${catPath}` : ''}</span>
         <span class="text-fg-dim"> $ </span>
         <span class="text-fg">cat</span>
-        <span class="text-tag"> {title.toLowerCase().replace(/\s+/g, '-').slice(0, 40)}.md</span>
+        <span class="text-tag"> {filename}</span>
       </div>
 
       <div class="border-t border-border my-3"></div>
