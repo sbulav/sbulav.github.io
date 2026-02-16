@@ -15,10 +15,10 @@ const github = await fetchGitHubStats();
 ---
 
 <BaseLayout title="Cloud Alchemist">
-  <div class="relative">
-    <!-- Sidebar - absolute positioned on left -->
-    <aside class="hidden xl:block absolute -left-56 top-0 w-52">
-      <div class="sticky top-24">
+  <div class="grid grid-cols-1 xl:grid-cols-[13rem_1fr] gap-8">
+    <!-- Sidebar -->
+    <aside class="hidden xl:block">
+      <div class="sticky top-20">
         <!-- Whoami card -->
         <div class="border border-border rounded-lg p-4 bg-bg-secondary/30">
           <h2 class="font-mono text-xs font-semibold mb-3 text-fg">
