@@ -4,50 +4,98 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import Pagination from '../components/Pagination.astro';
 import { sortPostsByDate, getPostSlug } from '../lib/utils';
+import { fetchGitHubStats } from '../lib/github';
 
 const POSTS_PER_PAGE = 5;
 const allPosts = sortPostsByDate(await getCollection('blog'));
 const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 const posts = allPosts.slice(0, POSTS_PER_PAGE);
 
-
+const github = await fetchGitHubStats();
 ---
 
 <BaseLayout title="Cloud Alchemist">
-  <!-- Hero / Whoami section -->
-  <section class="mb-10">
-    <div class="border border-border rounded-lg p-6 bg-bg-secondary/30">
-      <h1 class="text-2xl sm:text-3xl font-bold mb-4 font-mono">
-        ~/sbulav <span class="text-accent">$</span> whoami
-      </h1>
-      <p class="text-fg/80 leading-relaxed text-base sm:text-lg max-w-3xl">
-        Senior DevOps Engineer with expertise in AWS, Kubernetes, Terraform, ArgoCD, and NixOS.
-        This blog contains my notes, tutorials, and thoughts on cloud-native technologies.
-      </p>
+  <div class="relative">
+    <!-- Sidebar - absolute positioned on left -->
+    <aside class="hidden xl:block absolute -left-56 top-0 w-52">
+      <div class="sticky top-24">
+        <!-- Whoami card -->
+        <div class="border border-border rounded-lg p-4 bg-bg-secondary/30">
+          <h2 class="font-mono text-xs font-semibold mb-3 text-fg">
+            <span class="text-accent">~/sbulav</span> <span class="text-accent">$</span> whoami
+          </h2>
+
+          <div class="flex flex-col items-center text-center">
+            <img
+              src={github.avatarUrl}
+              alt="Sergei Bulavintsev"
+              class="h-16 w-16 rounded-full border-2 border-accent mb-2"
+              loading="eager"
+            />
+            <h3 class="font-mono text-sm font-bold text-fg">Sergei Bulavintsev</h3>
+            <p class="font-mono text-[10px] text-fg-dim mt-1">A cloudlet in the clouds</p>
+          </div>
+
+          <div class="mt-3 pt-3 border-t border-border font-mono text-xs">
+            <a href="https://github.com/sbulav" class="block py-0.5 text-accent hover:text-accent-hover transition-colors" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/intcube" class="block py-0.5 text-accent hover:text-accent-hover transition-colors" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+            <a href="/feed.xml" class="block py-0.5 text-accent hover:text-accent-hover transition-colors">
+              RSS
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Posts list - full width, same as before -->
+    <div>
+      <!-- Mobile whoami (visible only on small screens) -->
+      <div class="xl:hidden mb-8 border border-border rounded-lg p-5 bg-bg-secondary/30">
+        <div class="flex items-center gap-4">
+          <img
+            src={github.avatarUrl}
+            alt="Sergei Bulavintsev"
+            class="h-16 w-16 rounded-full border-2 border-accent"
+            loading="eager"
+          />
+          <div>
+            <h2 class="font-mono text-sm font-semibold text-fg">
+              <span class="text-accent">~/sbulav</span> <span class="text-accent">$</span> whoami
+            </h2>
+            <h3 class="font-mono text-base font-bold text-fg">Sergei Bulavintsev</h3>
+            <p class="font-mono text-xs text-fg-dim">A cloudlet in the clouds</p>
+            <div class="flex gap-4 mt-1 font-mono text-xs">
+              <a href="https://github.com/sbulav" class="text-accent hover:text-accent-hover" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/intcube" class="text-accent hover:text-accent-hover" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="/feed.xml" class="text-accent hover:text-accent-hover">RSS</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-accent font-mono text-lg">$</span>
+        <h2 class="text-xl font-semibold font-mono text-fg">ls -lt recent_posts/</h2>
+      </div>
+
+      <div class="space-y-4">
+        {posts.map(post => (
+          <PostCard
+            title={post.data.title}
+            date={post.data.date}
+            categories={post.data.categories}
+            tags={post.data.tags}
+            slug={getPostSlug(post.id, post.data.categories)}
+            body={post.body || ''}
+          />
+        ))}
+      </div>
+
+      <Pagination currentPage={1} totalPages={totalPages} />
     </div>
-
-  </section>
-
-  <!-- Recent posts section -->
-  <section>
-    <div class="flex items-center gap-3 mb-6">
-      <span class="text-accent font-mono text-lg">$</span>
-      <h2 class="text-xl font-semibold font-mono text-fg">ls -lt recent_posts/</h2>
-    </div>
-
-    <div class="space-y-4">
-      {posts.map(post => (
-        <PostCard
-          title={post.data.title}
-          date={post.data.date}
-          categories={post.data.categories}
-          tags={post.data.tags}
-          slug={getPostSlug(post.id, post.data.categories)}
-          body={post.body || ''}
-        />
-      ))}
-    </div>
-
-    <Pagination currentPage={1} totalPages={totalPages} />
-  </section>
+  </div>
 </BaseLayout>
