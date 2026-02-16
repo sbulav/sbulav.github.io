@@ -43,8 +43,10 @@
   }
 
   /* Firefox scrollbar */
-  scrollbar-width: thin;
-  scrollbar-color: #2d2d2d #0a0a0a;
+  @supports (scrollbar-width: thin) {
+    scrollbar-width: thin;
+    scrollbar-color: #2d2d2d #0a0a0a;
+  }
 }
 
 @layer components {

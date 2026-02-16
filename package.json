@@ -7,7 +7,11 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "stylelint \"src/**/*.css\"",
+    "lint:fix": "stylelint \"src/**/*.css\" --fix",
+    "format": "prettier --write \"src/**/*.{ts,astro,css}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,astro,css}\""
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.0",

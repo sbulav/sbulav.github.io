@@ -26,6 +26,8 @@
             pkgs.pnpm
             pkgs.gnumake
             pkgs.git
+            pkgs.stylelint
+            pkgs.nodePackages.prettier
           ];
 
           shellHook = ''
@@ -37,6 +39,10 @@
             echo "  pnpm dev          # Start dev server"
             echo "  pnpm build        # Production build"
             echo "  pnpm preview      # Preview production build"
+            echo "  pnpm lint         # Run CSS linter"
+            echo "  pnpm lint:fix     # Fix CSS linting issues"
+            echo "  pnpm format       # Format code with prettier"
+            echo "  pnpm format:check # Check code formatting"
           '';
         };
 
