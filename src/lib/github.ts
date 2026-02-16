@@ -61,7 +61,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
         headers: { 'User-Agent': 'sbulav-blog-build' },
       }),
       fetch(
-        'https://api.github.com/users/sbulav/repos?sort=stars&per_page=10&type=owner',
+        'https://api.github.com/users/sbulav/repos?per_page=50&type=owner',
         { headers: { 'User-Agent': 'sbulav-blog-build' } }
       ),
     ]);
@@ -76,7 +76,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
     const repos = await reposRes.json();
 
     const nonForkRepos = (repos as any[])
-      .filter((r: any) => !r.fork && r.stargazers_count > 0)
+      .filter((r: any) => !r.fork && !r.private && r.stargazers_count > 0)
       .sort((a: any, b: any) => b.stargazers_count - a.stargazers_count)
       .slice(0, 5)
       .map((r: any) => ({
