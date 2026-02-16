@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Gallery from '../components/Gallery.astro';
+import { fetchGitHubStats } from '../lib/github';
+
+const github = await fetchGitHubStats();
+
+const platforms = [
+  { name: 'Kubernetes', icon: '/assets/icons/kubernetes.png' },
+  { name: 'NixOS', icon: '/assets/icons/nix.svg' },
+];
+
+const tools = [
+  { name: 'Terraform', icon: '/assets/icons/terraform.png' },
+  { name: 'ArgoCD', icon: '/assets/icons/argocd.svg' },
+  { name: 'Helm', icon: '/assets/icons/helm.svg' },
+  { name: 'GH Actions', icon: '/assets/icons/github-actions.svg' },
+  { name: 'Docker', icon: '/assets/icons/docker.png' },
+  { name: 'Ansible', icon: '/assets/icons/ansible.png' },
+];
+
+const code = [
+  { name: 'Neovim', icon: '/assets/icons/neovim.svg' },
+  { name: 'Python', icon: '/assets/icons/python.png' },
+  { name: 'Pytest', icon: '/assets/icons/pytest.png' },
+];
+---
+
+<BaseLayout title="About">
+  <div class="mb-6">
+    <div class="font-mono text-xs text-terminal-muted">
+      <span class="text-terminal-accent">~/blog</span>
+      <span> $ </span>
+      <span class="text-terminal-fg">cat about.md</span>
+    </div>
+  </div>
+
+  <!-- Profile card -->
+  <div class="mb-8 flex flex-col items-start gap-4 rounded border border-terminal-border bg-terminal-surface p-4 sm:flex-row sm:items-center">
+    <img
+      src={github.avatarUrl}
+      alt="Sergei Bulavintsev"
+      class="h-20 w-20 rounded-full border-2 border-terminal-accent"
+      loading="eager"
+    />
+    <div>
+      <h1 class="font-mono text-lg font-bold text-terminal-fg">Sergei Bulavintsev</h1>
+      <p class="font-mono text-xs text-terminal-muted">{github.bio}</p>
+      <div class="mt-2 flex gap-3 font-mono text-[11px]">
+        <a href="https://github.com/sbulav" class="text-terminal-accent hover:text-terminal-warning transition-colors" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/intcube" class="text-terminal-accent hover:text-terminal-warning transition-colors" target="_blank" rel="noopener noreferrer">
+          LinkedIn
+        </a>
+        <a href="/feed.xml" class="text-terminal-accent hover:text-terminal-warning transition-colors">
+          RSS
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose mb-8">
+    <p>
+      I'm a Senior DevOps Engineer with extensive experience in AWS, Kubernetes,
+      Infrastructure as Code, and cloud-native technologies. I focus on migrating complex
+      applications to Kubernetes, automating infrastructure, and improving developer experience.
+    </p>
+
+    <h2>Certifications</h2>
+    <p>
+      <a href="https://www.credly.com/users/sergei-bulavintsev" target="_blank" rel="noopener noreferrer">View on Credly</a>
+    </p>
+    <ul>
+      <li>Certified Calico Operator - AWS Expert (Tigera)</li>
+      <li>Codefresh GitOps: GitOps Fundamentals, GitOps at Scale, GitOps Enterprise</li>
+      <li>Cilium: Getting Started, Ingress Controller, Gateway API, LoadBalancer IPAM and BGP, Cluster Mesh (Isovalent)</li>
+      <li>Fundamentals for Kyverno (Nirmata)</li>
+      <li>CKA, CKAD, CKS (expired)</li>
+      <li>
+        <a href="https://www.redhat.com/rhtapps/services/verify?certId=160-186-458" target="_blank" rel="noopener noreferrer">
+          Red Hat Certified Architect in Infrastructure Level II
+        </a> (expired)
+      </li>
+    </ul>
+
+    <h2>Technical Reviewer</h2>
+    <ul>
+      <li>
+        <a href="https://www.packtpub.com/product/kubernetes-an-enterprise-guide-second-edition/9781803230030" target="_blank" rel="noopener noreferrer">
+          Kubernetes -- An Enterprise Guide, Second Edition
+        </a> (Packt, 2022)
+      </li>
+      <li>
+        <a href="https://www.packtpub.com/product/kubernetes-an-enterprise-guide-third-edition/9781803248127" target="_blank" rel="noopener noreferrer">
+          Kubernetes -- An Enterprise Guide, Third Edition
+        </a> (Packt, 2024)
+      </li>
+    </ul>
+  </div>
+
+  <Gallery title="Platforms" items={platforms} />
+  <Gallery title="Tools" items={tools} />
+  <Gallery title="Code" items={code} />
+
+  <!-- GitHub repos -->
+  {github.topRepos.length > 0 && (
+    <div class="mt-8">
+      <h3 class="mb-3 font-mono text-sm font-semibold text-terminal-accent">
+        $ gh repo list --sort stars
+      </h3>
+      <div class="space-y-2">
+        {github.topRepos.map(repo => (
+          <a
+            href={repo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-between rounded border border-terminal-border bg-terminal-surface/50 px-4 py-2 font-mono text-xs transition-all hover:border-terminal-accent hover:bg-terminal-surface"
+          >
+            <div>
+              <span class="text-terminal-fg">{repo.name}</span>
+              <span class="ml-2 text-terminal-muted">{repo.description.slice(0, 60)}</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-terminal-warning">{repo.language}</span>
+              <span class="text-terminal-success">{repo.stars} stars</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+</BaseLayout>

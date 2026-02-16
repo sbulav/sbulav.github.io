@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 - Not Found">
+  <div class="flex flex-col items-center justify-center py-20 font-mono">
+    <div class="text-terminal-error text-6xl font-bold">404</div>
+    <div class="mt-4 text-terminal-muted">
+      <span class="text-terminal-accent">$</span> cat page.md
+    </div>
+    <div class="mt-2 text-terminal-error text-sm">
+      cat: page.md: No such file or directory
+    </div>
+    <div class="mt-8 text-xs text-terminal-muted">
+      The page you're looking for doesn't exist or has been moved.
+    </div>
+    <div class="mt-6 flex gap-4 text-xs">
+      <a href="/" class="text-terminal-accent hover:text-terminal-warning transition-colors">
+        cd ~/blog
+      </a>
+      <a href="/posts/" class="text-terminal-accent hover:text-terminal-warning transition-colors">
+        ls posts/
+      </a>
+      <a href="/tags/" class="text-terminal-accent hover:text-terminal-warning transition-colors">
+        ls tags/
+      </a>
+    </div>
+  </div>
+</BaseLayout>

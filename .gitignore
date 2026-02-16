@@ -1,6 +1,24 @@
+# Astro
+dist/
+.astro/
+node_modules/
+
+# Jekyll (legacy)
 _site/
 .sass-cache/
 .jekyll-metadata
+
+# OS
 *DS_Store
+
+# Dependencies
 .bundle/
 vendor/
+
+# Env
+.env
+.env.local
+
+# Editor
+.idea/
+.vscode/

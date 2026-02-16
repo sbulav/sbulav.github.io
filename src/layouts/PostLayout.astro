@@ -1,0 +1,113 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Giscus from '../components/Giscus.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import { formatDate, readingTime, getPostSlug } from '../lib/utils';
+
+interface Props {
+  title: string;
+  date: Date;
+  categories: string[];
+  tags: string[];
+  toc?: boolean;
+  comments?: boolean;
+  body?: string;
+  headings?: Array<{ depth: number; slug: string; text: string }>;
+}
+
+const { title, date, categories, tags, toc = false, comments = true, body = '', headings = [] } = Astro.props;
+const readTime = readingTime(body);
+const catPath = categories.map(c => c.toLowerCase()).join('/');
+---
+
+<BaseLayout title={title} description={`${title} - Cloud Alchemist blog post`}>
+  <article class="mt-4">
+    <!-- Terminal-style header -->
+    <div class="mb-6 border border-terminal-border rounded bg-terminal-surface p-4 font-mono text-sm">
+      <div class="text-terminal-muted mb-2">
+        <span class="text-terminal-accent">~/blog{catPath ? `/${catPath}` : ''}</span>
+        <span class="text-terminal-muted"> $ </span>
+        <span class="text-terminal-fg">cat</span>
+        <span class="text-terminal-warning"> {title.toLowerCase().replace(/\s+/g, '-').slice(0, 40)}.md</span>
+      </div>
+      <div class="border-t border-terminal-border my-2"></div>
+      <div class="grid gap-1 text-xs">
+        <div>
+          <span class="text-terminal-muted">title:</span>
+          <span class="text-terminal-fg ml-2">{title}</span>
+        </div>
+        <div>
+          <span class="text-terminal-muted">date:</span>
+          <span class="text-terminal-success ml-2">{formatDate(date)}</span>
+        </div>
+        {categories.length > 0 && (
+          <div>
+            <span class="text-terminal-muted">categories:</span>
+            <span class="ml-2">
+              {categories.map((cat, i) => (
+                <span>
+                  <a href={`/categories/${cat.toLowerCase()}/`} class="text-terminal-accent hover:text-terminal-warning transition-colors">
+                    {cat.toLowerCase()}
+                  </a>
+                  {i < categories.length - 1 && <span class="text-terminal-muted">, </span>}
+                </span>
+              ))}
+            </span>
+          </div>
+        )}
+        {tags.length > 0 && (
+          <div>
+            <span class="text-terminal-muted">tags:</span>
+            <span class="ml-2">
+              {tags.map((tag, i) => (
+                <span>
+                  <a href={`/tags/${tag.toLowerCase()}/`} class="text-terminal-warning hover:text-terminal-accent transition-colors">
+                    {tag.toLowerCase()}
+                  </a>
+                  {i < tags.length - 1 && <span class="text-terminal-muted">, </span>}
+                </span>
+              ))}
+            </span>
+          </div>
+        )}
+        <div>
+          <span class="text-terminal-muted">reading_time:</span>
+          <span class="text-terminal-success ml-2">{readTime} min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table of contents -->
+    {toc && headings.length > 0 && (
+      <TableOfContents headings={headings} />
+    )}
+
+    <!-- Post content -->
+    <div class="prose">
+      <slot />
+    </div>
+
+    <!-- Tags footer -->
+    {tags.length > 0 && (
+      <div class="mt-12 border-t border-terminal-border pt-6">
+        <div class="flex flex-wrap gap-2">
+          {tags.map(tag => (
+            <a
+              href={`/tags/${tag.toLowerCase()}/`}
+              class="rounded border border-terminal-border bg-terminal-surface px-2 py-1 text-xs text-terminal-warning hover:border-terminal-accent hover:text-terminal-accent transition-colors"
+            >
+              #{tag.toLowerCase()}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Comments -->
+    {comments && (
+      <div class="mt-12 border-t border-terminal-border pt-6">
+        <Giscus />
+      </div>
+    )}
+  </article>
+</BaseLayout>

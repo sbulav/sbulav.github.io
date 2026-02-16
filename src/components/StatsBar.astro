@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import { getTagCounts, getCategoryCounts } from '../lib/utils';
+import { fetchGitHubStats } from '../lib/github';
+
+const posts = await getCollection('blog');
+const tagCount = getTagCounts(posts).size;
+const catCount = getCategoryCounts(posts).size;
+const github = await fetchGitHubStats();
+---
+
+<footer
+  class="fixed bottom-0 z-30 flex h-8 w-full items-center border-t border-terminal-border bg-terminal-bg/95 backdrop-blur-sm"
+  transition:persist="stats-bar"
+>
+  <div
+    class="mx-auto flex w-full max-w-4xl items-center justify-between px-4 font-mono text-[10px] text-terminal-muted sm:px-6"
+  >
+    <div class="flex items-center gap-1">
+      <!-- Status indicator -->
+      <span class="inline-block h-1.5 w-1.5 rounded-full bg-terminal-success"></span>
+
+      <div class="flex items-center gap-2">
+        <span>
+          <span class="font-semibold text-terminal-fg">{posts.length}</span>
+          <span>posts</span>
+        </span>
+
+        <span class="text-terminal-muted">&middot;</span>
+
+        <span>
+          <span class="font-semibold text-terminal-fg">{catCount}</span>
+          <span>categories</span>
+        </span>
+
+        <span class="hidden text-terminal-muted sm:inline">&middot;</span>
+
+        <span class="hidden sm:inline">
+          <span class="font-semibold text-terminal-fg">{tagCount}</span>
+          <span>tags</span>
+        </span>
+
+        <span class="hidden text-terminal-muted md:inline">&middot;</span>
+
+        <span class="hidden md:inline">
+          <span class="font-semibold text-terminal-fg">{github.followers}</span>
+          <span>followers</span>
+        </span>
+
+        <span class="hidden text-terminal-muted md:inline">&middot;</span>
+
+        <span class="hidden md:inline">
+          <span class="font-semibold text-terminal-fg">{github.publicRepos}</span>
+          <span>repos</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2 text-[10px]">
+      <span class="hidden lg:inline text-terminal-muted">
+        <span class="text-terminal-warning">:</span> cmd
+        <span class="text-terminal-muted mx-0.5">/</span>
+        <span class="text-terminal-warning">/</span> search
+      </span>
+      <a
+        href="https://github.com/sbulav"
+        class="text-terminal-muted hover:text-terminal-fg transition-colors"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        @sbulav
+      </a>
+    </div>
+  </div>
+</footer>

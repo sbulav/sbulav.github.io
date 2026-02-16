@@ -1,0 +1,365 @@
+---
+// CommandBar: bottom vim-like command input with fuzzy search
+// Commands: :help, :tags, :categories, :about, :cnp, :recent, :q, /search
+import { getCollection } from 'astro:content';
+import { getPostSlug, sortPostsByDate } from '../lib/utils';
+
+const allPosts = sortPostsByDate(await getCollection('blog'));
+
+// Build search index data for client-side Fuse.js
+const searchIndex = allPosts.map((post) => ({
+  title: post.data.title,
+  slug: getPostSlug(post.id, post.data.categories),
+  tags: post.data.tags.map((t: string) => t.toLowerCase()),
+  categories: post.data.categories.map((c: string) => c.toLowerCase()),
+  date: post.data.date.toISOString().split('T')[0],
+}));
+---
+
+<div
+  id="command-bar-wrapper"
+  class="fixed right-0 bottom-10 left-0 z-40 pointer-events-none"
+  transition:persist="command-bar"
+>
+  <div
+    id="command-bar"
+    class="pointer-events-auto mx-auto max-w-4xl px-4 sm:px-6"
+  >
+    <div
+      class="rounded-lg border border-terminal-muted/40 bg-terminal-surface/95 p-2 backdrop-blur-lg shadow-lg"
+    >
+      <!-- Context path -->
+      <span
+        class="inline-block rounded border border-terminal-border bg-terminal-bg px-2 py-0.5 font-mono text-[10px] text-terminal-muted"
+        id="command-bar-path"
+        >~/blog</span
+      >
+
+      <!-- Input row -->
+      <div class="flex items-center gap-2 px-2 pt-1 pb-1 font-mono text-sm">
+        <span class="text-terminal-accent" id="command-prompt">$</span>
+        <input
+          id="command-input"
+          type="text"
+          placeholder="Type ':help' or '/' to search"
+          autocomplete="off"
+          spellcheck="false"
+          class="w-full border-none bg-transparent text-terminal-fg outline-none placeholder:text-terminal-muted/40"
+          aria-label="Command bar input"
+        />
+      </div>
+
+      <!-- Results dropdown -->
+      <div id="command-results" class="hidden max-h-64 overflow-y-auto">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Help overlay -->
+      <div id="command-help" class="hidden">
+        <div class="border-t border-terminal-border mt-1 pt-2 px-2 text-xs text-terminal-muted space-y-1">
+          <div><span class="text-terminal-warning">:help</span> — Show this help</div>
+          <div><span class="text-terminal-warning">:tags</span> — Browse all tags</div>
+          <div><span class="text-terminal-warning">:categories</span> — Browse all categories</div>
+          <div><span class="text-terminal-warning">:about</span> — About page</div>
+          <div><span class="text-terminal-warning">:cnp</span> — Calico Network Policy Visualiser</div>
+          <div><span class="text-terminal-warning">:recent</span> — Recent posts</div>
+          <div><span class="text-terminal-warning">/text</span> — Search posts by title and tags</div>
+          <div><span class="text-terminal-warning">Esc</span> — Close command bar</div>
+          <div><span class="text-terminal-warning">:</span> or <span class="text-terminal-warning">/</span> — Open command bar (global)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Search index data embedded in page -->
+<script
+  id="search-index-data"
+  type="application/json"
+  set:html={JSON.stringify(searchIndex)}
+/>
+
+<script>
+  import Fuse from 'fuse.js';
+
+  function initCommandBar() {
+    const wrapper = document.getElementById('command-bar-wrapper');
+    const input = document.getElementById('command-input') as HTMLInputElement;
+    const results = document.getElementById('command-results');
+    const helpPanel = document.getElementById('command-help');
+    const promptEl = document.getElementById('command-prompt');
+    const pathEl = document.getElementById('command-bar-path');
+
+    if (!wrapper || !input || !results || !helpPanel || !promptEl || !pathEl) return;
+
+    // Parse search index
+    const indexEl = document.getElementById('search-index-data');
+    let searchIndex: any[] = [];
+    try {
+      searchIndex = JSON.parse(indexEl?.textContent || '[]');
+    } catch {
+      searchIndex = [];
+    }
+
+    // Initialize Fuse.js
+    const fuse = new Fuse(searchIndex, {
+      keys: [
+        { name: 'title', weight: 0.6 },
+        { name: 'tags', weight: 0.3 },
+        { name: 'categories', weight: 0.1 },
+      ],
+      threshold: 0.4,
+      includeScore: true,
+      limit: 10,
+    });
+
+    let isVisible = true;
+    let isSearchMode = false;
+
+    // Update context path based on current page
+    const path = window.location.pathname;
+    if (path === '/') {
+      pathEl.textContent = '~/blog';
+    } else {
+      pathEl.textContent = '~' + path.replace(/\/$/, '');
+    }
+
+    // Command routes
+    const commands: Record<string, string> = {
+      ':help': '__help__',
+      ':tags': '/tags/',
+      ':tag': '/tags/',
+      ':categories': '/categories/',
+      ':cat': '/categories/',
+      ':about': '/about/',
+      ':cnp': '/calico-visualiser/',
+      ':home': '/',
+      ':recent': '/posts/',
+      ':blog': '/posts/',
+      ':rss': '/feed.xml',
+      ':q': '__hide__',
+      ':quit': '__hide__',
+    };
+
+    function showResults(items: typeof searchIndex) {
+      helpPanel.classList.add('hidden');
+      if (items.length === 0) {
+        results.innerHTML =
+          '<div class="px-2 py-2 text-xs text-terminal-muted">No results found</div>';
+        results.classList.remove('hidden');
+        return;
+      }
+
+      results.innerHTML = items
+        .map(
+          (item, i) => `
+        <a href="/${item.slug}/"
+          class="flex items-center gap-3 px-2 py-1.5 text-xs hover:bg-terminal-highlight rounded transition-colors ${i === 0 ? 'bg-terminal-highlight' : ''}"
+          data-result-index="${i}">
+          <span class="text-terminal-success shrink-0">${item.date}</span>
+          <span class="text-terminal-fg truncate flex-1">${item.title}</span>
+          <span class="text-terminal-muted shrink-0">${item.categories.join('/')}</span>
+        </a>`
+        )
+        .join('');
+      results.classList.remove('hidden');
+    }
+
+    function hideResults() {
+      results.classList.add('hidden');
+      results.innerHTML = '';
+    }
+
+    function showHelp() {
+      hideResults();
+      helpPanel.classList.remove('hidden');
+    }
+
+    function hideHelp() {
+      helpPanel.classList.add('hidden');
+    }
+
+    function hideBar() {
+      wrapper.style.display = 'none';
+      isVisible = false;
+      input.blur();
+    }
+
+    function showBar() {
+      wrapper.style.display = '';
+      isVisible = true;
+    }
+
+    function navigate(url: string) {
+      input.value = '';
+      hideResults();
+      hideHelp();
+      // Use view transitions navigation
+      if ((window as any).navigation && typeof (window as any).navigation.navigate === 'function') {
+        (window as any).navigation.navigate(url);
+      } else {
+        window.location.href = url;
+      }
+    }
+
+    // Handle input changes
+    input.addEventListener('input', () => {
+      const val = input.value;
+
+      if (val === ':help') {
+        showHelp();
+        return;
+      }
+
+      hideHelp();
+
+      if (val.startsWith('/') && val.length > 1) {
+        // Search mode
+        isSearchMode = true;
+        promptEl.textContent = '/';
+        const query = val.slice(1);
+        const fuseResults = fuse.search(query);
+        showResults(fuseResults.map((r) => r.item));
+      } else if (val.startsWith(':')) {
+        // Command mode - show matching commands
+        isSearchMode = false;
+        promptEl.textContent = ':';
+        const matchingCmds = Object.entries(commands).filter(([cmd]) =>
+          cmd.startsWith(val)
+        );
+        if (matchingCmds.length > 0 && val.length > 1) {
+          results.innerHTML = matchingCmds
+            .filter(([, dest]) => dest !== '__help__' && dest !== '__hide__')
+            .map(
+              ([cmd, dest], i) => `
+            <a href="${dest}"
+              class="flex items-center gap-3 px-2 py-1.5 text-xs hover:bg-terminal-highlight rounded transition-colors ${i === 0 ? 'bg-terminal-highlight' : ''}"
+              data-result-index="${i}">
+              <span class="text-terminal-warning shrink-0">${cmd}</span>
+              <span class="text-terminal-muted">${dest}</span>
+            </a>`
+            )
+            .join('');
+          results.classList.remove('hidden');
+        } else {
+          hideResults();
+        }
+      } else {
+        isSearchMode = false;
+        promptEl.textContent = '$';
+        hideResults();
+      }
+    });
+
+    // Handle key events
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const val = input.value.trim();
+
+        // Exact command match
+        if (commands[val]) {
+          if (commands[val] === '__help__') {
+            showHelp();
+            return;
+          }
+          if (commands[val] === '__hide__') {
+            hideBar();
+            input.value = '';
+            return;
+          }
+          navigate(commands[val]);
+          return;
+        }
+
+        // If results are showing, navigate to first result
+        const firstLink = results.querySelector('a') as HTMLAnchorElement;
+        if (firstLink) {
+          navigate(firstLink.getAttribute('href') || '/');
+          return;
+        }
+
+        // Search mode - trigger search
+        if (val.startsWith('/') && val.length > 1) {
+          const query = val.slice(1);
+          const fuseResults = fuse.search(query);
+          if (fuseResults.length > 0) {
+            navigate('/' + fuseResults[0].item.slug + '/');
+          }
+        }
+      }
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        input.value = '';
+        hideResults();
+        hideHelp();
+        promptEl.textContent = '$';
+        input.blur();
+      }
+
+      // Navigate results with arrow keys
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const links = results.querySelectorAll('a');
+        if (links.length === 0) return;
+
+        const current = results.querySelector('.bg-terminal-highlight');
+        let idx = current
+          ? parseInt(current.getAttribute('data-result-index') || '0')
+          : -1;
+
+        if (e.key === 'ArrowDown') idx = Math.min(idx + 1, links.length - 1);
+        else idx = Math.max(idx - 1, 0);
+
+        links.forEach((l) => l.classList.remove('bg-terminal-highlight'));
+        links[idx]?.classList.add('bg-terminal-highlight');
+        links[idx]?.scrollIntoView({ block: 'nearest' });
+      }
+
+      // Tab completion for commands
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const val = input.value;
+        if (val.startsWith(':')) {
+          const match = Object.keys(commands).find((cmd) =>
+            cmd.startsWith(val)
+          );
+          if (match) {
+            input.value = match;
+            input.dispatchEvent(new Event('input'));
+          }
+        }
+      }
+    });
+
+    // Global keyboard shortcuts to open command bar
+    document.addEventListener('keydown', (e) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable
+      ) {
+        return;
+      }
+
+      if (e.key === '/' || e.key === ':') {
+        e.preventDefault();
+        showBar();
+        input.focus();
+        input.value = e.key === '/' ? '/' : ':';
+        promptEl.textContent = e.key === '/' ? '/' : ':';
+        input.dispatchEvent(new Event('input'));
+      }
+
+      if (e.key === 'Escape' && isVisible) {
+        hideBar();
+      }
+    });
+  }
+
+  // Initialize on load and after view transitions
+  initCommandBar();
+  document.addEventListener('astro:after-swap', initCommandBar);
+</script>

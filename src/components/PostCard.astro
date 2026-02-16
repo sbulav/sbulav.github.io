@@ -1,0 +1,45 @@
+---
+import { formatDate, readingTime, getPostSlug } from '../lib/utils';
+
+interface Props {
+  title: string;
+  date: Date;
+  categories: string[];
+  tags: string[];
+  slug: string;
+  body?: string;
+}
+
+const { title, date, categories, tags, slug, body = '' } = Astro.props;
+const readTime = readingTime(body);
+const catPath = categories.map(c => c.toLowerCase()).join('/');
+---
+
+<a
+  href={`/${slug}/`}
+  class="group block rounded border border-terminal-border bg-terminal-surface/30 p-3 transition-all hover:border-terminal-accent/50 hover:bg-terminal-surface/60"
+>
+  <div class="flex items-center gap-2 font-mono text-[11px] text-terminal-muted">
+    <span class="text-terminal-success">{formatDate(date)}</span>
+    {catPath && (
+      <>
+        <span class="text-terminal-border">|</span>
+        <span class="text-terminal-accent">{catPath}</span>
+      </>
+    )}
+    <span class="ml-auto text-terminal-muted">{readTime} min read</span>
+  </div>
+  <h3 class="mt-1 font-mono text-sm text-terminal-fg group-hover:text-terminal-accent transition-colors">
+    {title}
+  </h3>
+  {tags.length > 0 && (
+    <div class="mt-1.5 flex flex-wrap gap-1">
+      {tags.slice(0, 4).map(tag => (
+        <span class="text-[10px] text-terminal-warning/70">#{tag.toLowerCase()}</span>
+      ))}
+      {tags.length > 4 && (
+        <span class="text-[10px] text-terminal-muted">+{tags.length - 4}</span>
+      )}
+    </div>
+  )}
+</a>

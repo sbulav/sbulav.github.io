@@ -1,0 +1,71 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  basePath?: string;
+}
+
+const { currentPage, totalPages, basePath = '/page' } = Astro.props;
+
+function getPageUrl(page: number): string {
+  if (page === 1) return '/';
+  return `${basePath}/${page}/`;
+}
+
+// Pre-compute which page numbers/ellipses to show
+type PageItem = { type: 'page'; page: number; isCurrent: boolean } | { type: 'ellipsis' };
+
+const items: PageItem[] = [];
+for (let page = 1; page <= totalPages; page++) {
+  const isCurrent = page === currentPage;
+  const show = page === 1 || page === totalPages || Math.abs(page - currentPage) <= 2;
+  const showEllipsis = !show && (page === 2 || page === totalPages - 1);
+
+  if (showEllipsis) {
+    items.push({ type: 'ellipsis' });
+  } else if (show) {
+    items.push({ type: 'page', page, isCurrent });
+  }
+}
+---
+
+{totalPages > 1 && (
+  <nav class="mt-8 flex items-center justify-center gap-2 font-mono text-xs" aria-label="Pagination">
+    {currentPage > 1 && (
+      <a
+        href={getPageUrl(currentPage - 1)}
+        class="rounded border border-terminal-border bg-terminal-surface px-3 py-1.5 text-terminal-muted transition-colors hover:border-terminal-accent hover:text-terminal-fg"
+      >
+        &lt; prev
+      </a>
+    )}
+
+    {items.map(item =>
+      item.type === 'ellipsis' ? (
+        <span class="px-1 text-terminal-muted">...</span>
+      ) : (
+        <a
+          href={getPageUrl(item.page)}
+          class:list={[
+            'rounded border px-2.5 py-1.5 transition-colors',
+            item.isCurrent
+              ? 'border-terminal-accent bg-terminal-accent/10 text-terminal-accent'
+              : 'border-terminal-border bg-terminal-surface text-terminal-muted hover:border-terminal-accent hover:text-terminal-fg',
+          ]}
+          aria-current={item.isCurrent ? 'page' : undefined}
+        >
+          {item.page}
+        </a>
+      )
+    )}
+
+    {currentPage < totalPages && (
+      <a
+        href={getPageUrl(currentPage + 1)}
+        class="rounded border border-terminal-border bg-terminal-surface px-3 py-1.5 text-terminal-muted transition-colors hover:border-terminal-accent hover:text-terminal-fg"
+      >
+        next &gt;
+      </a>
+    )}
+  </nav>
+)}

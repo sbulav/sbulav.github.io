@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import Pagination from '../components/Pagination.astro';
+import { sortPostsByDate, getPostSlug } from '../lib/utils';
+
+const POSTS_PER_PAGE = 5;
+const allPosts = sortPostsByDate(await getCollection('blog'));
+const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+const posts = allPosts.slice(0, POSTS_PER_PAGE);
+---
+
+<BaseLayout title="Cloud Alchemist">
+  <div class="mb-6">
+    <div class="font-mono text-xs text-terminal-muted">
+      <span class="text-terminal-accent">~/blog</span>
+      <span> $ </span>
+      <span class="text-terminal-fg">ls -lt posts/ | head -n {POSTS_PER_PAGE}</span>
+    </div>
+  </div>
+
+  <div class="space-y-3">
+    {posts.map(post => (
+      <PostCard
+        title={post.data.title}
+        date={post.data.date}
+        categories={post.data.categories}
+        tags={post.data.tags}
+        slug={getPostSlug(post.id, post.data.categories)}
+        body={post.body || ''}
+      />
+    ))}
+  </div>
+
+  <Pagination currentPage={1} totalPages={totalPages} />
+</BaseLayout>

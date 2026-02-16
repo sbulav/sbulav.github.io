@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCategoryCounts } from '../../lib/utils';
+
+const posts = await getCollection('blog');
+const catCounts = getCategoryCounts(posts);
+---
+
+<BaseLayout title="Categories">
+  <div class="mb-6">
+    <div class="font-mono text-xs text-terminal-muted">
+      <span class="text-terminal-accent">~/blog</span>
+      <span> $ </span>
+      <span class="text-terminal-fg">ls -d categories/*/</span>
+    </div>
+    <h1 class="mt-3 font-mono text-lg font-bold text-terminal-accent">All Categories</h1>
+    <p class="font-mono text-xs text-terminal-muted">{catCounts.size} categories</p>
+  </div>
+
+  <div class="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
+    {[...catCounts.entries()].map(([cat, count]) => (
+      <a
+        href={`/categories/${cat}/`}
+        class="group flex items-center justify-between rounded border border-terminal-border bg-terminal-surface/50 px-4 py-3 font-mono transition-all hover:border-terminal-accent hover:bg-terminal-surface"
+      >
+        <div class="flex items-center gap-2">
+          <span class="text-terminal-accent">./</span>
+          <span class="text-sm text-terminal-fg group-hover:text-terminal-accent">{cat}/</span>
+        </div>
+        <span class="text-[10px] text-terminal-muted">{count} posts</span>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

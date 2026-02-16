@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import Pagination from '../../components/Pagination.astro';
+import { sortPostsByDate, getPostSlug } from '../../lib/utils';
+
+export async function getStaticPaths() {
+  const POSTS_PER_PAGE = 5;
+  const allPosts = sortPostsByDate(await getCollection('blog'));
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+
+  return Array.from({ length: totalPages - 1 }, (_, i) => ({
+    params: { page: String(i + 2) },
+    props: {
+      posts: allPosts.slice((i + 1) * POSTS_PER_PAGE, (i + 2) * POSTS_PER_PAGE),
+      currentPage: i + 2,
+      totalPages,
+    },
+  }));
+}
+
+const { posts, currentPage, totalPages } = Astro.props;
+---
+
+<BaseLayout title={`Posts - Page ${currentPage}`}>
+  <div class="mb-6">
+    <div class="font-mono text-xs text-terminal-muted">
+      <span class="text-terminal-accent">~/blog</span>
+      <span> $ </span>
+      <span class="text-terminal-fg">ls -lt posts/ | page {currentPage}/{totalPages}</span>
+    </div>
+  </div>
+
+  <div class="space-y-3">
+    {posts.map((post: any) => (
+      <PostCard
+        title={post.data.title}
+        date={post.data.date}
+        categories={post.data.categories}
+        tags={post.data.tags}
+        slug={getPostSlug(post.id, post.data.categories)}
+        body={post.body || ''}
+      />
+    ))}
+  </div>
+
+  <Pagination currentPage={currentPage} totalPages={totalPages} />
+</BaseLayout>
