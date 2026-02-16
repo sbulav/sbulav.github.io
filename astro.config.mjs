@@ -20,7 +20,6 @@ export default defineConfig({
     },
   },
   redirects: {
-    '/calico-visualiser/': '/calico-visualiser/index.html',
     '/page2/': '/page/2/',
     '/page3/': '/page/3/',
     '/page4/': '/page/4/',
