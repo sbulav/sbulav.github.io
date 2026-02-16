@@ -305,9 +305,10 @@ const searchIndex = allPosts.map((post) => ({
         if (links.length === 0) return;
 
         const current = results.querySelector('.bg-bg-tertiary');
-        let idx = current
-          ? parseInt(current.getAttribute('data-result-index') || '0')
-          : -1;
+        let idx = -1;
+        if (current) {
+          idx = Array.from(links).indexOf(current as HTMLAnchorElement);
+        }
 
         if (e.key === 'ArrowDown') idx = Math.min(idx + 1, links.length - 1);
         else idx = Math.max(idx - 1, 0);
