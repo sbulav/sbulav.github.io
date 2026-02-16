@@ -3,6 +3,9 @@
  * Falls back to static defaults if the API is unavailable.
  */
 
+// Module-level cache for GitHub stats to avoid multiple API calls during build
+let cachedStats: GitHubStats | null = null;
+
 export interface GitHubStats {
   avatarUrl: string;
   followers: number;
@@ -41,9 +44,15 @@ const DEFAULTS: GitHubStats = {
 };
 
 export async function fetchGitHubStats(): Promise<GitHubStats> {
+  // Return cached data if available
+  if (cachedStats) {
+    return cachedStats;
+  }
+
   // Skip GitHub API calls during development to avoid rate limits
   if (import.meta.env.DEV) {
-    return DEFAULTS;
+    cachedStats = DEFAULTS;
+    return cachedStats;
   }
 
   try {
@@ -59,7 +68,8 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
 
     if (!profileRes.ok || !reposRes.ok) {
       console.warn('GitHub API unavailable, using defaults');
-      return DEFAULTS;
+      cachedStats = DEFAULTS;
+      return cachedStats;
     }
 
     const profile = await profileRes.json();
@@ -77,15 +87,17 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
         language: r.language || 'Unknown',
       }));
 
-    return {
+    cachedStats = {
       avatarUrl: profile.avatar_url,
       followers: profile.followers,
       publicRepos: profile.public_repos,
       bio: profile.bio || DEFAULTS.bio,
       topRepos: nonForkRepos.length > 0 ? nonForkRepos : DEFAULTS.topRepos,
     };
+    return cachedStats;
   } catch (e) {
     console.warn('Failed to fetch GitHub stats:', e);
-    return DEFAULTS;
+    cachedStats = DEFAULTS;
+    return cachedStats;
   }
 }
