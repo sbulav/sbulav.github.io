@@ -10,12 +10,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Jekyll (legacy)
-_site/
-.sass-cache/
-.jekyll-metadata
-.bundle/
-vendor/
+
 
 # OS
 .DS_Store

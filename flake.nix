@@ -38,8 +38,13 @@
             alias preview="npm run preview"
             alias clean="rm -rf dist/ node_modules/.cache"
 
+            # Check if node_modules exists
+            if [ ! -d "node_modules" ]; then
+              echo "⚠️  node_modules not found. Run: npm install"
+            fi
+
             echo "══════════════════════════════════════════════════════"
-            echo "  ~/sbulav git:(astro)"
+            echo "  Astro Blog Dev Environment"
             echo "══════════════════════════════════════════════════════"
             echo ""
             echo "  Available commands:"
@@ -47,6 +52,13 @@
             echo "    build      - Build for production"
             echo "    preview    - Preview production build"
             echo "    clean      - Clean dist and cache"
+            echo ""
+            echo "  Make commands:"
+            echo "    make install   - Install npm dependencies"
+            echo "    make serve     - Start dev server"
+            echo "    make build     - Build for production"
+            echo "    make preview   - Preview production build"
+            echo "    make clean     - Clean dist and cache"
             echo ""
             echo "  Keyboard shortcuts in browser:"
             echo "    [P]osts  [C]ategories  [T]ags  [A]bout"
