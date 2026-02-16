@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.0",
-    "@astrojs/sitemap": "^3.3.0",
+    "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^5.1.5",
     "astro": "^5.7.0",
     "autoprefixer": "^10.4.24",
