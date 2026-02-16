@@ -84,12 +84,15 @@ const github = await fetchGitHubStats();
         </div>
       </div>
 
-      <div class="flex items-center gap-3 mb-6">
-        <span class="text-accent font-mono text-lg">$</span>
-        <h2 class="text-xl font-semibold font-mono text-fg">ls -lt recent_posts/</h2>
+      <div class="mb-6">
+        <div class="font-mono text-xs text-fg-dim">
+          <span class="text-accent">~/blog</span>
+          <span> $ </span>
+          <span class="text-fg">ls -lt recent_posts/</span>
+        </div>
       </div>
 
-      <div class="space-y-4">
+      <div class="space-y-3">
         {posts.map(post => (
           <PostCard
             title={post.data.title}
