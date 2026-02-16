@@ -17,28 +17,37 @@ const catPath = categories.map(c => c.toLowerCase()).join('/');
 
 <a
   href={`/${slug}/`}
-  class="group block rounded border border-terminal-border bg-terminal-surface/30 p-3 transition-all hover:border-terminal-accent/50 hover:bg-terminal-surface/60"
+  class="post-card group block"
 >
-  <div class="flex items-center gap-2 font-mono text-[11px] text-terminal-muted">
-    <span class="text-terminal-success">{formatDate(date)}</span>
+  <!-- Meta row: date | category | reading time -->
+  <div class="flex items-center gap-3 font-mono text-xs text-fg-dim mb-2">
+    <time datetime={date.toISOString()} class="text-date">
+      {formatDate(date)}
+    </time>
+
     {catPath && (
       <>
-        <span class="text-terminal-border">|</span>
-        <span class="text-terminal-accent">{catPath}</span>
+        <span class="text-border-hover">|</span>
+        <span class="text-category">{catPath}</span>
       </>
     )}
-    <span class="ml-auto text-terminal-muted">{readTime} min read</span>
+
+    <span class="ml-auto text-fg-dim">{readTime} min read</span>
   </div>
-  <h3 class="mt-1 font-mono text-sm text-terminal-fg group-hover:text-terminal-accent transition-colors">
+
+  <!-- Title -->
+  <h3 class="font-mono text-base font-semibold text-fg group-hover:text-accent transition-colors mb-2">
     {title}
   </h3>
+
+  <!-- Tags -->
   {tags.length > 0 && (
-    <div class="mt-1.5 flex flex-wrap gap-1">
-      {tags.slice(0, 4).map(tag => (
-        <span class="text-[10px] text-terminal-warning/70">#{tag.toLowerCase()}</span>
+    <div class="flex flex-wrap gap-2">
+      {tags.slice(0, 5).map(tag => (
+        <span class="text-xs text-tag">#{tag.toLowerCase()}</span>
       ))}
-      {tags.length > 4 && (
-        <span class="text-[10px] text-terminal-muted">+{tags.length - 4}</span>
+      {tags.length > 5 && (
+        <span class="text-xs text-fg-dim">+{tags.length - 5}</span>
       )}
     </div>
   )}

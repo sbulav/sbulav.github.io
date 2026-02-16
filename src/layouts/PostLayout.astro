@@ -23,56 +23,66 @@ const catPath = categories.map(c => c.toLowerCase()).join('/');
 <BaseLayout title={title} description={`${title} - Cloud Alchemist blog post`}>
   <article class="mt-4">
     <!-- Terminal-style header -->
-    <div class="mb-6 border border-terminal-border rounded bg-terminal-surface p-4 font-mono text-sm">
-      <div class="text-terminal-muted mb-2">
-        <span class="text-terminal-accent">~/blog{catPath ? `/${catPath}` : ''}</span>
-        <span class="text-terminal-muted"> $ </span>
-        <span class="text-terminal-fg">cat</span>
-        <span class="text-terminal-warning"> {title.toLowerCase().replace(/\s+/g, '-').slice(0, 40)}.md</span>
+    <div class="mb-8 border border-border rounded-lg bg-bg-secondary p-5 font-mono text-sm">
+      <!-- Command line -->
+      <div class="text-fg-dim mb-3">
+        <span class="text-accent">~/blog{catPath ? `/${catPath}` : ''}</span>
+        <span class="text-fg-dim"> $ </span>
+        <span class="text-fg">cat</span>
+        <span class="text-tag"> {title.toLowerCase().replace(/\s+/g, '-').slice(0, 40)}.md</span>
       </div>
-      <div class="border-t border-terminal-border my-2"></div>
-      <div class="grid gap-1 text-xs">
-        <div>
-          <span class="text-terminal-muted">title:</span>
-          <span class="text-terminal-fg ml-2">{title}</span>
+
+      <div class="border-t border-border my-3"></div>
+
+      <!-- Metadata -->
+      <div class="grid gap-1.5 text-sm">
+        <div class="flex items-center gap-2">
+          <span class="text-fg-dim w-20">title:</span>
+          <span class="text-fg">{title}</span>
         </div>
-        <div>
-          <span class="text-terminal-muted">date:</span>
-          <span class="text-terminal-success ml-2">{formatDate(date)}</span>
+
+        <div class="flex items-center gap-2">
+          <span class="text-fg-dim w-20">date:</span>
+          <time datetime={date.toISOString()} class="text-date">
+            {formatDate(date)}
+          </time>
         </div>
+
         {categories.length > 0 && (
-          <div>
-            <span class="text-terminal-muted">categories:</span>
-            <span class="ml-2">
+          <div class="flex items-center gap-2">
+            <span class="text-fg-dim w-20">categories:</span>
+            <span class="flex flex-wrap gap-2">
               {categories.map((cat, i) => (
                 <span>
-                  <a href={`/categories/${cat.toLowerCase()}/`} class="text-terminal-accent hover:text-terminal-warning transition-colors">
+                  <a href={`/categories/${cat.toLowerCase()}/`} class="text-category hover:text-category-hover hover:underline transition-colors">
                     {cat.toLowerCase()}
                   </a>
-                  {i < categories.length - 1 && <span class="text-terminal-muted">, </span>}
+                  {i < categories.length - 1 && <span class="text-fg-dim">, </span>}
                 </span>
               ))}
             </span>
           </div>
         )}
+
         {tags.length > 0 && (
-          <div>
-            <span class="text-terminal-muted">tags:</span>
-            <span class="ml-2">
+          <div class="flex items-center gap-2">
+            <span class="text-fg-dim w-20">tags:</span>
+            <span class="flex flex-wrap gap-2">
               {tags.map((tag, i) => (
                 <span>
-                  <a href={`/tags/${tag.toLowerCase()}/`} class="text-terminal-warning hover:text-terminal-accent transition-colors">
+                  <a href={`/tags/${tag.toLowerCase()}/`} class="text-tag hover:text-tag-hover hover:underline transition-colors">
                     {tag.toLowerCase()}
                   </a>
-                  {i < tags.length - 1 && <span class="text-terminal-muted">, </span>}
+                  {i < tags.length - 1 && <span class="text-fg-dim">, </span>}
                 </span>
               ))}
             </span>
           </div>
         )}
-        <div>
-          <span class="text-terminal-muted">reading_time:</span>
-          <span class="text-terminal-success ml-2">{readTime} min</span>
+
+        <div class="flex items-center gap-2">
+          <span class="text-fg-dim w-20">reading:</span>
+          <span class="text-date">{readTime} min</span>
         </div>
       </div>
     </div>
@@ -89,12 +99,12 @@ const catPath = categories.map(c => c.toLowerCase()).join('/');
 
     <!-- Tags footer -->
     {tags.length > 0 && (
-      <div class="mt-12 border-t border-terminal-border pt-6">
+      <div class="mt-12 border-t border-border pt-6">
         <div class="flex flex-wrap gap-2">
           {tags.map(tag => (
             <a
               href={`/tags/${tag.toLowerCase()}/`}
-              class="rounded border border-terminal-border bg-terminal-surface px-2 py-1 text-xs text-terminal-warning hover:border-terminal-accent hover:text-terminal-accent transition-colors"
+              class="rounded border border-border bg-bg-secondary px-3 py-1.5 text-sm text-tag hover:border-tag hover:text-tag-hover transition-colors"
             >
               #{tag.toLowerCase()}
             </a>
@@ -105,7 +115,7 @@ const catPath = categories.map(c => c.toLowerCase()).join('/');
 
     <!-- Comments -->
     {comments && (
-      <div class="mt-12 border-t border-terminal-border pt-6">
+      <div class="mt-12 border-t border-border pt-6">
         <Giscus />
       </div>
     )}

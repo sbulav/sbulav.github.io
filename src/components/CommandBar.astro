@@ -23,28 +23,28 @@ const searchIndex = allPosts.map((post) => ({
 >
   <div
     id="command-bar"
-    class="pointer-events-auto mx-auto max-w-4xl px-4 sm:px-6"
+    class="pointer-events-auto mx-auto max-w-wide px-4 sm:px-6 lg:px-8"
   >
     <div
-      class="rounded-lg border border-terminal-muted/40 bg-terminal-surface/95 p-2 backdrop-blur-lg shadow-lg"
+      class="rounded-lg border border-border bg-bg-secondary/95 p-2 backdrop-blur-lg shadow-lg"
     >
       <!-- Context path -->
       <span
-        class="inline-block rounded border border-terminal-border bg-terminal-bg px-2 py-0.5 font-mono text-[10px] text-terminal-muted"
+        class="inline-block rounded border border-border bg-bg px-2 py-0.5 font-mono text-[10px] text-fg-dim"
         id="command-bar-path"
         >~/blog</span
       >
 
       <!-- Input row -->
       <div class="flex items-center gap-2 px-2 pt-1 pb-1 font-mono text-sm">
-        <span class="text-terminal-accent" id="command-prompt">$</span>
+        <span class="text-accent" id="command-prompt">$</span>
         <input
           id="command-input"
           type="text"
           placeholder="Type ':help' or '/' to search"
           autocomplete="off"
           spellcheck="false"
-          class="w-full border-none bg-transparent text-terminal-fg outline-none placeholder:text-terminal-muted/40"
+          class="w-full border-none bg-transparent text-fg outline-none placeholder:text-fg-dim/50"
           aria-label="Command bar input"
         />
       </div>
@@ -56,16 +56,16 @@ const searchIndex = allPosts.map((post) => ({
 
       <!-- Help overlay -->
       <div id="command-help" class="hidden">
-        <div class="border-t border-terminal-border mt-1 pt-2 px-2 text-xs text-terminal-muted space-y-1">
-          <div><span class="text-terminal-warning">:help</span> — Show this help</div>
-          <div><span class="text-terminal-warning">:tags</span> — Browse all tags</div>
-          <div><span class="text-terminal-warning">:categories</span> — Browse all categories</div>
-          <div><span class="text-terminal-warning">:about</span> — About page</div>
-          <div><span class="text-terminal-warning">:cnp</span> — Calico Network Policy Visualiser</div>
-          <div><span class="text-terminal-warning">:recent</span> — Recent posts</div>
-          <div><span class="text-terminal-warning">/text</span> — Search posts by title and tags</div>
-          <div><span class="text-terminal-warning">Esc</span> — Close command bar</div>
-          <div><span class="text-terminal-warning">:</span> or <span class="text-terminal-warning">/</span> — Open command bar (global)</div>
+        <div class="border-t border-border mt-1 pt-2 px-2 text-xs text-fg-muted space-y-1">
+          <div><span class="text-tag">:help</span> — Show this help</div>
+          <div><span class="text-tag">:tags</span> — Browse all tags</div>
+          <div><span class="text-tag">:categories</span> — Browse all categories</div>
+          <div><span class="text-tag">:about</span> — About page</div>
+          <div><span class="text-tag">:cnp</span> — Calico Network Policy Visualiser</div>
+          <div><span class="text-tag">:recent</span> — Recent posts</div>
+          <div><span class="text-tag">/text</span> — Search posts by title and tags</div>
+          <div><span class="text-tag">Esc</span> — Close command bar</div>
+          <div><span class="text-tag">:</span> or <span class="text-tag">/</span> — Open command bar (global)</div>
         </div>
       </div>
     </div>
@@ -145,7 +145,7 @@ const searchIndex = allPosts.map((post) => ({
       helpPanel.classList.add('hidden');
       if (items.length === 0) {
         results.innerHTML =
-          '<div class="px-2 py-2 text-xs text-terminal-muted">No results found</div>';
+          '<div class="px-2 py-2 text-xs text-fg-muted">No results found</div>';
         results.classList.remove('hidden');
         return;
       }
@@ -154,11 +154,11 @@ const searchIndex = allPosts.map((post) => ({
         .map(
           (item, i) => `
         <a href="/${item.slug}/"
-          class="flex items-center gap-3 px-2 py-1.5 text-xs hover:bg-terminal-highlight rounded transition-colors ${i === 0 ? 'bg-terminal-highlight' : ''}"
+          class="flex items-center gap-3 px-2 py-1.5 text-xs hover:bg-bg-tertiary rounded transition-colors ${i === 0 ? 'bg-bg-tertiary' : ''}"
           data-result-index="${i}">
-          <span class="text-terminal-success shrink-0">${item.date}</span>
-          <span class="text-terminal-fg truncate flex-1">${item.title}</span>
-          <span class="text-terminal-muted shrink-0">${item.categories.join('/')}</span>
+          <span class="text-date shrink-0">${item.date}</span>
+          <span class="text-fg truncate flex-1">${item.title}</span>
+          <span class="text-fg-dim shrink-0">${item.categories.join('/')}</span>
         </a>`
         )
         .join('');
@@ -233,10 +233,10 @@ const searchIndex = allPosts.map((post) => ({
             .map(
               ([cmd, dest], i) => `
             <a href="${dest}"
-              class="flex items-center gap-3 px-2 py-1.5 text-xs hover:bg-terminal-highlight rounded transition-colors ${i === 0 ? 'bg-terminal-highlight' : ''}"
+              class="flex items-center gap-3 px-2 py-1.5 text-xs hover:bg-bg-tertiary rounded transition-colors ${i === 0 ? 'bg-bg-tertiary' : ''}"
               data-result-index="${i}">
-              <span class="text-terminal-warning shrink-0">${cmd}</span>
-              <span class="text-terminal-muted">${dest}</span>
+              <span class="text-tag shrink-0">${cmd}</span>
+              <span class="text-fg-dim">${dest}</span>
             </a>`
             )
             .join('');
@@ -304,7 +304,7 @@ const searchIndex = allPosts.map((post) => ({
         const links = results.querySelectorAll('a');
         if (links.length === 0) return;
 
-        const current = results.querySelector('.bg-terminal-highlight');
+        const current = results.querySelector('.bg-bg-tertiary');
         let idx = current
           ? parseInt(current.getAttribute('data-result-index') || '0')
           : -1;
@@ -312,8 +312,8 @@ const searchIndex = allPosts.map((post) => ({
         if (e.key === 'ArrowDown') idx = Math.min(idx + 1, links.length - 1);
         else idx = Math.max(idx - 1, 0);
 
-        links.forEach((l) => l.classList.remove('bg-terminal-highlight'));
-        links[idx]?.classList.add('bg-terminal-highlight');
+        links.forEach((l) => l.classList.remove('bg-bg-tertiary'));
+        links[idx]?.classList.add('bg-bg-tertiary');
         links[idx]?.scrollIntoView({ block: 'nearest' });
       }
 

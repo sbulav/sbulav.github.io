@@ -26,14 +26,14 @@ const { category, posts } = Astro.props;
 
 <BaseLayout title={`Category: ${category}`}>
   <div class="mb-6">
-    <div class="font-mono text-xs text-terminal-muted">
-      <span class="text-terminal-accent">~/blog/categories</span>
+    <div class="font-mono text-xs text-fg-dim">
+      <span class="text-accent">~/blog/categories</span>
       <span> $ </span>
-      <span class="text-terminal-fg">ls</span>
-      <span class="text-terminal-accent"> {category}/</span>
+      <span class="text-fg">ls</span>
+      <span class="text-category"> {category}/</span>
     </div>
-    <h1 class="mt-3 font-mono text-lg font-bold text-terminal-accent">{category}/</h1>
-    <p class="font-mono text-xs text-terminal-muted">{posts.length} posts</p>
+    <h1 class="mt-3 font-mono text-lg font-bold text-category">{category}/</h1>
+    <p class="font-mono text-xs text-fg-dim">{posts.length} posts</p>
   </div>
 
   <div class="space-y-3">
@@ -52,7 +52,7 @@ const { category, posts } = Astro.props;
   <div class="mt-8">
     <a
       href="/categories/"
-      class="font-mono text-xs text-terminal-accent hover:text-terminal-warning transition-colors"
+      class="font-mono text-xs text-accent hover:text-accent-hover transition-colors"
     >
       &lt; back to all categories
     </a>

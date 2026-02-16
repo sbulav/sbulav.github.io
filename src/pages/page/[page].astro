@@ -25,10 +25,10 @@ const { posts, currentPage, totalPages } = Astro.props;
 
 <BaseLayout title={`Posts - Page ${currentPage}`}>
   <div class="mb-6">
-    <div class="font-mono text-xs text-terminal-muted">
-      <span class="text-terminal-accent">~/blog</span>
+    <div class="font-mono text-xs text-fg-dim">
+      <span class="text-accent">~/blog</span>
       <span> $ </span>
-      <span class="text-terminal-fg">ls -lt posts/ | page {currentPage}/{totalPages}</span>
+      <span class="text-fg">ls -lt posts/ | page {currentPage}/{totalPages}</span>
     </div>
   </div>
 

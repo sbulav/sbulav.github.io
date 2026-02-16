@@ -25,7 +25,7 @@ const canonical = canonicalUrl || Astro.url.href;
 ---
 
 <!doctype html>
-<html lang="en" class="bg-terminal-bg">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -90,9 +90,10 @@ const canonical = canonicalUrl || Astro.url.href;
 
     <ClientRouter />
   </head>
-  <body class="flex min-h-screen flex-col bg-terminal-bg text-terminal-fg">
+  <body class="bg-bg text-fg font-mono">
     <Header />
-    <main class="mx-auto w-full max-w-4xl flex-1 px-4 pt-4 pb-48 sm:px-6">
+    <!-- Wider layout: max-w-wide (1100px) instead of max-w-4xl, reduced padding -->
+    <main class="mx-auto w-full max-w-wide flex-1 px-4 sm:px-6 lg:px-8 py-6">
       <slot />
     </main>
     <CommandBar />

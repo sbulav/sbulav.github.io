@@ -28,32 +28,32 @@ const code = [
 
 <BaseLayout title="About">
   <div class="mb-6">
-    <div class="font-mono text-xs text-terminal-muted">
-      <span class="text-terminal-accent">~/blog</span>
+    <div class="font-mono text-xs text-fg-dim">
+      <span class="text-accent">~/blog</span>
       <span> $ </span>
-      <span class="text-terminal-fg">cat about.md</span>
+      <span class="text-fg">cat about.md</span>
     </div>
   </div>
 
   <!-- Profile card -->
-  <div class="mb-8 flex flex-col items-start gap-4 rounded border border-terminal-border bg-terminal-surface p-4 sm:flex-row sm:items-center">
+  <div class="mb-8 flex flex-col items-start gap-4 rounded-lg border border-border bg-bg-secondary p-5 sm:flex-row sm:items-center">
     <img
       src={github.avatarUrl}
       alt="Sergei Bulavintsev"
-      class="h-20 w-20 rounded-full border-2 border-terminal-accent"
+      class="h-20 w-20 rounded-full border-2 border-accent"
       loading="eager"
     />
     <div>
-      <h1 class="font-mono text-lg font-bold text-terminal-fg">Sergei Bulavintsev</h1>
-      <p class="font-mono text-xs text-terminal-muted">{github.bio}</p>
-      <div class="mt-2 flex gap-3 font-mono text-[11px]">
-        <a href="https://github.com/sbulav" class="text-terminal-accent hover:text-terminal-warning transition-colors" target="_blank" rel="noopener noreferrer">
+      <h1 class="font-mono text-lg font-bold text-fg">Sergei Bulavintsev</h1>
+      <p class="font-mono text-xs text-fg-dim">{github.bio}</p>
+      <div class="mt-2 flex gap-3 font-mono text-xs">
+        <a href="https://github.com/sbulav" class="text-accent hover:text-accent-hover transition-colors" target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
-        <a href="https://www.linkedin.com/in/intcube" class="text-terminal-accent hover:text-terminal-warning transition-colors" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/intcube" class="text-accent hover:text-accent-hover transition-colors" target="_blank" rel="noopener noreferrer">
           LinkedIn
         </a>
-        <a href="/feed.xml" class="text-terminal-accent hover:text-terminal-warning transition-colors">
+        <a href="/feed.xml" class="text-accent hover:text-accent-hover transition-colors">
           RSS
         </a>
       </div>
@@ -106,7 +106,7 @@ const code = [
   <!-- GitHub repos -->
   {github.topRepos.length > 0 && (
     <div class="mt-8">
-      <h3 class="mb-3 font-mono text-sm font-semibold text-terminal-accent">
+      <h3 class="mb-3 font-mono text-sm font-semibold text-accent">
         $ gh repo list --sort stars
       </h3>
       <div class="space-y-2">
@@ -115,15 +115,15 @@ const code = [
             href={repo.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center justify-between rounded border border-terminal-border bg-terminal-surface/50 px-4 py-2 font-mono text-xs transition-all hover:border-terminal-accent hover:bg-terminal-surface"
+            class="flex items-center justify-between rounded-lg border border-border bg-bg-secondary/50 px-4 py-3 font-mono text-xs transition-all hover:border-accent hover:bg-bg-secondary"
           >
             <div>
-              <span class="text-terminal-fg">{repo.name}</span>
-              <span class="ml-2 text-terminal-muted">{repo.description.slice(0, 60)}</span>
+              <span class="text-fg font-medium">{repo.name}</span>
+              <span class="ml-2 text-fg-dim">{repo.description.slice(0, 60)}</span>
             </div>
             <div class="flex items-center gap-2 shrink-0">
-              <span class="text-terminal-warning">{repo.language}</span>
-              <span class="text-terminal-success">{repo.stars} stars</span>
+              <span class="text-category">{repo.language}</span>
+              <span class="text-accent">{repo.stars} stars</span>
             </div>
           </a>
         ))}

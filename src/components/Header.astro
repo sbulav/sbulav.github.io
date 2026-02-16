@@ -11,28 +11,30 @@ const navItems = [
 ---
 
 <header
-  class="sticky top-0 z-30 w-full border-b border-terminal-border bg-terminal-bg/90 backdrop-blur-md"
+  class="sticky top-0 z-30 w-full border-b border-border bg-bg/95 backdrop-blur"
 >
-  <div class="mx-auto max-w-4xl px-4 py-2 sm:px-6">
-    <div class="flex items-center justify-between gap-2">
+  <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8 py-3">
+    <div class="flex items-center justify-between gap-4">
       <!-- Logo -->
       <a
         href="/"
-        class="font-mono text-sm font-bold text-terminal-accent whitespace-nowrap hover:text-terminal-warning transition-colors"
+        class="flex items-center gap-2 font-mono text-base font-bold text-accent whitespace-nowrap hover:text-accent-hover transition-colors group"
       >
-        Cloud Alchemist
+        <span>~/sbulav</span>
+        <span class="text-fg-dim font-normal">{Astro.url.pathname === '/' ? '(master)' : ''}</span>
       </a>
 
       <!-- Nav items -->
-      <nav class="flex items-center gap-1 overflow-x-auto">
+      <nav class="flex items-center gap-1 overflow-x-auto no-scrollbar">
         {
           navItems.map((item) => (
             <a
               href={item.href}
-              class="flex items-center gap-1 rounded bg-terminal-surface/50 px-2 py-1 font-mono text-[11px] leading-none whitespace-nowrap text-terminal-muted transition-colors hover:bg-terminal-surface hover:text-terminal-fg"
+              class="flex items-center gap-1 rounded px-2 py-1.5 font-mono text-xs whitespace-nowrap text-fg-muted transition-colors hover:bg-bg-secondary hover:text-fg"
               data-nav-key={item.key}
+              title={`[${item.key}] ${item.label}`}
             >
-              <span class="font-bold text-terminal-fg">[{item.key}]</span>
+              <span class="font-semibold text-accent">[{item.key}]</span>
               <span class="hidden sm:inline">{item.label}</span>
             </a>
           ))
@@ -55,7 +57,7 @@ const navItems = [
         return;
       }
 
-      // Don't trigger with modifier keys (except shift for uppercase)
+      // Don't trigger with modifier keys
       if (e.ctrlKey || e.altKey || e.metaKey) return;
 
       const key = e.key.toUpperCase();
@@ -73,3 +75,14 @@ const navItems = [
   initHeaderShortcuts();
   document.addEventListener('astro:after-swap', initHeaderShortcuts);
 </script>
+
+<style>
+  /* Hide scrollbar for nav items but keep functionality */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+</style>

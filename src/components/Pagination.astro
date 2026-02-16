@@ -30,11 +30,11 @@ for (let page = 1; page <= totalPages; page++) {
 ---
 
 {totalPages > 1 && (
-  <nav class="mt-8 flex items-center justify-center gap-2 font-mono text-xs" aria-label="Pagination">
+  <nav class="mt-10 flex items-center justify-center gap-2 font-mono text-sm" aria-label="Pagination">
     {currentPage > 1 && (
       <a
         href={getPageUrl(currentPage - 1)}
-        class="rounded border border-terminal-border bg-terminal-surface px-3 py-1.5 text-terminal-muted transition-colors hover:border-terminal-accent hover:text-terminal-fg"
+        class="rounded border border-border bg-bg-secondary px-4 py-2 text-fg-muted transition-colors hover:border-accent hover:text-fg"
       >
         &lt; prev
       </a>
@@ -42,15 +42,15 @@ for (let page = 1; page <= totalPages; page++) {
 
     {items.map(item =>
       item.type === 'ellipsis' ? (
-        <span class="px-1 text-terminal-muted">...</span>
+        <span class="px-2 text-fg-dim">...</span>
       ) : (
         <a
           href={getPageUrl(item.page)}
           class:list={[
-            'rounded border px-2.5 py-1.5 transition-colors',
+            'rounded border px-3.5 py-2 transition-colors',
             item.isCurrent
-              ? 'border-terminal-accent bg-terminal-accent/10 text-terminal-accent'
-              : 'border-terminal-border bg-terminal-surface text-terminal-muted hover:border-terminal-accent hover:text-terminal-fg',
+              ? 'border-accent bg-accent/10 text-accent font-semibold'
+              : 'border-border bg-bg-secondary text-fg-muted hover:border-accent hover:text-fg',
           ]}
           aria-current={item.isCurrent ? 'page' : undefined}
         >
@@ -62,7 +62,7 @@ for (let page = 1; page <= totalPages; page++) {
     {currentPage < totalPages && (
       <a
         href={getPageUrl(currentPage + 1)}
-        class="rounded border border-terminal-border bg-terminal-surface px-3 py-1.5 text-terminal-muted transition-colors hover:border-terminal-accent hover:text-terminal-fg"
+        class="rounded border border-border bg-bg-secondary px-4 py-2 text-fg-muted transition-colors hover:border-accent hover:text-fg"
       >
         next &gt;
       </a>

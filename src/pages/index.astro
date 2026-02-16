@@ -9,29 +9,45 @@ const POSTS_PER_PAGE = 5;
 const allPosts = sortPostsByDate(await getCollection('blog'));
 const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 const posts = allPosts.slice(0, POSTS_PER_PAGE);
+
+
 ---
 
 <BaseLayout title="Cloud Alchemist">
-  <div class="mb-6">
-    <div class="font-mono text-xs text-terminal-muted">
-      <span class="text-terminal-accent">~/blog</span>
-      <span> $ </span>
-      <span class="text-terminal-fg">ls -lt posts/ | head -n {POSTS_PER_PAGE}</span>
+  <!-- Hero / Whoami section -->
+  <section class="mb-10">
+    <div class="border border-border rounded-lg p-6 bg-bg-secondary/30">
+      <h1 class="text-2xl sm:text-3xl font-bold mb-4 font-mono">
+        ~/sbulav <span class="text-accent">$</span> whoami
+      </h1>
+      <p class="text-fg/80 leading-relaxed text-base sm:text-lg max-w-3xl">
+        Senior DevOps Engineer with expertise in AWS, Kubernetes, Terraform, ArgoCD, and NixOS.
+        This blog contains my notes, tutorials, and thoughts on cloud-native technologies.
+      </p>
     </div>
-  </div>
 
-  <div class="space-y-3">
-    {posts.map(post => (
-      <PostCard
-        title={post.data.title}
-        date={post.data.date}
-        categories={post.data.categories}
-        tags={post.data.tags}
-        slug={getPostSlug(post.id, post.data.categories)}
-        body={post.body || ''}
-      />
-    ))}
-  </div>
+  </section>
 
-  <Pagination currentPage={1} totalPages={totalPages} />
+  <!-- Recent posts section -->
+  <section>
+    <div class="flex items-center gap-3 mb-6">
+      <span class="text-accent font-mono text-lg">$</span>
+      <h2 class="text-xl font-semibold font-mono text-fg">ls -lt recent_posts/</h2>
+    </div>
+
+    <div class="space-y-4">
+      {posts.map(post => (
+        <PostCard
+          title={post.data.title}
+          date={post.data.date}
+          categories={post.data.categories}
+          tags={post.data.tags}
+          slug={getPostSlug(post.id, post.data.categories)}
+          body={post.body || ''}
+        />
+      ))}
+    </div>
+
+    <Pagination currentPage={1} totalPages={totalPages} />
+  </section>
 </BaseLayout>

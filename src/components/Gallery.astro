@@ -13,12 +13,12 @@ const { title, items } = Astro.props;
 ---
 
 <div class="mb-8">
-  <h3 class="mb-3 font-mono text-sm font-semibold text-terminal-accent">
+  <h3 class="mb-3 font-mono text-sm font-semibold text-accent">
     $ ls {title.toLowerCase()}/
   </h3>
-  <div class="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
+  <div class="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
     {items.map(item => (
-      <div class="flex flex-col items-center gap-1.5 rounded border border-terminal-border bg-terminal-surface/50 p-3 transition-colors hover:border-terminal-accent/50">
+      <div class="flex flex-col items-center gap-2 rounded-lg border border-border bg-bg-secondary/50 p-3 transition-colors hover:border-accent/50 hover:bg-bg-secondary">
         {item.icon && (
           <img
             src={item.icon}
@@ -27,7 +27,7 @@ const { title, items } = Astro.props;
             loading="lazy"
           />
         )}
-        <span class="text-center font-mono text-[10px] text-terminal-muted">
+        <span class="text-center font-mono text-xs text-fg-dim">
           {item.name}
         </span>
       </div>
