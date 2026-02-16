@@ -43,12 +43,12 @@ const filename = slug ? slug.split('/').pop() + '.md' : title.toLowerCase().repl
       <!-- Metadata -->
       <div class="grid gap-1.5 text-sm">
         <div class="flex items-center gap-2">
-          <span class="text-fg-dim w-20">title:</span>
+          <span class="text-fg-dim w-24">title:</span>
           <span class="text-fg">{title}</span>
         </div>
 
         <div class="flex items-center gap-2">
-          <span class="text-fg-dim w-20">date:</span>
+          <span class="text-fg-dim w-24">date:</span>
           <time datetime={date.toISOString()} class="text-date">
             {formatDate(date)}
           </time>
@@ -56,7 +56,7 @@ const filename = slug ? slug.split('/').pop() + '.md' : title.toLowerCase().repl
 
         {categories.length > 0 && (
           <div class="flex items-center gap-2">
-            <span class="text-fg-dim w-20">categories:</span>
+            <span class="text-fg-dim w-24">categories:</span>
             <span class="flex flex-wrap gap-2">
               {categories.map((cat, i) => (
                 <span>
@@ -72,7 +72,7 @@ const filename = slug ? slug.split('/').pop() + '.md' : title.toLowerCase().repl
 
         {tags.length > 0 && (
           <div class="flex items-center gap-2">
-            <span class="text-fg-dim w-20">tags:</span>
+            <span class="text-fg-dim w-24">tags:</span>
             <span class="flex flex-wrap gap-2">
               {tags.map((tag, i) => (
                 <span>
@@ -87,7 +87,7 @@ const filename = slug ? slug.split('/').pop() + '.md' : title.toLowerCase().repl
         )}
 
         <div class="flex items-center gap-2">
-          <span class="text-fg-dim w-20">reading:</span>
+          <span class="text-fg-dim w-24">reading:</span>
           <span class="text-date">{readTime} min</span>
         </div>
       </div>
