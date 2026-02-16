@@ -25,7 +25,7 @@ const tagCounts = getTagCounts(posts);
       <div class="flex flex-wrap gap-2">
         {[...tagCounts.entries()].map(([tag, count]) => (
           <a
-            href={`/tags/${tag}`}
+            href={`/tags/${tag}/`}
             class="group flex items-center gap-1.5 rounded-lg border border-border bg-bg-secondary/50 px-3 py-1.5 font-mono text-xs transition-all hover:border-tag hover:bg-bg-secondary"
           >
             <span class="text-tag group-hover:text-tag-hover transition-colors">#{tag}</span>

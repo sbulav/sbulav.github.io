@@ -24,8 +24,8 @@ const catCounts = getCategoryCounts(posts);
 
       <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
         {[...catCounts.entries()].map(([cat, count]) => (
-          <a
-            href={`/categories/${cat}`}
+<a
+          href={`/categories/${cat}/`}
             class="group flex items-center justify-between rounded-lg border border-border bg-bg-secondary/50 px-4 py-3 font-mono transition-all hover:border-accent hover:bg-bg-secondary"
           >
             <div class="flex items-center gap-2">

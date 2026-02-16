@@ -144,15 +144,15 @@ const searchIndex = allPosts.map((post) => ({
     // Command routes
     const commands: Record<string, string> = {
       ':help': '__help__',
-      ':tags': '/tags',
-      ':tag': '/tags',
-      ':categories': '/categories',
-      ':cat': '/categories',
-      ':about': '/about',
-      ':cnp': '/calico-visualiser',
+      ':tags': '/tags/',
+      ':tag': '/tags/',
+      ':categories': '/categories/',
+      ':cat': '/categories/',
+      ':about': '/about/',
+      ':cnp': '/calico-visualiser/',
       ':home': '/',
-      ':recent': '/posts',
-      ':blog': '/posts',
+      ':recent': '/posts/',
+      ':blog': '/posts/',
       ':rss': '/feed.xml',
       ':q': '__hide__',
       ':quit': '__hide__',
@@ -170,7 +170,7 @@ const searchIndex = allPosts.map((post) => ({
       results.innerHTML = items
         .map(
           (item, i) => `
-        <a href="/${item.slug}"
+        <a href="/${item.slug}/"
           class="flex items-center gap-3 px-2 py-1.5 text-xs hover:bg-bg-tertiary rounded transition-colors ${i === 0 ? 'bg-bg-tertiary' : ''}"
           data-result-index="${i}">
           <span class="text-date shrink-0">${item.date}</span>

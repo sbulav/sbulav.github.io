@@ -9,7 +9,7 @@ const { currentPage, totalPages, basePath = '/page' } = Astro.props;
 
 function getPageUrl(page: number): string {
   if (page === 1) return '/';
-  return `${basePath}/${page}`;
+  return `${basePath}/${page}/`;
 }
 
 // Pre-compute which page numbers/ellipses to show
