@@ -82,7 +82,17 @@ const searchIndex = allPosts.map((post) => ({
 <script>
   import Fuse from 'fuse.js';
 
+  // Track abort controller for cleanup on view transitions
+  let commandBarAbortController: AbortController | null = null;
+
   function initCommandBar() {
+    // Clean up previous event listeners if they exist
+    if (commandBarAbortController) {
+      commandBarAbortController.abort();
+    }
+    commandBarAbortController = new AbortController();
+    const signal = commandBarAbortController.signal;
+
     const wrapper = document.getElementById('command-bar-wrapper');
     const input = document.getElementById('command-input') as HTMLInputElement;
     const results = document.getElementById('command-results');
@@ -256,7 +266,7 @@ const searchIndex = allPosts.map((post) => ({
         promptEl.textContent = '$';
         hideResults();
       }
-    });
+    }, { signal });
 
     // Handle key events
     input.addEventListener('keydown', (e) => {
@@ -339,7 +349,7 @@ const searchIndex = allPosts.map((post) => ({
           }
         }
       }
-    });
+    }, { signal });
 
     // Global keyboard shortcuts to open command bar
     document.addEventListener('keydown', (e) => {
@@ -364,7 +374,7 @@ const searchIndex = allPosts.map((post) => ({
       if (e.key === 'Escape' && isVisible) {
         hideBar();
       }
-    });
+    }, { signal });
   }
 
   // Initialize on load and after view transitions
