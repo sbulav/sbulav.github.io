@@ -21,7 +21,7 @@ const DEFAULTS: GitHubStats = {
   avatarUrl: 'https://avatars.githubusercontent.com/u/28604639?v=4',
   followers: 55,
   publicRepos: 60,
-  bio: 'A cloudlet in the clouds',
+  bio: 'Senior DevOps Engineer\nAWS, Kubernetes, Nix, GitOps',
   topRepos: [
     {
       name: 'calico-policy-visualiser',
