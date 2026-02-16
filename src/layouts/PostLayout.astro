@@ -60,7 +60,7 @@ const filename = slug ? slug.split('/').pop() + '.md' : title.toLowerCase().repl
             <span class="flex flex-wrap gap-2">
               {categories.map((cat, i) => (
                 <span>
-                  <a href={`/categories/${cat.toLowerCase()}/`} class="text-category hover:text-category-hover hover:underline transition-colors">
+                  <a href={`/categories/${cat.toLowerCase()}`} class="text-category hover:text-category-hover hover:underline transition-colors">
                     {cat.toLowerCase()}
                   </a>
                   {i < categories.length - 1 && <span class="text-fg-dim">, </span>}
@@ -76,7 +76,7 @@ const filename = slug ? slug.split('/').pop() + '.md' : title.toLowerCase().repl
             <span class="flex flex-wrap gap-2">
               {tags.map((tag, i) => (
                 <span>
-                  <a href={`/tags/${tag.toLowerCase()}/`} class="text-tag hover:text-tag-hover hover:underline transition-colors">
+                  <a href={`/tags/${tag.toLowerCase()}`} class="text-tag hover:text-tag-hover hover:underline transition-colors">
                     {tag.toLowerCase()}
                   </a>
                   {i < tags.length - 1 && <span class="text-fg-dim">, </span>}
@@ -109,7 +109,7 @@ const filename = slug ? slug.split('/').pop() + '.md' : title.toLowerCase().repl
         <div class="flex flex-wrap gap-2">
           {tags.map(tag => (
             <a
-              href={`/tags/${tag.toLowerCase()}/`}
+href={`/tags/${tag.toLowerCase()}`}
               class="rounded border border-border bg-bg-secondary px-3 py-1.5 text-sm text-tag hover:border-tag hover:text-tag-hover transition-colors"
             >
               #{tag.toLowerCase()}
