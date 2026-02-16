@@ -41,6 +41,11 @@ const DEFAULTS: GitHubStats = {
 };
 
 export async function fetchGitHubStats(): Promise<GitHubStats> {
+  // Skip GitHub API calls during development to avoid rate limits
+  if (import.meta.env.DEV) {
+    return DEFAULTS;
+  }
+
   try {
     const [profileRes, reposRes] = await Promise.all([
       fetch('https://api.github.com/users/sbulav', {
