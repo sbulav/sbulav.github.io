@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
 import Giscus from '../components/Giscus.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import { formatDate, readingTime, getPostSlug } from '../lib/utils';
@@ -21,7 +22,9 @@ const catPath = categories.map(c => c.toLowerCase()).join('/');
 ---
 
 <BaseLayout title={title} description={`${title} - Cloud Alchemist blog post`}>
-  <article class="mt-4">
+  <div class="relative">
+    <Sidebar />
+    <article class="mt-4">
     <!-- Terminal-style header -->
     <div class="mb-8 border border-border rounded-lg bg-bg-secondary p-5 font-mono text-sm">
       <!-- Command line -->
@@ -119,5 +122,6 @@ const catPath = categories.map(c => c.toLowerCase()).join('/');
         <Giscus />
       </div>
     )}
-  </article>
+    </article>
+  </div>
 </BaseLayout>
