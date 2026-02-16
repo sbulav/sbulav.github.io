@@ -116,6 +116,13 @@ const searchIndex = allPosts.map((post) => ({
     let isVisible = true;
     let isSearchMode = false;
 
+    // Detect mobile/touch devices - hide by default
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const isSmallScreen = window.innerWidth < 768;
+    if (isTouchDevice || isSmallScreen) {
+      hideBar();
+    }
+
     // Update context path based on current page
     const path = window.location.pathname;
     if (path === '/') {

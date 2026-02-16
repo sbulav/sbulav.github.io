@@ -1,4 +1,4 @@
-.PHONY: help install dev dev-host build preview clean
+.PHONY: help install dev dev-host build preview preview-host clean
 
 # Default target - shows help
 help:
@@ -8,6 +8,7 @@ help:
 	@echo "  make dev-host    - Start dev server on all hosts (for mobile development)"
 	@echo "  make build       - Build for production"
 	@echo "  make preview     - Preview production build"
+	@echo "  make preview-host - Preview production build on all hosts"
 	@echo "  make clean       - Clean build artifacts (dist/, .astro/)"
 
 # Install dependencies
@@ -29,6 +30,10 @@ build:
 # Preview production build
 preview:
 	pnpm preview
+
+# Preview production build on all hosts
+preview-host:
+	pnpm preview --host 0.0.0.0
 
 # Clean build artifacts
 clean:
