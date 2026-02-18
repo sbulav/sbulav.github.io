@@ -32,11 +32,17 @@ dev-host:
 build: copy-calico
 	pnpm build
 
+# Google Analytics tracking ID
+GA_ID = G-P20LFSLH20
+
 # Copy calico-visualiser from pre-built source
 copy-calico:
 	rm -rf public/calico-visualiser
 	cp -r ../calico-policy-visualiser/dist public/calico-visualiser
 	sed -i 's|href="/|href="/calico-visualiser/|g; s|src="/|src="/calico-visualiser/|g' \
+		public/calico-visualiser/index.html
+	# Inject Google Analytics script after </title>
+	sed -i '/<\/title>/a\\    <!-- Google Analytics -->\n    <script async src="https://www.googletagmanager.com/gtag/js?id=$(GA_ID)"></script>\n    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","$(GA_ID)");</script>' \
 		public/calico-visualiser/index.html
 
 # Preview production build
