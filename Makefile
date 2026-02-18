@@ -1,4 +1,4 @@
-.PHONY: help install dev dev-host build preview preview-host clean lint lint-fix format format-check
+.PHONY: help install dev dev-host build preview preview-host clean lint lint-fix format format-check copy-calico
 
 # Default target - shows help
 help:
@@ -14,6 +14,7 @@ help:
 	@echo "  make lint-fix    - Fix CSS linting issues"
 	@echo "  make format      - Format code with prettier"
 	@echo "  make format-check - Check code formatting"
+	@echo "  make copy-calico  - Copy calico-visualiser from pre-built source"
 
 # Install dependencies
 install:
@@ -28,8 +29,15 @@ dev-host:
 	pnpm dev --host 0.0.0.0
 
 # Build for production
-build:
+build: copy-calico
 	pnpm build
+
+# Copy calico-visualiser from pre-built source
+copy-calico:
+	rm -rf public/calico-visualiser
+	cp -r ../calico-policy-visualiser/dist public/calico-visualiser
+	sed -i 's|href="/|href="/calico-visualiser/|g; s|src="/|src="/calico-visualiser/|g' \
+		public/calico-visualiser/index.html
 
 # Preview production build
 preview:
