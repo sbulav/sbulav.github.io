@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://sbulav.github.io/sitemap.xml
 Sitemap: https://sbulav.github.io/sitemap-index.xml
