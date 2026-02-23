@@ -4,14 +4,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import { sortPostsByDate, groupPostsByYear, getPostSlug } from '../../lib/utils';
+import { fetchGitHubStats } from '../../lib/github';
 
 const allPosts = sortPostsByDate(await getCollection('blog'));
 const postsByYear = groupPostsByYear(allPosts);
+const github = await fetchGitHubStats();
 ---
 
-<BaseLayout title="All Posts">
+<BaseLayout title="All Posts" github={github}>
   <div class="relative">
-    <Sidebar />
+    <Sidebar github={github} />
     <div>
       <div class="mb-6">
         <div class="font-mono text-xs text-fg-dim">

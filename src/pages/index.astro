@@ -15,9 +15,9 @@ const posts = allPosts.slice(0, POSTS_PER_PAGE);
 const github = await fetchGitHubStats();
 ---
 
-<BaseLayout title="Cloud Alchemist">
+<BaseLayout title="Cloud Alchemist" github={github}>
   <div class="relative">
-    <Sidebar />
+    <Sidebar github={github} />
 
     <!-- Posts list - full width, same as before -->
     <div>

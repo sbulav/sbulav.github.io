@@ -2,8 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Gallery from '../components/Gallery.astro';
 import { fetchGitHubStats } from '../lib/github';
-
-const github = await fetchGitHubStats();
+import type { GitHubStats } from '../lib/github';
 
 const platforms = [
   { name: 'Kubernetes', icon: '/assets/icons/kubernetes.png' },
@@ -24,9 +23,11 @@ const code = [
   { name: 'Python', icon: '/assets/icons/python.png' },
   { name: 'Pytest', icon: '/assets/icons/pytest.png' },
 ];
+
+const github = await fetchGitHubStats();
 ---
 
-<BaseLayout title="About">
+<BaseLayout title="About" github={github}>
   <div class="mb-6">
     <div class="font-mono text-xs text-fg-dim">
       <span class="text-accent">~/blog</span>
@@ -35,82 +36,82 @@ const code = [
     </div>
   </div>
 
-  <!-- Profile card -->
-  <div class="mb-8 flex flex-col items-start gap-4 rounded-lg border border-border bg-bg-secondary p-5 sm:flex-row sm:items-center">
-    <img
-      src={github.avatarUrl}
-      alt="Sergei Bulavintsev"
-      class="h-20 w-20 rounded-full border-2 border-accent"
-      loading="eager"
-    />
-    <div>
-      <h1 class="font-mono text-lg font-bold text-fg">Sergei Bulavintsev</h1>
-      <p class="font-mono text-xs text-fg-dim">{github.bio}</p>
-      <div class="mt-2 flex gap-3 font-mono text-xs">
-        <a href="https://github.com/sbulav" class="text-accent hover:text-accent-hover transition-colors" target="_blank" rel="noopener noreferrer">
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/sergey-bulavintsev-3001ba45/" class="text-accent hover:text-accent-hover transition-colors" target="_blank" rel="noopener noreferrer">
-          LinkedIn
-        </a>
-        <a href="/feed.xml" class="text-accent hover:text-accent-hover transition-colors">
-          RSS
-        </a>
+    <!-- Profile card -->
+    <div class="mb-8 flex flex-col items-start gap-4 rounded-lg border border-border bg-bg-secondary p-5 sm:flex-row sm:items-center">
+      <img
+        src={github.avatarUrl}
+        alt="Sergei Bulavintsev"
+        class="h-20 w-20 rounded-full border-2 border-accent"
+        loading="eager"
+      />
+      <div>
+        <h1 class="font-mono text-lg font-bold text-fg">Sergei Bulavintsev</h1>
+        <p class="font-mono text-xs text-fg-dim">{github.bio}</p>
+        <div class="mt-2 flex gap-3 font-mono text-xs">
+          <a href="https://github.com/sbulav" class="text-accent hover:text-accent-hover transition-colors" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/sergey-bulavintsev-3001ba45/" class="text-accent hover:text-accent-hover transition-colors" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+          <a href="/feed.xml" class="text-accent hover:text-accent-hover transition-colors">
+            RSS
+          </a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="prose mb-8">
-    <p>
-      I'm a Senior DevOps Engineer with extensive experience in AWS, Kubernetes,
-      Infrastructure as Code, and cloud-native technologies. I focus on migrating complex
-      applications to Kubernetes, automating infrastructure, and improving developer experience.
-    </p>
+    <div class="prose mb-8">
+      <p>
+        I'm a Senior DevOps Engineer with extensive experience in AWS, Kubernetes,
+        Infrastructure as Code, and cloud-native technologies. I focus on migrating complex
+        applications to Kubernetes, automating infrastructure, and improving developer experience.
+      </p>
 
-    <h2>Certifications</h2>
-    <p>
-      <a href="https://www.credly.com/users/sergei-bulavintsev" target="_blank" rel="noopener noreferrer">View on Credly</a>
-    </p>
-    <ul>
-      <li>Certified Calico Operator - AWS Expert (Tigera)</li>
-      <li>Codefresh GitOps: GitOps Fundamentals, GitOps at Scale, GitOps Enterprise</li>
-      <li>Cilium: Getting Started, Ingress Controller, Gateway API, LoadBalancer IPAM and BGP, Cluster Mesh (Isovalent)</li>
-      <li>Fundamentals for Kyverno (Nirmata)</li>
-      <li>CKA, CKAD, CKS (expired)</li>
-      <li>
-        <a href="https://www.redhat.com/rhtapps/services/verify?certId=160-186-458" target="_blank" rel="noopener noreferrer">
-          Red Hat Certified Architect in Infrastructure Level II
-        </a> (expired)
-      </li>
-    </ul>
+      <h2>Certifications</h2>
+      <p>
+        <a href="https://www.credly.com/users/sergei-bulavintsev" target="_blank" rel="noopener noreferrer">View on Credly</a>
+      </p>
+      <ul>
+        <li>Certified Calico Operator - AWS Expert (Tigera)</li>
+        <li>Codefresh GitOps: GitOps Fundamentals, GitOps at Scale, GitOps Enterprise</li>
+        <li>Cilium: Getting Started, Ingress Controller, Gateway API, LoadBalancer IPAM and BGP, Cluster Mesh (Isovalent)</li>
+        <li>Fundamentals for Kyverno (Nirmata)</li>
+        <li>CKA, CKAD, CKS (expired)</li>
+        <li>
+          <a href="https://www.redhat.com/rhtapps/services/verify?certId=160-186-458" target="_blank" rel="noopener noreferrer">
+            Red Hat Certified Architect in Infrastructure Level II
+          </a> (expired)
+        </li>
+      </ul>
 
-    <h2>Technical Reviewer</h2>
-    <ul>
-      <li>
-        <a href="https://www.packtpub.com/product/kubernetes-an-enterprise-guide-second-edition/9781803230030" target="_blank" rel="noopener noreferrer">
-          Kubernetes -- An Enterprise Guide, Second Edition
-        </a> (Packt, 2022)
-      </li>
-      <li>
-        <a href="https://www.amazon.com/Kubernetes-operate-world-class-container-native-systems-ebook/dp/B0B39D5QTC" target="_blank" rel="noopener noreferrer">
-          Mastering Kubernetes: Level up your container orchestration skills with Kubernetes to build, run, secure, and observe large-scale distributed apps, 4th Edition
-        </a> (Packt, 2022)
-      </li>
-    </ul>
-  </div>
+      <h2>Technical Reviewer</h2>
+      <ul>
+        <li>
+          <a href="https://www.packtpub.com/product/kubernetes-an-enterprise-guide-second-edition/9781803230030" target="_blank" rel="noopener noreferrer">
+            Kubernetes -- An Enterprise Guide, Second Edition
+          </a> (Packt, 2022)
+        </li>
+        <li>
+          <a href="https://www.amazon.com/Kubernetes-operate-world-class-container-native-systems-ebook/dp/B0B39D5QTC" target="_blank" rel="noopener noreferrer">
+            Mastering Kubernetes: Level up your container orchestration skills with Kubernetes to build, run, secure, and observe large-scale distributed apps, 4th Edition
+          </a> (Packt, 2022)
+        </li>
+      </ul>
+    </div>
 
-  <Gallery title="Platforms" items={platforms} />
-  <Gallery title="Tools" items={tools} />
-  <Gallery title="Code" items={code} />
+    <Gallery title="Platforms" items={platforms} />
+    <Gallery title="Tools" items={tools} />
+    <Gallery title="Code" items={code} />
 
-  <!-- GitHub repos -->
+    <!-- GitHub repos -->
   {github.topRepos.length > 0 && (
     <div class="mt-8">
       <h3 class="mb-3 font-mono text-sm font-semibold text-accent">
         $ gh repo list --sort stars
       </h3>
       <div class="space-y-2">
-        {github.topRepos.map(repo => (
+        {github.topRepos.map((repo: GitHubStats['topRepos'][number]) => (
           <a
             href={repo.url}
             target="_blank"

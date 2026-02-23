@@ -5,6 +5,7 @@ import PostCard from '../../components/PostCard.astro';
 import Pagination from '../../components/Pagination.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import { sortPostsByDate, getPostSlug } from '../../lib/utils';
+import { fetchGitHubStats } from '../../lib/github';
 
 export async function getStaticPaths() {
   const POSTS_PER_PAGE = 5;
@@ -22,11 +23,12 @@ export async function getStaticPaths() {
 }
 
 const { posts, currentPage, totalPages } = Astro.props;
+const github = await fetchGitHubStats();
 ---
 
-<BaseLayout title={`Posts - Page ${currentPage}`}>
+<BaseLayout title={`Posts - Page ${currentPage}`} github={github}>
   <div class="relative">
-    <Sidebar />
+    <Sidebar github={github} />
     <div>
       <div class="mb-6">
         <div class="font-mono text-xs text-fg-dim">

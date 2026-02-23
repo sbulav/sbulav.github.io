@@ -3,6 +3,8 @@ import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import CommandBar from '../components/CommandBar.astro';
 import StatsBar from '../components/StatsBar.astro';
+import { fetchGitHubStats } from '../lib/github';
+import type { GitHubStats } from '../lib/github';
 import '../styles/global.css';
 
 interface Props {
@@ -10,6 +12,10 @@ interface Props {
   description?: string;
   ogImage?: string;
   canonicalUrl?: string;
+  ogType?: 'website' | 'article';
+  articlePublishedTime?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
+  github?: GitHubStats;
 }
 
 const {
@@ -17,11 +23,17 @@ const {
   description = 'Personal blog with emphasis on cloud-native technologies, by a Senior DevOps Engineer experienced in AWS, Kubernetes, Terraform, ArgoCD, and NixOS.',
   ogImage,
   canonicalUrl,
+  ogType = 'website',
+  articlePublishedTime,
+  twitterCard,
+  github: githubProp,
 } = Astro.props;
 
 const siteTitle = 'Cloud Alchemist';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 const canonical = canonicalUrl || Astro.url.href;
+const resolvedTwitterCard = twitterCard || (ogImage ? 'summary_large_image' : 'summary');
+const github = githubProp || await fetchGitHubStats();
 ---
 
 <!doctype html>
@@ -41,15 +53,19 @@ const canonical = canonicalUrl || Astro.url.href;
     <!-- Open Graph -->
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta property="og:site_name" content={siteTitle} />
+    {ogType === 'article' && articlePublishedTime && (
+      <meta property="article:published_time" content={articlePublishedTime} />
+    )}
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content={resolvedTwitterCard} />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <!-- Verification -->
     <meta
@@ -97,6 +113,6 @@ const canonical = canonicalUrl || Astro.url.href;
       <slot />
     </main>
     <CommandBar />
-    <StatsBar />
+    <StatsBar github={github} />
   </body>
 </html>

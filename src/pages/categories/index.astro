@@ -3,14 +3,16 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import { getCategoryCounts } from '../../lib/utils';
+import { fetchGitHubStats } from '../../lib/github';
 
 const posts = await getCollection('blog');
 const catCounts = getCategoryCounts(posts);
+const github = await fetchGitHubStats();
 ---
 
-<BaseLayout title="Categories">
+<BaseLayout title="Categories" github={github}>
   <div class="relative">
-    <Sidebar />
+    <Sidebar github={github} />
     <div>
       <div class="mb-6">
         <div class="font-mono text-xs text-fg-dim">

@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar.astro';
 import Giscus from '../components/Giscus.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import { formatDate, readingTime, getPostSlug } from '../lib/utils';
+import { fetchGitHubStats } from '../lib/github';
 
 interface Props {
   title: string;
@@ -22,11 +23,24 @@ const readTime = readingTime(body);
 const catPath = categories.map(c => c.toLowerCase()).join('/');
 // Extract filename from slug (e.g., "til/til-webrtc-landing-page" -> "til-webrtc-landing-page.md")
 const filename = slug ? slug.split('/').pop() + '.md' : title.toLowerCase().replace(/\s+/g, '-').slice(0, 40) + '.md';
+const canonicalUrl = Astro.site ? new URL(`/${slug}/`, Astro.site).href : undefined;
+const ogImage = Astro.site
+  ? new URL('/assets/images/bio-photo.jpg', Astro.site).href
+  : '/assets/images/bio-photo.jpg';
+const github = await fetchGitHubStats();
 ---
 
-<BaseLayout title={title} description={`${title} - Cloud Alchemist blog post`}>
+<BaseLayout
+  title={title}
+  description={`${title} - Cloud Alchemist blog post`}
+  canonicalUrl={canonicalUrl}
+  ogType="article"
+  ogImage={ogImage}
+  articlePublishedTime={date.toISOString()}
+  github={github}
+>
   <div class="relative">
-    <Sidebar />
+    <Sidebar github={github} />
     <article class="mt-4">
     <!-- Terminal-style header -->
     <div class="mb-8 border border-border rounded-lg bg-bg-secondary p-5 font-mono text-sm">
