@@ -1,0 +1,32 @@
+---
+import { fetchGitHubStats } from '../lib/github';
+
+const github = await fetchGitHubStats();
+---
+
+{github.topRepos.length > 0 && (
+  <div class="mt-8">
+    <h3 class="mb-3 font-mono text-sm font-semibold text-accent">
+      $ gh repo list --sort stars
+    </h3>
+    <div class="space-y-2">
+      {github.topRepos.map(repo => (
+        <a
+          href={repo.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between rounded-lg border border-border bg-bg-secondary/50 px-4 py-3 font-mono text-xs transition-all hover:border-accent hover:bg-bg-secondary"
+        >
+          <div>
+            <span class="text-fg font-medium">{repo.name}</span>
+            <span class="ml-2 text-fg-dim">{repo.description.slice(0, 60)}</span>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="text-category">{repo.language}</span>
+            <span class="text-accent">{repo.stars} stars</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+)}

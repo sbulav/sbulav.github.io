@@ -1,11 +1,7 @@
 ---
-import type { GitHubStats } from '../lib/github';
+import { fetchGitHubStats } from '../lib/github';
 
-interface Props {
-  github: GitHubStats;
-}
-
-const { github } = Astro.props;
+const github = await fetchGitHubStats();
 ---
 
 <aside class="hidden xl:block absolute -left-56 top-0 w-52">

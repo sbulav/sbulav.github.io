@@ -1,10 +1,10 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import GitHubStatsProvider from '../components/GitHubStatsProvider.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Giscus from '../components/Giscus.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import { formatDate, readingTime, getPostSlug } from '../lib/utils';
-import { fetchGitHubStats } from '../lib/github';
 
 interface Props {
   title: string;
@@ -27,21 +27,20 @@ const canonicalUrl = Astro.site ? new URL(`/${slug}/`, Astro.site).href : undefi
 const ogImage = Astro.site
   ? new URL('/assets/images/bio-photo.jpg', Astro.site).href
   : '/assets/images/bio-photo.jpg';
-const github = await fetchGitHubStats();
 ---
 
-<BaseLayout
-  title={title}
-  description={`${title} - Cloud Alchemist blog post`}
-  canonicalUrl={canonicalUrl}
-  ogType="article"
-  ogImage={ogImage}
-  articlePublishedTime={date.toISOString()}
-  github={github}
->
-  <div class="relative">
-    <Sidebar github={github} />
-    <article class="mt-4">
+<GitHubStatsProvider>
+  <BaseLayout
+    title={title}
+    description={`${title} - Cloud Alchemist blog post`}
+    canonicalUrl={canonicalUrl}
+    ogType="article"
+    ogImage={ogImage}
+    articlePublishedTime={date.toISOString()}
+  >
+    <div class="relative">
+      <Sidebar />
+      <article class="mt-4">
     <!-- Terminal-style header -->
     <div class="mb-8 border border-border rounded-lg bg-bg-secondary p-5 font-mono text-sm">
       <!-- Command line -->
@@ -139,6 +138,7 @@ href={`/tags/${tag.toLowerCase()}/`}
         <Giscus />
       </div>
     )}
-    </article>
-  </div>
-</BaseLayout>
+      </article>
+    </div>
+  </BaseLayout>
+</GitHubStatsProvider>

@@ -3,8 +3,6 @@ import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import CommandBar from '../components/CommandBar.astro';
 import StatsBar from '../components/StatsBar.astro';
-import { fetchGitHubStats } from '../lib/github';
-import type { GitHubStats } from '../lib/github';
 import '../styles/global.css';
 
 interface Props {
@@ -15,7 +13,6 @@ interface Props {
   ogType?: 'website' | 'article';
   articlePublishedTime?: string;
   twitterCard?: 'summary' | 'summary_large_image';
-  github?: GitHubStats;
 }
 
 const {
@@ -26,14 +23,12 @@ const {
   ogType = 'website',
   articlePublishedTime,
   twitterCard,
-  github: githubProp,
 } = Astro.props;
 
 const siteTitle = 'Cloud Alchemist';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 const canonical = canonicalUrl || Astro.url.href;
 const resolvedTwitterCard = twitterCard || (ogImage ? 'summary_large_image' : 'summary');
-const github = githubProp || await fetchGitHubStats();
 ---
 
 <!doctype html>
@@ -113,6 +108,6 @@ const github = githubProp || await fetchGitHubStats();
       <slot />
     </main>
     <CommandBar />
-    <StatsBar github={github} />
+    <StatsBar />
   </body>
 </html>

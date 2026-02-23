@@ -1,0 +1,39 @@
+---
+import { fetchGitHubStats } from '../lib/github';
+
+const github = await fetchGitHubStats();
+---
+
+<div class="mb-8 flex flex-col items-start gap-4 rounded-lg border border-border bg-bg-secondary p-5 sm:flex-row sm:items-center">
+  <img
+    src={github.avatarUrl}
+    alt="Sergei Bulavintsev"
+    class="h-20 w-20 rounded-full border-2 border-accent"
+    loading="eager"
+  />
+  <div>
+    <h1 class="font-mono text-lg font-bold text-fg">Sergei Bulavintsev</h1>
+    <p class="font-mono text-xs text-fg-dim">{github.bio}</p>
+    <div class="mt-2 flex gap-3 font-mono text-xs">
+      <a
+        href="https://github.com/sbulav"
+        class="text-accent hover:text-accent-hover transition-colors"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
+      <a
+        href="https://www.linkedin.com/in/sergey-bulavintsev-3001ba45/"
+        class="text-accent hover:text-accent-hover transition-colors"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+      <a href="/feed.xml" class="text-accent hover:text-accent-hover transition-colors">
+        RSS
+      </a>
+    </div>
+  </div>
+</div>

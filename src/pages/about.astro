@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import GitHubStatsProvider from '../components/GitHubStatsProvider.astro';
+import GitHubProfileCard from '../components/GitHubProfileCard.astro';
+import GitHubTopRepos from '../components/GitHubTopRepos.astro';
 import Gallery from '../components/Gallery.astro';
-import { fetchGitHubStats } from '../lib/github';
-import type { GitHubStats } from '../lib/github';
 
 const platforms = [
   { name: 'Kubernetes', icon: '/assets/icons/kubernetes.png' },
@@ -24,42 +25,19 @@ const code = [
   { name: 'Pytest', icon: '/assets/icons/pytest.png' },
 ];
 
-const github = await fetchGitHubStats();
 ---
 
-<BaseLayout title="About" github={github}>
-  <div class="mb-6">
-    <div class="font-mono text-xs text-fg-dim">
-      <span class="text-accent">~/blog</span>
-      <span> $ </span>
-      <span class="text-fg">cat about.md</span>
-    </div>
-  </div>
-
-    <!-- Profile card -->
-    <div class="mb-8 flex flex-col items-start gap-4 rounded-lg border border-border bg-bg-secondary p-5 sm:flex-row sm:items-center">
-      <img
-        src={github.avatarUrl}
-        alt="Sergei Bulavintsev"
-        class="h-20 w-20 rounded-full border-2 border-accent"
-        loading="eager"
-      />
-      <div>
-        <h1 class="font-mono text-lg font-bold text-fg">Sergei Bulavintsev</h1>
-        <p class="font-mono text-xs text-fg-dim">{github.bio}</p>
-        <div class="mt-2 flex gap-3 font-mono text-xs">
-          <a href="https://github.com/sbulav" class="text-accent hover:text-accent-hover transition-colors" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/sergey-bulavintsev-3001ba45/" class="text-accent hover:text-accent-hover transition-colors" target="_blank" rel="noopener noreferrer">
-            LinkedIn
-          </a>
-          <a href="/feed.xml" class="text-accent hover:text-accent-hover transition-colors">
-            RSS
-          </a>
-        </div>
+<GitHubStatsProvider>
+  <BaseLayout title="About">
+    <div class="mb-6">
+      <div class="font-mono text-xs text-fg-dim">
+        <span class="text-accent">~/blog</span>
+        <span> $ </span>
+        <span class="text-fg">cat about.md</span>
       </div>
     </div>
+
+    <GitHubProfileCard />
 
     <div class="prose mb-8">
       <p>
@@ -104,31 +82,6 @@ const github = await fetchGitHubStats();
     <Gallery title="Tools" items={tools} />
     <Gallery title="Code" items={code} />
 
-    <!-- GitHub repos -->
-  {github.topRepos.length > 0 && (
-    <div class="mt-8">
-      <h3 class="mb-3 font-mono text-sm font-semibold text-accent">
-        $ gh repo list --sort stars
-      </h3>
-      <div class="space-y-2">
-        {github.topRepos.map((repo: GitHubStats['topRepos'][number]) => (
-          <a
-            href={repo.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-between rounded-lg border border-border bg-bg-secondary/50 px-4 py-3 font-mono text-xs transition-all hover:border-accent hover:bg-bg-secondary"
-          >
-            <div>
-              <span class="text-fg font-medium">{repo.name}</span>
-              <span class="ml-2 text-fg-dim">{repo.description.slice(0, 60)}</span>
-            </div>
-            <div class="flex items-center gap-2 shrink-0">
-              <span class="text-category">{repo.language}</span>
-              <span class="text-accent">{repo.stars} stars</span>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  )}
-</BaseLayout>
+    <GitHubTopRepos />
+  </BaseLayout>
+</GitHubStatsProvider>

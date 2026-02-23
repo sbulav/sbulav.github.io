@@ -1,16 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
 import { getTagCounts, getCategoryCounts } from '../lib/utils';
-import type { GitHubStats } from '../lib/github';
-
-interface Props {
-  github: GitHubStats;
-}
+import { fetchGitHubStats } from '../lib/github';
 
 const posts = await getCollection('blog');
 const tagCount = getTagCounts(posts).size;
 const catCount = getCategoryCounts(posts).size;
-const { github } = Astro.props;
+const github = await fetchGitHubStats();
 ---
 
 <footer
