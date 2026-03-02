@@ -19,8 +19,8 @@ handle my backlog.
 Over the years, I've tried multiple approaches to solve this:
 - Using the plain command-line tool <a
   href="https://github.com/ankitpokhrel/jira-cli">jira-cli</a>. It's great for
-  scripts, but can feel a bit disconnected when you just want to quickly update
-  multiple tasks.
+  scripts, but it required a lot of mangling with cli arguments,from explorer view
+  you can't create tasks and no mass change.
 - Creating my own TUI application. This was almost good, but it lacked elegance
   and was not able to handle mass changes easily.
 - Checking out and even forking other Neovim Jira integrations, like <a
