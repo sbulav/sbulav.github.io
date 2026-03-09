@@ -8,48 +8,41 @@ export default {
         mono: ['JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', 'ui-monospace', 'monospace'],
       },
       colors: {
-        // Main background - near black
+        // Semantic theme tokens backed by CSS variables
         bg: {
-          DEFAULT: '#0a0a0a',
-          secondary: '#111111',
-          tertiary: '#1a1a1a',
+          DEFAULT: 'rgb(var(--color-bg) / <alpha-value>)',
+          secondary: 'rgb(var(--color-bg-secondary) / <alpha-value>)',
+          tertiary: 'rgb(var(--color-bg-tertiary) / <alpha-value>)',
         },
-        // Main foreground - off-white for readability
         fg: {
-          DEFAULT: '#e8e8e8',
-          muted: '#9a9a9a',
-          dim: '#6b6b6b',
+          DEFAULT: 'rgb(var(--color-fg) / <alpha-value>)',
+          muted: 'rgb(var(--color-fg-muted) / <alpha-value>)',
+          dim: 'rgb(var(--color-fg-dim) / <alpha-value>)',
         },
-        // Primary accent - vibrant green (devops/engineering feel)
         accent: {
-          DEFAULT: '#00d084',
-          hover: '#00e691',
-          dim: '#00a868',
-          subtle: 'rgba(0, 208, 132, 0.1)',
+          DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
+          hover: 'rgb(var(--color-accent-hover) / <alpha-value>)',
+          dim: 'rgb(var(--color-accent-dim) / <alpha-value>)',
+          subtle: 'rgb(var(--color-accent) / 0.12)',
         },
-        // Secondary colors for semantic meaning
-        // Blue for categories (trust, organization)
         category: {
-          DEFAULT: '#58a6ff',
-          hover: '#79b8ff',
-          dim: '#388bfd',
+          DEFAULT: 'rgb(var(--color-category) / <alpha-value>)',
+          hover: 'rgb(var(--color-category-hover) / <alpha-value>)',
+          dim: 'rgb(var(--color-category-dim) / <alpha-value>)',
         },
-        // Amber/gold for tags (warmth, highlights)
         tag: {
-          DEFAULT: '#d4a72c',
-          hover: '#e3b341',
-          dim: '#b0882e',
+          DEFAULT: 'rgb(var(--color-tag) / <alpha-value>)',
+          hover: 'rgb(var(--color-tag-hover) / <alpha-value>)',
+          dim: 'rgb(var(--color-tag-dim) / <alpha-value>)',
         },
-        // Date - subtle cyan (time, freshness)
         date: {
-          DEFAULT: '#39c5cf',
-          dim: '#2a9aa2',
+          DEFAULT: 'rgb(var(--color-date) / <alpha-value>)',
+          dim: 'rgb(var(--color-date-dim) / <alpha-value>)',
         },
-        // Borders
         border: {
-          DEFAULT: '#2d2d2d',
-          hover: '#3d3d3d',
-          subtle: '#1a1a1a',
+          DEFAULT: 'rgb(var(--color-border) / <alpha-value>)',
+          hover: 'rgb(var(--color-border-hover) / <alpha-value>)',
+          subtle: 'rgb(var(--color-border-subtle) / <alpha-value>)',
         },
       },
       maxWidth: {

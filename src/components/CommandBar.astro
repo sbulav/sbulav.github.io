@@ -63,6 +63,7 @@ const searchIndex = allPosts.map((post) => ({
           <div><span class="text-tag">:about</span> — About page</div>
           <div><span class="text-tag">:cnp</span> — Calico Network Policy Visualiser</div>
           <div><span class="text-tag">:recent</span> — Recent posts</div>
+          <div><span class="text-tag">:theme dark</span> / <span class="text-tag">:theme light</span> — Switch theme</div>
           <div><span class="text-tag">/text</span> — Search posts by title and tags</div>
           <div><span class="text-tag">Esc</span> — Close command bar</div>
           <div><span class="text-tag">:</span> or <span class="text-tag">/</span> — Open command bar (global)</div>
@@ -102,6 +103,12 @@ const searchIndex = allPosts.map((post) => ({
 
     if (!wrapper || !input || !results || !helpPanel || !promptEl || !pathEl) return;
 
+    const wrapperEl = wrapper;
+    const resultsEl = results;
+    const helpPanelEl = helpPanel;
+    const promptElement = promptEl;
+    const pathElement = pathEl;
+
     // Parse search index
     const indexEl = document.getElementById('search-index-data');
     let searchIndex: any[] = [];
@@ -120,7 +127,6 @@ const searchIndex = allPosts.map((post) => ({
       ],
       threshold: 0.4,
       includeScore: true,
-      limit: 10,
     });
 
     let isVisible = true;
@@ -136,12 +142,11 @@ const searchIndex = allPosts.map((post) => ({
     // Update context path based on current page
     const path = window.location.pathname;
     if (path === '/') {
-      pathEl.textContent = '~/blog';
+      pathElement.textContent = '~/blog';
     } else {
-      pathEl.textContent = '~' + path.replace(/\/$/, '');
+      pathElement.textContent = '~' + path.replace(/\/$/, '');
     }
 
-    // Command routes
     const commands: Record<string, string> = {
       ':help': '__help__',
       ':tags': '/tags/',
@@ -154,20 +159,59 @@ const searchIndex = allPosts.map((post) => ({
       ':recent': '/posts/',
       ':blog': '/posts/',
       ':rss': '/feed.xml',
+      ':theme dark': '__theme_dark__',
+      ':theme light': '__theme_light__',
       ':q': '__hide__',
       ':quit': '__hide__',
     };
 
-    function showResults(items: typeof searchIndex) {
-      helpPanel.classList.add('hidden');
-      if (items.length === 0) {
-        results.innerHTML =
-          '<div class="px-2 py-2 text-xs text-fg-muted">No results found</div>';
-        results.classList.remove('hidden');
+    function normalizeCommand(value: string): string {
+      return value.trim().replace(/\s+/g, ' ').toLowerCase();
+    }
+
+    interface ThemeController {
+      sync: () => void;
+      set: (theme: 'light' | 'dark') => void;
+      get: () => 'light' | 'dark';
+    }
+
+    function setTheme(theme: 'light' | 'dark') {
+      const root = document.documentElement;
+
+      // Always read theme APIs fresh from window at call time — never use a stale closure.
+      const tw = window as Window & {
+        __themeController?: ThemeController;
+        __setTheme?: (value: 'light' | 'dark') => void;
+      };
+
+      if (typeof tw.__themeController?.set === 'function') {
+        tw.__themeController.set(theme);
         return;
       }
 
-      results.innerHTML = items
+      if (typeof tw.__setTheme === 'function') {
+        tw.__setTheme(theme);
+        return;
+      }
+
+      // Final fallback: manipulate DOM directly and persist to localStorage.
+      root.classList.toggle('dark', theme === 'dark');
+      root.classList.toggle('light', theme === 'light');
+      root.dataset.theme = theme;
+      try { window.localStorage.setItem('theme', theme); } catch { /* ignore */ }
+      document.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+    }
+
+    function showResults(items: typeof searchIndex) {
+      helpPanelEl.classList.add('hidden');
+      if (items.length === 0) {
+        resultsEl.innerHTML =
+          '<div class="px-2 py-2 text-xs text-fg-muted">No results found</div>';
+        resultsEl.classList.remove('hidden');
+        return;
+      }
+
+      resultsEl.innerHTML = items
         .map(
           (item, i) => `
         <a href="/${item.slug}/"
@@ -179,31 +223,31 @@ const searchIndex = allPosts.map((post) => ({
         </a>`
         )
         .join('');
-      results.classList.remove('hidden');
+      resultsEl.classList.remove('hidden');
     }
 
     function hideResults() {
-      results.classList.add('hidden');
-      results.innerHTML = '';
+      resultsEl.classList.add('hidden');
+      resultsEl.innerHTML = '';
     }
 
     function showHelp() {
       hideResults();
-      helpPanel.classList.remove('hidden');
+      helpPanelEl.classList.remove('hidden');
     }
 
     function hideHelp() {
-      helpPanel.classList.add('hidden');
+      helpPanelEl.classList.add('hidden');
     }
 
     function hideBar() {
-      wrapper.style.display = 'none';
+      wrapperEl.style.display = 'none';
       isVisible = false;
       input.blur();
     }
 
     function showBar() {
-      wrapper.style.display = '';
+      wrapperEl.style.display = '';
       isVisible = true;
     }
 
@@ -219,11 +263,48 @@ const searchIndex = allPosts.map((post) => ({
       }
     }
 
+    function executeCommand(command: string): boolean {
+      const action = commands[normalizeCommand(command)];
+
+      if (!action) {
+        return false;
+      }
+
+      if (action === '__help__') {
+        showHelp();
+        return true;
+      }
+
+      if (action === '__hide__') {
+        hideBar();
+        input.value = '';
+        hideResults();
+        hideHelp();
+        return true;
+      }
+
+      if (action === '__theme_dark__' || action === '__theme_light__') {
+        const targetTheme = action === '__theme_dark__' ? 'dark' : 'light';
+        // Clear UI first so blur doesn't race with theme application.
+        input.value = '';
+        hideResults();
+        hideHelp();
+        // Apply theme after UI is cleared so no stale focus state interferes.
+        setTheme(targetTheme);
+        hideBar();
+        return true;
+      }
+
+      navigate(action);
+      return true;
+    }
+
     // Handle input changes
     input.addEventListener('input', () => {
       const val = input.value;
+      const normalizedVal = normalizeCommand(val);
 
-      if (val === ':help') {
+      if (normalizedVal === ':help') {
         showHelp();
         return;
       }
@@ -233,37 +314,38 @@ const searchIndex = allPosts.map((post) => ({
       if (val.startsWith('/') && val.length > 1) {
         // Search mode
         isSearchMode = true;
-        promptEl.textContent = '/';
+        promptElement.textContent = '/';
         const query = val.slice(1);
-        const fuseResults = fuse.search(query);
+        const fuseResults = fuse.search(query, { limit: 10 });
         showResults(fuseResults.map((r) => r.item));
       } else if (val.startsWith(':')) {
-        // Command mode - show matching commands
         isSearchMode = false;
-        promptEl.textContent = ':';
+        promptElement.textContent = ':';
         const matchingCmds = Object.entries(commands).filter(([cmd]) =>
-          cmd.startsWith(val)
+          cmd.startsWith(normalizedVal)
         );
-        if (matchingCmds.length > 0 && val.length > 1) {
-          results.innerHTML = matchingCmds
+        if (matchingCmds.length > 0 && normalizedVal.length > 1) {
+          resultsEl.innerHTML = matchingCmds
             .filter(([, dest]) => dest !== '__help__' && dest !== '__hide__')
             .map(
               ([cmd, dest], i) => `
-            <a href="${dest}"
-              class="flex items-center gap-3 px-2 py-1.5 text-xs hover:bg-bg-tertiary rounded transition-colors ${i === 0 ? 'bg-bg-tertiary' : ''}"
-              data-result-index="${i}">
+            <button
+              type="button"
+              class="flex w-full items-center gap-3 rounded px-2 py-1.5 text-left text-xs transition-colors hover:bg-bg-tertiary ${i === 0 ? 'bg-bg-tertiary' : ''}"
+              data-result-index="${i}"
+              data-command="${cmd}">
               <span class="text-tag shrink-0">${cmd}</span>
-              <span class="text-fg-dim">${dest}</span>
-            </a>`
+              <span class="text-fg-dim">${dest === '__theme_dark__' ? 'switch to dark theme' : dest === '__theme_light__' ? 'switch to light theme' : dest}</span>
+            </button>`
             )
             .join('');
-          results.classList.remove('hidden');
+          resultsEl.classList.remove('hidden');
         } else {
           hideResults();
         }
       } else {
         isSearchMode = false;
-        promptEl.textContent = '$';
+        promptElement.textContent = '$';
         hideResults();
       }
     }, { signal });
@@ -273,33 +355,26 @@ const searchIndex = allPosts.map((post) => ({
       if (e.key === 'Enter') {
         e.preventDefault();
         const val = input.value.trim();
+        const normalizedVal = normalizeCommand(val);
 
-        // Exact command match
-        if (commands[val]) {
-          if (commands[val] === '__help__') {
-            showHelp();
-            return;
-          }
-          if (commands[val] === '__hide__') {
-            hideBar();
-            input.value = '';
-            return;
-          }
-          navigate(commands[val]);
+        if (executeCommand(normalizedVal)) {
           return;
         }
 
-        // If results are showing, navigate to first result
-        const firstLink = results.querySelector('a') as HTMLAnchorElement;
-        if (firstLink) {
-          navigate(firstLink.getAttribute('href') || '/');
+        const firstResult = resultsEl.querySelector('[data-result-index="0"]') as HTMLElement | null;
+        if (firstResult) {
+          if (firstResult instanceof HTMLAnchorElement) {
+            navigate(firstResult.getAttribute('href') || '/');
+          } else if (firstResult.dataset.command) {
+            executeCommand(firstResult.dataset.command);
+          }
           return;
         }
 
         // Search mode - trigger search
         if (val.startsWith('/') && val.length > 1) {
           const query = val.slice(1);
-          const fuseResults = fuse.search(query);
+          const fuseResults = fuse.search(query, { limit: 10 });
           if (fuseResults.length > 0) {
             navigate('/' + fuseResults[0].item.slug);
           }
@@ -311,43 +386,53 @@ const searchIndex = allPosts.map((post) => ({
         input.value = '';
         hideResults();
         hideHelp();
-        promptEl.textContent = '$';
+        promptElement.textContent = '$';
         input.blur();
       }
 
       // Navigate results with arrow keys
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        const links = results.querySelectorAll('a');
-        if (links.length === 0) return;
+        const resultItems = resultsEl.querySelectorAll('[data-result-index]');
+        if (resultItems.length === 0) return;
 
-        const current = results.querySelector('.bg-bg-tertiary');
+        const current = resultsEl.querySelector('.bg-bg-tertiary');
         let idx = -1;
         if (current) {
-          idx = Array.from(links).indexOf(current as HTMLAnchorElement);
+          idx = Array.from(resultItems).indexOf(current as HTMLElement);
         }
 
-        if (e.key === 'ArrowDown') idx = Math.min(idx + 1, links.length - 1);
+        if (e.key === 'ArrowDown') idx = Math.min(idx + 1, resultItems.length - 1);
         else idx = Math.max(idx - 1, 0);
 
-        links.forEach((l) => l.classList.remove('bg-bg-tertiary'));
-        links[idx]?.classList.add('bg-bg-tertiary');
-        links[idx]?.scrollIntoView({ block: 'nearest' });
+        resultItems.forEach((item) => item.classList.remove('bg-bg-tertiary'));
+        resultItems[idx]?.classList.add('bg-bg-tertiary');
+        resultItems[idx]?.scrollIntoView({ block: 'nearest' });
       }
 
-      // Tab completion for commands
       if (e.key === 'Tab') {
         e.preventDefault();
-        const val = input.value;
-        if (val.startsWith(':')) {
+        const currentValue = input.value;
+        if (currentValue.startsWith(':')) {
+          const normalizedVal = normalizeCommand(currentValue);
           const match = Object.keys(commands).find((cmd) =>
-            cmd.startsWith(val)
+            cmd.startsWith(normalizedVal)
           );
           if (match) {
             input.value = match;
             input.dispatchEvent(new Event('input'));
           }
         }
+      }
+    }, { signal });
+
+    resultsEl.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const commandButton = target.closest('[data-command]') as HTMLButtonElement | null;
+
+      if (commandButton?.dataset.command) {
+        e.preventDefault();
+        executeCommand(commandButton.dataset.command);
       }
     }, { signal });
 
@@ -367,7 +452,7 @@ const searchIndex = allPosts.map((post) => ({
         showBar();
         input.focus();
         input.value = e.key === '/' ? '/' : ':';
-        promptEl.textContent = e.key === '/' ? '/' : ':';
+        promptElement.textContent = e.key === '/' ? '/' : ':';
         input.dispatchEvent(new Event('input'));
       }
 

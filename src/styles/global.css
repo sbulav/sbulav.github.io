@@ -3,10 +3,58 @@
 @tailwind utilities;
 
 @layer base {
+  :root, html.dark {
+    color-scheme: dark;
+    --color-bg: 10 10 10;
+    --color-bg-secondary: 17 17 17;
+    --color-bg-tertiary: 26 26 26;
+    --color-fg: 232 232 232;
+    --color-fg-muted: 154 154 154;
+    --color-fg-dim: 107 107 107;
+    --color-accent: 0 208 132;
+    --color-accent-hover: 0 230 145;
+    --color-accent-dim: 0 168 104;
+    --color-category: 88 166 255;
+    --color-category-hover: 121 184 255;
+    --color-category-dim: 56 139 253;
+    --color-tag: 212 167 44;
+    --color-tag-hover: 227 179 65;
+    --color-tag-dim: 176 136 46;
+    --color-date: 57 197 207;
+    --color-date-dim: 42 154 162;
+    --color-border: 45 45 45;
+    --color-border-hover: 61 61 61;
+    --color-border-subtle: 26 26 26;
+  }
+
+  html.light {
+    color-scheme: light;
+    --color-bg: 255 255 255;
+    --color-bg-secondary: 246 248 250;
+    --color-bg-tertiary: 234 238 242;
+    --color-fg: 31 35 40;
+    --color-fg-muted: 101 109 118;
+    --color-fg-dim: 140 149 159;
+    --color-accent: 26 127 55;
+    --color-accent-hover: 17 88 34;
+    --color-accent-dim: 31 161 70;
+    --color-category: 9 105 218;
+    --color-category-hover: 5 80 174;
+    --color-category-dim: 84 174 255;
+    --color-tag: 154 103 0;
+    --color-tag-hover: 122 82 0;
+    --color-tag-dim: 212 167 44;
+    --color-date: 5 93 103;
+    --color-date-dim: 4 72 80;
+    --color-border: 208 215 222;
+    --color-border-hover: 140 149 159;
+    --color-border-subtle: 234 238 242;
+  }
+
   html {
     scroll-behavior: smooth;
-    background-color: #0a0a0a;
-    color: #e8e8e8;
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-fg));
     font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', ui-monospace, monospace;
   }
 
@@ -15,37 +63,36 @@
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-fg));
   }
 
-  /* Selection styling - green accent */
   ::selection {
-    background-color: rgba(0, 208, 132, 0.3);
-    color: #ffffff;
+    background-color: rgb(var(--color-accent) / 0.18);
+    color: rgb(var(--color-fg));
   }
 
-  /* Scrollbar styling */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #0a0a0a;
+    background: rgb(var(--color-bg));
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #2d2d2d;
+    background: rgb(var(--color-border));
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #3d3d3d;
+    background: rgb(var(--color-border-hover));
   }
 
-  /* Firefox scrollbar */
   @supports (scrollbar-width: thin) {
     scrollbar-width: thin;
-    scrollbar-color: #2d2d2d #0a0a0a;
+    scrollbar-color: rgb(var(--color-border)) rgb(var(--color-bg));
   }
 }
 
@@ -102,7 +149,7 @@
   }
 
   .prose code {
-    @apply bg-bg-tertiary text-accent px-1.5 py-0.5 rounded text-sm;
+    @apply bg-bg-tertiary text-accent-dim px-1.5 py-0.5 rounded text-sm;
   }
 
   .prose pre {
@@ -111,6 +158,24 @@
 
   .prose pre code {
     @apply bg-transparent p-0 text-fg;
+  }
+
+  html.light .astro-code,
+  html.light .astro-code span {
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
+    font-style: var(--shiki-light-font-style) !important;
+    font-weight: var(--shiki-light-font-weight) !important;
+    text-decoration: var(--shiki-light-text-decoration) !important;
+  }
+
+  html.dark .astro-code,
+  html.dark .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
   }
 
   .prose blockquote {
@@ -164,9 +229,19 @@
 }
 
 @layer utilities {
-  /* Animation utilities */
   .cursor-blink {
     animation: blink 1s step-end infinite;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .theme-transition,
+    .theme-transition *,
+    .theme-transition *::before,
+    .theme-transition *::after {
+      transition-property: color, background-color, border-color, fill, stroke;
+      transition-duration: 160ms;
+      transition-timing-function: ease;
+    }
   }
 
   @keyframes blink {

@@ -32,11 +32,78 @@ const resolvedTwitterCard = twitterCard || (ogImage ? 'summary_large_image' : 's
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0a0a" />
     <meta name="generator" content={Astro.generator} />
+
+    <script is:inline>
+      (() => {
+        const storageKey = 'theme';
+        const themeColors = {
+          light: '#ffffff',
+          dark: '#0a0a0a',
+        };
+        const root = document.documentElement;
+
+        const readStoredTheme = () => {
+          try {
+            const storedTheme = window.localStorage.getItem(storageKey);
+            return storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : null;
+          } catch {
+            return null;
+          }
+        };
+
+        const updateThemeColor = (theme) => {
+          const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+          if (themeColorMeta) {
+            themeColorMeta.setAttribute('content', themeColors[theme]);
+          }
+        };
+
+        const applyTheme = (theme, persist) => {
+          root.classList.toggle('dark', theme === 'dark');
+          root.classList.toggle('light', theme === 'light');
+          root.dataset.theme = theme;
+          updateThemeColor(theme);
+
+          if (persist) {
+            try {
+              window.localStorage.setItem(storageKey, theme);
+            } catch {
+              // Ignore storage failures.
+            }
+          }
+
+          document.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+        };
+
+        const getPreferredTheme = () => readStoredTheme() || 'dark';
+        const setTheme = (theme) => applyTheme(theme, true);
+        const getTheme = () => root.classList.contains('dark') ? 'dark' : 'light';
+
+        window.__themeController = {
+          ...window.__themeController,
+          sync: () => applyTheme(getPreferredTheme(), false),
+          set: setTheme,
+          get: getTheme,
+        };
+        window.__setTheme = setTheme;
+        window.__getTheme = getTheme;
+
+        window.__themeController.sync();
+
+        if (!window.__themeControllerInitialized) {
+          document.addEventListener('astro:after-swap', () => {
+            window.__themeController?.sync();
+          });
+          window.__themeControllerInitialized = true;
+        }
+      })();
+    </script>
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />

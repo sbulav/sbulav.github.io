@@ -14,7 +14,7 @@ const navItems = [
   class="sticky top-0 z-30 w-full border-b border-border bg-bg/95 backdrop-blur"
 >
   <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8 py-4">
-    <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3">
+    <div class="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
       <!-- Left: Logo/Prompt -->
       <div class="flex items-center gap-2">
         <a
@@ -25,8 +25,8 @@ const navItems = [
         </a>
       </div>
 
-      <!-- Right: Navigation -->
-      <nav class="flex items-center gap-1 overflow-x-auto no-scrollbar -mx-1 px-1">
+      <!-- Right: Navigation + Theme Toggle -->
+      <nav class="flex min-w-0 items-center gap-1 overflow-x-auto no-scrollbar -mx-1 px-1">
         {
           navItems.map((item) => (
             <a
@@ -40,15 +40,98 @@ const navItems = [
             </a>
           ))
         }
+        <button
+          type="button"
+          data-theme-toggle
+          class="flex items-center gap-1 rounded px-2 py-1.5 font-mono text-xs whitespace-nowrap text-fg-muted transition-colors hover:bg-accent/20 hover:text-accent"
+          title="[D] Toggle theme"
+        >
+          <span class="rounded bg-accent/10 px-1 font-semibold text-accent">[D]</span>
+          <span class="hidden sm:inline" data-theme-label>Light theme</span>
+        </button>
       </nav>
     </div>
   </div>
 </header>
 
 <script>
+  interface ThemeController {
+    sync: () => void;
+    set: (theme: 'light' | 'dark') => void;
+    get: () => 'light' | 'dark';
+  }
+
+  interface ThemeWindow extends Window {
+    __themeController?: ThemeController;
+    __setTheme?: (theme: 'light' | 'dark') => void;
+    __getTheme?: () => 'light' | 'dark';
+  }
+
+  let headerAbortController: AbortController | null = null;
+
+  function getThemeWindow(): ThemeWindow {
+    return window as ThemeWindow;
+  }
+
+  function getCurrentTheme(): 'light' | 'dark' {
+    return getThemeWindow().__themeController?.get() ||
+      getThemeWindow().__getTheme?.() ||
+      (document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+  }
+
+  function updateThemeToggle(button: HTMLButtonElement | null): void {
+    if (!button) return;
+
+    const nextTheme = getCurrentTheme() === 'dark' ? 'light' : 'dark';
+    const label = button.querySelector('[data-theme-label]');
+
+    if (label) {
+      label.textContent = nextTheme === 'light' ? 'Light theme' : 'Dark theme';
+    }
+
+    button.dataset.nextTheme = nextTheme;
+    button.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+    button.setAttribute('title', `[D] Switch to ${nextTheme} theme`);
+  }
+
+  function toggleTheme(button: HTMLButtonElement | null): void {
+    const nextTheme = getCurrentTheme() === 'dark' ? 'light' : 'dark';
+    const root = document.documentElement;
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      root.classList.add('theme-transition');
+      window.setTimeout(() => root.classList.remove('theme-transition'), 180);
+    }
+
+    const themeWindow = getThemeWindow();
+    if (typeof themeWindow.__themeController?.set === 'function') {
+      themeWindow.__themeController.set(nextTheme);
+    } else if (themeWindow.__setTheme) {
+      themeWindow.__setTheme(nextTheme);
+    } else {
+      root.classList.toggle('dark', nextTheme === 'dark');
+      root.classList.toggle('light', nextTheme === 'light');
+      document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: nextTheme } }));
+    }
+
+    updateThemeToggle(button);
+  }
+
   function initHeaderShortcuts() {
+    if (headerAbortController) {
+      headerAbortController.abort();
+    }
+
+    headerAbortController = new AbortController();
+    const signal = headerAbortController.signal;
+    const themeToggle = document.querySelector('[data-theme-toggle]') as HTMLButtonElement | null;
+
+    updateThemeToggle(themeToggle);
+
+    themeToggle?.addEventListener('click', () => toggleTheme(themeToggle), { signal });
+    document.addEventListener('themechange', () => updateThemeToggle(themeToggle), { signal });
+
     document.addEventListener('keydown', (e) => {
-      // Don't trigger when typing in inputs
       const target = e.target as HTMLElement;
       if (
         target.tagName === 'INPUT' ||
@@ -58,10 +141,15 @@ const navItems = [
         return;
       }
 
-      // Don't trigger with modifier keys
       if (e.ctrlKey || e.altKey || e.metaKey) return;
 
       const key = e.key.toUpperCase();
+      if (key === 'D') {
+        e.preventDefault();
+        toggleTheme(themeToggle);
+        return;
+      }
+
       const navLink = document.querySelector(
         `[data-nav-key="${key}"]`
       ) as HTMLAnchorElement;
@@ -69,10 +157,9 @@ const navItems = [
         e.preventDefault();
         navLink.click();
       }
-    });
+    }, { signal });
   }
 
-  // Run on initial load and after view transitions
   initHeaderShortcuts();
   document.addEventListener('astro:after-swap', initHeaderShortcuts);
 </script>
