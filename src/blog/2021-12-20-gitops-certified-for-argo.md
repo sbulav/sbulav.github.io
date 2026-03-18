@@ -11,7 +11,7 @@ comments: true
 ---
 
 I've passed the course [GitOps Fundamentals](https://codefresh.learnworlds.com/course/gitops-with-argo)
-and follow up exam: ![GitOps Certified for Argo](/assets/images/gitops-certified-for-argo.png)
+and follow up exam: ![GitOps Certified for Argo](../assets/images/gitops-certified-for-argo.png)
 
 The course is free, and all you need to pass the Exam is some time and patience.
 

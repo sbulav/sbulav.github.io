@@ -21,24 +21,25 @@ export interface GitHubStats {
 }
 
 const DEFAULTS: GitHubStats = {
-  avatarUrl: 'https://avatars.githubusercontent.com/u/28604639?v=4',
+  avatarUrl: "https://avatars.githubusercontent.com/u/28604639?v=4",
   followers: 55,
   publicRepos: 60,
-  bio: 'Senior DevOps Engineer\nAWS, Kubernetes, Nix, GitOps',
+  bio: "Senior DevOps Engineer\nAWS, Kubernetes, Nix, GitOps",
   topRepos: [
     {
-      name: 'calico-policy-visualiser',
+      name: "calico-policy-visualiser",
       stars: 4,
-      description: 'A browser-based tool for Calico NetworkPolicy visualization.',
-      url: 'https://github.com/sbulav/calico-policy-visualiser',
-      language: 'TypeScript',
+      description:
+        "A browser-based tool for Calico NetworkPolicy visualization.",
+      url: "https://github.com/sbulav/calico-policy-visualiser",
+      language: "TypeScript",
     },
     {
-      name: 'snacks-tea.nvim',
+      name: "snacks-tea.nvim",
       stars: 3,
-      description: 'A Forgejo/Gitea integration plugin for Neovim',
-      url: 'https://github.com/sbulav/snacks-tea.nvim',
-      language: 'Lua',
+      description: "A Forgejo/Gitea integration plugin for Neovim",
+      url: "https://github.com/sbulav/snacks-tea.nvim",
+      language: "Lua",
     },
   ],
 };
@@ -57,17 +58,17 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
 
   try {
     const [profileRes, reposRes] = await Promise.all([
-      fetch('https://api.github.com/users/sbulav', {
-        headers: { 'User-Agent': 'sbulav-blog-build' },
+      fetch("https://api.github.com/users/sbulav", {
+        headers: { "User-Agent": "sbulav-blog-build" },
       }),
       fetch(
-        'https://api.github.com/users/sbulav/repos?per_page=50&type=owner',
-        { headers: { 'User-Agent': 'sbulav-blog-build' } }
+        "https://api.github.com/users/sbulav/repos?per_page=50&type=owner",
+        { headers: { "User-Agent": "sbulav-blog-build" } },
       ),
     ]);
 
     if (!profileRes.ok || !reposRes.ok) {
-      console.warn('GitHub API unavailable, using defaults');
+      console.warn("GitHub API unavailable, using defaults");
       cachedStats = DEFAULTS;
       return cachedStats;
     }
@@ -82,9 +83,9 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
       .map((r: any) => ({
         name: r.name,
         stars: r.stargazers_count,
-        description: r.description || '',
+        description: r.description || "",
         url: r.html_url,
-        language: r.language || 'Unknown',
+        language: r.language || "Unknown",
       }));
 
     cachedStats = {
@@ -96,7 +97,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
     };
     return cachedStats;
   } catch (e) {
-    console.warn('Failed to fetch GitHub stats:', e);
+    console.warn("Failed to fetch GitHub stats:", e);
     cachedStats = DEFAULTS;
     return cachedStats;
   }

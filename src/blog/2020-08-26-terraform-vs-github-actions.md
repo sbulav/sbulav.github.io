@@ -109,7 +109,7 @@ to execute step even if one of previous steps failed.
 That gives us correct stage error status and error message available for further
 use:
 
-![Terraform pr comment](/assets/images/terraform-pr-comment.png)
+![Terraform pr comment](../assets/images/terraform-pr-comment.png)
 
 ### Working solution
 

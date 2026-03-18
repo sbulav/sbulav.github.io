@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  :root, html.dark {
+  :root,
+  html.dark {
     color-scheme: dark;
     --color-bg: 10 10 10;
     --color-bg-secondary: 17 17 17;
@@ -55,7 +56,9 @@
     scroll-behavior: smooth;
     background-color: rgb(var(--color-bg));
     color: rgb(var(--color-fg));
-    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', ui-monospace, monospace;
+    font-family:
+      "JetBrains Mono", "Fira Code", "SF Mono", "Cascadia Code", ui-monospace,
+      monospace;
   }
 
   body {
@@ -116,7 +119,12 @@
     @apply max-w-none text-fg leading-relaxed;
   }
 
-  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
     @apply font-semibold text-fg mt-8 mb-4;
   }
 
@@ -182,7 +190,8 @@
     @apply border-l-4 border-accent pl-4 italic text-fg-muted my-6;
   }
 
-  .prose ul, .prose ol {
+  .prose ul,
+  .prose ol {
     @apply pl-6 my-4;
   }
 
@@ -215,7 +224,8 @@
     @apply w-full border-collapse my-6;
   }
 
-  .prose th, .prose td {
+  .prose th,
+  .prose td {
     @apply border border-border px-4 py-2 text-left;
   }
 
@@ -245,19 +255,36 @@
   }
 
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 
   /* Command bar animations */
   @keyframes slideUp {
-    from { transform: translateY(100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   @keyframes slideDown {
-    from { transform: translateY(0); opacity: 1; }
-    to { transform: translateY(100%); opacity: 0; }
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(100%);
+      opacity: 0;
+    }
   }
 
   .command-bar-enter {

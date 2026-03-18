@@ -152,11 +152,11 @@ ls.add_snippets(nil, {
 
 For example:
 
-![Snippet before expansion](/assets/images/snip-text-before.png)
+![Snippet before expansion](../assets/images/snip-text-before.png)
 
 Will be expanded to:
 
-![Snippet after expansion](/assets/images/snip-text-after.png)
+![Snippet after expansion](../assets/images/snip-text-after.png)
 
 ## Snippets with input parameters
 
@@ -207,12 +207,12 @@ expanded with the correct `date/lastmod` values. Furthermore, with `ctrl+j` you
 can jump to the next input parameter, and with `ctrl+k` backwards without
 leaving insert mode. When you'll reach `insert(0)`, snippet will be unlinked.
 
-![InsertNode snippet](/assets/images/snip-insert.png)
+![InsertNode snippet](../assets/images/snip-insert.png)
 
 What's especially cool is that you can use snippets while you're in the
 snippet. For example, to substitute signature while filling the meta snippet:
 
-![InsertNode snippet signature](/assets/images/snip-insert-signature.png)
+![InsertNode snippet signature](../assets/images/snip-insert-signature.png)
 
 ## Snippets over selected text
 
@@ -260,11 +260,11 @@ into the square brackets for input.
 
 For example, transferring this link:
 
-![variables snippet](/assets/images/snip-variables.png)
+![variables snippet](../assets/images/snip-variables.png)
 
 Into markdown format for links:
 
-![variables snippet expanded](/assets/images/snip-variables-expanded.png)
+![variables snippet expanded](../assets/images/snip-variables-expanded.png)
 
 ## More
 

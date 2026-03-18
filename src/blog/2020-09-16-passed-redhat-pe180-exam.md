@@ -41,7 +41,7 @@ sorted out.
 Finally, after months of chatting with support, I receive my RHCA level up.
 Now I am officially `Red Hat Certified Architect in Infrastructure Level II`
 
-![RHCAlvl2](/assets/images/rhcalvl2.png)
+![RHCAlvl2](../assets/images/rhcalvl2.png)
 
 ## Purchasing the exam
 
@@ -107,4 +107,4 @@ not working keymapping - make sure that you don't press `ctrl+w` or `alt-tab`
 Exam is only 1 hour long and I've used all available time.
 
 My result was `274` which means `PASS`.
-![pe180](/assets/images/pe180.png)
+![pe180](../assets/images/pe180.png)

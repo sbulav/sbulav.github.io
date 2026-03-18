@@ -85,7 +85,7 @@ moment I even found myself being unable to type neither in QWERTY nor Colemak.
 Hopefully, after an hour my brain was able to sort it out and everything went back
 to normal.
 
-![40wpm](/assets/images/colemak-40wpm.png)
+![40wpm](../assets/images/colemak-40wpm.png)
 
 #### Switching to `monkeytype`
 
@@ -116,7 +116,7 @@ as the new place of `hjkl` aren't that bad and, more importantly, it lets me [GR
 
 Here's VIM cheatsheet for Colemak-DH:
 
-![Colemak-DH VIM](/assets/images/colemak-vim.png)
+![Colemak-DH VIM](../assets/images/colemak-vim.png)
 
 ## Conclusion
 

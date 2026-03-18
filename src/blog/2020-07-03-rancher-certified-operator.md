@@ -11,7 +11,7 @@ comments: true
 ---
 
 I've passed the course [Certified Rancher Operator: Level 1](https://academy.rancher.com/courses/course-v1:RANCHER+K101+2019/about)
-and follow up exam: ![Certified Rancher Operator: Level 1](/assets/images/rancher-certified-operator.png)
+and follow up exam: ![Certified Rancher Operator: Level 1](../assets/images/rancher-certified-operator.png)
 
 The course is free, and all you need to pass the Exam is some time and patience.
 

@@ -5,24 +5,36 @@ import GitHubProfileCard from '../components/GitHubProfileCard.astro';
 import GitHubTopRepos from '../components/GitHubTopRepos.astro';
 import Gallery from '../components/Gallery.astro';
 
+import kubernetesIcon from '../assets/icons/kubernetes.png';
+import nixIcon from '../assets/icons/nix.svg';
+import terraformIcon from '../assets/icons/terraform.png';
+import argocdIcon from '../assets/icons/argocd.svg';
+import helmIcon from '../assets/icons/helm.svg';
+import ghActionsIcon from '../assets/icons/github-actions.svg';
+import dockerIcon from '../assets/icons/docker.png';
+import ansibleIcon from '../assets/icons/ansible.png';
+import neovimIcon from '../assets/icons/neovim.svg';
+import pythonIcon from '../assets/icons/python.png';
+import pytestIcon from '../assets/icons/pytest.png';
+
 const platforms = [
-  { name: 'Kubernetes', icon: '/assets/icons/kubernetes.png' },
-  { name: 'NixOS', icon: '/assets/icons/nix.svg' },
+  { name: 'Kubernetes', icon: kubernetesIcon },
+  { name: 'NixOS', icon: nixIcon },
 ];
 
 const tools = [
-  { name: 'Terraform', icon: '/assets/icons/terraform.png' },
-  { name: 'ArgoCD', icon: '/assets/icons/argocd.svg' },
-  { name: 'Helm', icon: '/assets/icons/helm.svg' },
-  { name: 'GH Actions', icon: '/assets/icons/github-actions.svg' },
-  { name: 'Docker', icon: '/assets/icons/docker.png' },
-  { name: 'Ansible', icon: '/assets/icons/ansible.png' },
+  { name: 'Terraform', icon: terraformIcon },
+  { name: 'ArgoCD', icon: argocdIcon },
+  { name: 'Helm', icon: helmIcon },
+  { name: 'GH Actions', icon: ghActionsIcon },
+  { name: 'Docker', icon: dockerIcon },
+  { name: 'Ansible', icon: ansibleIcon },
 ];
 
 const code = [
-  { name: 'Neovim', icon: '/assets/icons/neovim.svg' },
-  { name: 'Python', icon: '/assets/icons/python.png' },
-  { name: 'Pytest', icon: '/assets/icons/pytest.png' },
+  { name: 'Neovim', icon: neovimIcon },
+  { name: 'Python', icon: pythonIcon },
+  { name: 'Pytest', icon: pytestIcon },
 ];
 
 ---

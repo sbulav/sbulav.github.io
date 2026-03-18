@@ -30,11 +30,11 @@ documentation on capabilities is really confusing.
 For example, capabilities on [Argument Reference](https://www.terraform.io/docs/providers/azurerm/r/cosmosdb_account.html#argument-reference)
 is listed twice:
 
-![First reference](/assets/images/cosmosdb-capabilities1.png)
+![First reference](../assets/images/cosmosdb-capabilities1.png)
 
 Second reference:
 
-![Second reference](/assets/images/cosmosdb-capabilities2.png)
+![Second reference](../assets/images/cosmosdb-capabilities2.png)
 
 Why capabilities are mentioned twice on `azurerm_cosmosdb_account`? What's the
 difference? Why lists of supported capabilities are different?

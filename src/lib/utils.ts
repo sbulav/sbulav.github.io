@@ -5,8 +5,8 @@
  */
 export function getPostSlug(postId: string, categories: string[]): string {
   // postId from glob loader is the filename without extension, e.g. "2020-04-15-initial-post"
-  const titleSlug = postId.replace(/^\d{4}-\d{2}-\d{2}-/, '');
-  const catPath = categories.map((c) => c.toLowerCase()).join('/');
+  const titleSlug = postId.replace(/^\d{4}-\d{2}-\d{2}-/, "");
+  const catPath = categories.map((c) => c.toLowerCase()).join("/");
   return catPath ? `${catPath}/${titleSlug}` : titleSlug;
 }
 
@@ -14,17 +14,17 @@ export function getPostSlug(postId: string, categories: string[]): string {
  * Format a date as YYYY-MM-DD
  */
 export function formatDate(date: Date): string {
-  return date.toISOString().split('T')[0];
+  return date.toISOString().split("T")[0];
 }
 
 /**
  * Format a date as "Month DD, YYYY"
  */
 export function formatDateLong(date: Date): string {
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 
@@ -41,7 +41,7 @@ export function readingTime(text: string): number {
  * Get all unique tags from posts with counts
  */
 export function getTagCounts(
-  posts: Array<{ data: { tags: string[] } }>
+  posts: Array<{ data: { tags: string[] } }>,
 ): Map<string, number> {
   const counts = new Map<string, number>();
   for (const post of posts) {
@@ -57,7 +57,7 @@ export function getTagCounts(
  * Get all unique categories from posts with counts
  */
 export function getCategoryCounts(
-  posts: Array<{ data: { categories: string[] } }>
+  posts: Array<{ data: { categories: string[] } }>,
 ): Map<string, number> {
   const counts = new Map<string, number>();
   for (const post of posts) {
@@ -73,10 +73,10 @@ export function getCategoryCounts(
  * Sort posts by date descending
  */
 export function sortPostsByDate<T extends { data: { date: Date } }>(
-  posts: T[]
+  posts: T[],
 ): T[] {
   return [...posts].sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
 }
 
@@ -84,7 +84,7 @@ export function sortPostsByDate<T extends { data: { date: Date } }>(
  * Group posts by year
  */
 export function groupPostsByYear<T extends { data: { date: Date } }>(
-  posts: T[]
+  posts: T[],
 ): Map<number, T[]> {
   const groups = new Map<number, T[]>();
   for (const post of posts) {

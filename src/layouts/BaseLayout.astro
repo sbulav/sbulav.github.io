@@ -109,6 +109,17 @@ const resolvedTwitterCard = twitterCard || (ogImage ? 'summary_large_image' : 's
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
+    <!-- Security -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://giscus.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http:; frame-src https://giscus.app; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://api.github.com;"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Permissions-Policy"
+      content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    />
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 

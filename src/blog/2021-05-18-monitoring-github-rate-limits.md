@@ -118,7 +118,7 @@ github_account_name_core_used{name="github-account-name"} 1015
 Now you can add exporter to Prometheus data sources and create dashboards to
 receive something like this:
 
-![github-account-rate-limits](/assets/images/github-account-core-limits.png)
+![github-account-rate-limits](../assets/images/github-account-core-limits.png)
 
 Also `prometheus-community` offers [json-exporter](https://hub.docker.com/r/prometheuscommunity/json-exporter)
 Docker image, which you can deploy to your infrastructure and tune
@@ -246,7 +246,7 @@ github_app_name_core{type="remaining"} 14659.0
 
 And our graphs in Kibana:
 
-![github-app-rate-limits](/assets/images/github-app-core-limits.png)
+![github-app-rate-limits](../assets/images/github-app-core-limits.png)
 
 I can't share the whole project, but the information above should be enough to
 get a good grasp on how to gather GitHub App rate limits and export them to

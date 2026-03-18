@@ -14,7 +14,7 @@ tags:
 While everyone is hyped about GitHub's Copilot, I've discovered
 [TabNine](https://www.tabnine.com/), an AI completion that I enjoy a lot.
 
-![tabnine-go](/assets/images/tabnine-go.png)
+![tabnine-go](../assets/images/tabnine-go.png)
 
 When Copilot is aiming to write the whole function for you, TabNine just
 tries to intelligently complete the current line.
@@ -53,7 +53,7 @@ cmp.setup {
 The cool thing here is that TabNine works with any filetype, whether it's GO,
 Terraform or even with markdown.
 
-![tabnine-markdown](/assets/images/tabnine-markdown.png)
+![tabnine-markdown](../assets/images/tabnine-markdown.png)
 
 It's free for individuals, so I highly recommend trying it. If you'll like it,
 you can [consider pro options](https://www.tabnine.com/pricing)
@@ -65,7 +65,7 @@ Enabling PRO version is possible, though not obvious. To do this:
 
 A new browser window should pop up:
 
-![tabnine-upgrade](/assets/images/tabnine-upgrade.png)
+![tabnine-upgrade](../assets/images/tabnine-upgrade.png)
 
 Check [This Issue](https://github.com/tzachar/cmp-tabnine/issues/12) for more info
 

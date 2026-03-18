@@ -12,7 +12,7 @@ We are using Microsoft Teams as our main collaboration tool.
 It was really killing me, when I select and copy text from
 Terminal, paste it into Teams chat and receive some weird
 looking message:
-![Colorized Paste](/assets/images/paste-colored.png)
+![Colorized Paste](../assets/images/paste-colored.png)
 
 I was thinking that the issue was related with Microsoft Terminal, but
 it turns out it's Teams who paste text with Rich formatting by default.

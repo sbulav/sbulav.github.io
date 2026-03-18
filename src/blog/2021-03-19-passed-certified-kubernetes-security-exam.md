@@ -11,7 +11,7 @@ comments: true
 ---
 
 I've passed Certified Kubernetes Security Specialist Exam with score 84%:
-![Score](/assets/images/cks-passed.png)
+![Score](../assets/images/cks-passed.png)
 This also means that now I obtain all three Kubernetes Certifications from
 LinuxFoundation(CKAD, CKA and CKS).
 

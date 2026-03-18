@@ -19,7 +19,7 @@ I didn't pass the exam, but I've scored 61 out of 67, required to pass the exam.
 As exam beta tester, I have free retake and I have already started my
 preparations.
 
-![Score](/assets/images/cks-no-pass.png)
+![Score](../assets/images/cks-no-pass.png)
 
 Compared to old CKA version, which I pass in Feb 2020, CKS is:
 - 2 hours long

@@ -1,7 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface GalleryItem {
   name: string;
-  icon?: string;
+  icon?: ImageMetadata | string;
 }
 
 interface Props {
@@ -20,12 +23,9 @@ const { title, items } = Astro.props;
     {items.map(item => (
       <div class="flex flex-col items-center gap-2 rounded-lg border border-border bg-bg-secondary/50 p-3 transition-colors hover:border-accent/50 hover:bg-bg-secondary">
         {item.icon && (
-          <img
-            src={item.icon}
-            alt={item.name}
-            class="h-8 w-8 object-contain"
-            loading="lazy"
-          />
+          typeof item.icon === 'string'
+            ? <img src={item.icon} alt={item.name} class="h-8 w-8 object-contain" loading="lazy" />
+            : <Image src={item.icon} alt={item.name} class="h-8 w-8 object-contain" loading="lazy" width={32} height={32} />
         )}
         <span class="text-center font-mono text-xs text-fg-dim">
           {item.name}

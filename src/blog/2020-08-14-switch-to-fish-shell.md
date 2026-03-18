@@ -21,11 +21,11 @@ So there's what hooked me:
 * Autosuggestions - fish suggests commands as you type, and shows the suggestion
 to the right of the cursor, in gray. You can accept all the command from the
 suggestion with `ctrl+f` or `right` or one word `ctrl+right`.
-![fish suggestions](/assets/images/fish_suggestions.png)
+![fish suggestions](../assets/images/fish_suggestions.png)
 * Smart autocompletion - fish tries to complete command, argument, or path. Some
 commands, like `git`, have even better intellectual completion. If you're
 receiving a lot of variants, you can sort them with `ctrl+s`
-![fish autocompletion](/assets/images/fish-smart-completion.png)
+![fish autocompletion](../assets/images/fish-smart-completion.png)
 * Git prompt - out of the bot fish provides[git-prompt](https://fishshell.com/docs/current/cmds/fish_git_prompt.html)
 with a lot of customization options, like showing number of untacked file,
 uncommited changes, shortening branch name and many many more
@@ -34,10 +34,10 @@ uncommited changes, shortening branch name and many many more
 some of the path, so `~/dotfiles/fish` will become `~/d/fish`.
 * Ease of creating keymappings - awesome command `bind` will let you create
 fish mappings on-the-fly.
-![fish bindings](/assets/images/fish-bindings.png)
+![fish bindings](../assets/images/fish-bindings.png)
 * Smart ** expansion - you could type `**.fish` to match files in the PWD
 as well as subdirectories
-![fish star expansion](/assets/images/fish-star-expansion.png)
+![fish star expansion](../assets/images/fish-star-expansion.png)
 * Ease of personalization and customization - a lot of tunable variables to
 define look and behaviour of fish already there. Just set relevant variable
 or install theme.
