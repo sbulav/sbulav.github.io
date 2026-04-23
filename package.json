@@ -14,7 +14,7 @@
     "format:check": "prettier --check \"src/**/*.{ts,astro,css}\""
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.0",
+    "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^5.1.5",
     "astro": "^6.1.6",
