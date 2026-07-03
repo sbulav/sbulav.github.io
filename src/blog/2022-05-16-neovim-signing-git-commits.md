@@ -86,7 +86,7 @@ gpgconf --reload gpg-agent
 If you've configured everything correctly, you'll see `Enter passphrase`
 in the NeoVim:
 
-<img width="1055" alt="Screenshot 2022-05-16 at 14 55 19" src="https://user-images.githubusercontent.com/28604639/168592427-fd315633-169c-4ddd-a3e1-e5ae41898733.png">
+![Screenshot 2022-05-16 at 14 55 19](../assets/images/neovim-signing-git-commits-01.png)
 
 
 This approach works with any Git plugin, such as Fugitive or LazyGit. By using
@@ -100,7 +100,7 @@ git log --show-signature
 
 You should see something like this:
 
-<img width="1071" alt="Screenshot 2022-05-16 at 15 33 46" src="https://user-images.githubusercontent.com/28604639/168593376-07f83da6-5c50-4fec-8947-bf10c191d8e8.png">
+![Screenshot 2022-05-16 at 15 33 46](../assets/images/neovim-signing-git-commits-02.png)
 
 ## Trust GitHub public keys
 
@@ -109,7 +109,7 @@ commits using user [web-flow](https://github.com/web-flow). In the web interface
 you'll see all your commits as signed and verified. However, while
 checking commits with `--show-signature` flag, web commits will not be checked:
 
-<img width="1054" alt="Screenshot 2022-05-19 at 11 15 43" src="https://user-images.githubusercontent.com/28604639/169246773-9c201e43-64cf-4caf-ad41-97b3ee395419.png">
+![Screenshot 2022-05-19 at 11 15 43](../assets/images/neovim-signing-git-commits-03.png)
 
 To fix this, import GPG key of the user `web-flow`(kudos to [Stack Overflow](https://stackoverflow.com/a/60482908)):
 ```bash
@@ -122,7 +122,7 @@ $ gpg --lsign-key noreply@github.com
 
 After importing the key:
 
-<img width="1020" alt="Screenshot 2022-05-19 at 11 15 23" src="https://user-images.githubusercontent.com/28604639/169246880-1cd9d92e-fdea-4d1b-8e93-24d87177ce96.png">
+![Screenshot 2022-05-19 at 11 15 23](../assets/images/neovim-signing-git-commits-04.png)
 
 ## Signing commits for multiple emails
 

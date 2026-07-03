@@ -61,5 +61,5 @@ donate to Open Source.
 
 I've spent my prize to support my [favorite text editor](https://github.com/neovim/):
 
-<img width="482" alt="Screenshot 2022-01-17 at 10 44 07" src="https://user-images.githubusercontent.com/28604639/150086730-661d16e6-2a86-4d35-aa31-96823a0eb984.png">
+![Screenshot 2022-01-17 at 10 44 07](../assets/images/do-k8s-challenge-01.png)
 

@@ -62,7 +62,7 @@ Optionally, you can share your Obsidian notes folder within Nextcloud with your
 primary user or any other users if you'd like easy direct access to your notes
 through the Nextcloud interface.
 
-<img width="1582" alt="Screenshot 2025-07-10 at 10 31 43" src="https://github.com/user-attachments/assets/d1828522-0aa1-4c50-9a4c-2485de4eb786" />
+![Nextcloud WebDAV settings in Obsidian](../assets/images/obsidian-nextcloud-sync-01.png)
 
 
 ### 6. Configure Mobile Sync

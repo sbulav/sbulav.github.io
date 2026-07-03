@@ -100,4 +100,4 @@ systemctl restart middlewared
 If everything was done correctly and with some luck, you should see
 NUT graphs at the reporting UPS page:
 
-<img width="1640" alt="Screenshot 2022-11-17 at 12 27 56" src="https://user-images.githubusercontent.com/28604639/202408669-9d8a6439-13c0-4d01-8eec-a7b7ccbcaca4.png">
+![Screenshot 2022-11-17 at 12 27 56](../assets/images/truenas-ups-reporting-01.png)

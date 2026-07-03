@@ -20,7 +20,7 @@ I choose Colemak-DH over Dvorak as it's easier to adapt and it let me use some
 heavily used shortcuts(like CTRL+X, CTRL+V), which are carved in my muscle
 memory.
 
-![colemac-dh](https://colemakmods.github.io/mod-dh/gfx/colemak_dh_main_matrix.png)
+![colemac-dh](../assets/images/colemak-dh-main-matrix.png)
 
 In this post, I'll explain why I decide to switch and how I was learning new
 layout.

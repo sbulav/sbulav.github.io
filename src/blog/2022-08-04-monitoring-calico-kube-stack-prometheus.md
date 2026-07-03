@@ -108,4 +108,4 @@ Select + → Import → Enter 12175 ([Pre-built Felix Dashboard](https://grafana
 
 If everything works, you should see something like this:
 
-<img width="1911" alt="image-20220804-074932" src="https://user-images.githubusercontent.com/28604639/182797953-b85a32e6-5474-4d15-a4da-05068ecd7579.png">
+![image-20220804-074932](../assets/images/monitoring-calico-prometheus-01.png)

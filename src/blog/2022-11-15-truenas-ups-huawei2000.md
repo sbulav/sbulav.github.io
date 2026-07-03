@@ -143,7 +143,7 @@ systemctl restart middlewared
 After restart, you should see Huawei UPS2000G in the 
 `System Settings->Services->UPS`
 
-<img width="884" alt="Screenshot 2022-11-15 at 11 35 16" src="https://user-images.githubusercontent.com/28604639/201877409-9b52f7d1-ddaa-4ee8-8410-792d3e948cdc.png">
+![Screenshot 2022-11-15 at 11 35 16](../assets/images/truenas-ups-huawei2000-01.png)
 
 ## Configure UPS service
 
@@ -232,8 +232,8 @@ ups.type: online
 
 Now, when the power goes out, you will receive alerts in the UI:
 
-<img width="446" alt="Screenshot 2022-11-15 at 11 55 52" src="https://user-images.githubusercontent.com/28604639/201877565-e6187e1d-9a81-44b8-bd24-46f193b0b313.png">
+![Screenshot 2022-11-15 at 11 55 52](../assets/images/truenas-ups-huawei2000-02.png)
 
 Or via email(if configured):
 
-<img width="367" alt="Screenshot 2022-11-15 at 11 57 48" src="https://user-images.githubusercontent.com/28604639/201877135-8d07396c-1456-45c6-b143-2d3a77420186.png">
+![Screenshot 2022-11-15 at 11 57 48](../assets/images/truenas-ups-huawei2000-03.png)

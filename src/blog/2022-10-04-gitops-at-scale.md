@@ -12,7 +12,7 @@ comments: true
 
 I've passed the course [GitOps at Scale](https://learning.codefresh.io/course/gitops-at-scale)
 and follow up exam:
-<img width="1386" alt="Screenshot 2022-10-04 at 16 39 04" src="https://user-images.githubusercontent.com/28604639/193834662-a34860f1-78ee-499f-a026-ccfc49ade3f8.png">
+![Screenshot 2022-10-04 at 16 39 04](../assets/images/gitops-at-scale-01.png)
 
 This is a [second course on ArgoCD](https://sbulav.github.io/certifications/gitops-certified-for-argo/). It
 has short and precise materials, useful pieces of advice on deploying and managing

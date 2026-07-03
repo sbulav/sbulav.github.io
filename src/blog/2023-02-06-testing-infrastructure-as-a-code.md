@@ -14,7 +14,7 @@ comments: true
 If you're interested in Testing Infrastructure as Code, join me Feb 27 2023,
 1:00pm with the 
 
-[![Technical Deep Dive Webinar](https://cdn.brighttalk.com/ams/california/images/communication/573574/image_900784.jpg?width=640&height=360)](https://www.brighttalk.com/webcast/18905/573868)
+[![Technical Deep Dive Webinar](../assets/images/testing-iac-webinar.png)](https://www.brighttalk.com/webcast/18905/573868)
 
 By watching this webinar, you will learn:
 
@@ -29,4 +29,4 @@ Update:
 
 The webinar is now available on-demand:
 
-[![On-demand Webinar](https://cdn.brighttalk.com/ams/california/images/communication/573574/image_900784.jpg?width=640&height=360)](https://www.youtube.com/watch?v=U16mIcLTfgM)
+[![On-demand Webinar](../assets/images/testing-iac-webinar.png)](https://www.youtube.com/watch?v=U16mIcLTfgM)

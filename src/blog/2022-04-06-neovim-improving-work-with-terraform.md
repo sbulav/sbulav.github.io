@@ -27,11 +27,11 @@ Compare those two screenshots:
 
 With filetype set as `tf`:
 
-<img width="1262" alt="Screenshot 2022-04-06 at 13 31 50" src="https://user-images.githubusercontent.com/28604639/161956183-92bd8a92-075a-4759-952d-f83519988001.png">
+![Screenshot 2022-04-06 at 13 31 50](../assets/images/neovim-terraform-01.png)
 
 With filetype set as `terraform`(I also have p00f/nvim-ts-rainbow installed):
 
-<img width="1262" alt="Screenshot 2022-04-06 at 13 31 58" src="https://user-images.githubusercontent.com/28604639/161956211-daf67518-5bc6-4719-b9b9-51d8ce203a86.png">
+![Screenshot 2022-04-06 at 13 31 58](../assets/images/neovim-terraform-02.png)
 
 
 Fortunately, `filetype.nvim` provides a way to override the filetype detection:
@@ -84,6 +84,6 @@ With the recently introduced [copilot.lua](https://github.com/zbirenbaum/copilot
 and the completion source [copilot-cmp](https://github.com/zbirenbaum/copilot-cmp),
 writing Terraform files is now as easy as writing Go code:
 
-<img width="1507" alt="Screenshot 2022-04-06 at 13 31 04" src="https://user-images.githubusercontent.com/28604639/161956247-e4529855-408b-491f-83ce-cb32eca38e2c.png">
+![Screenshot 2022-04-06 at 13 31 04](../assets/images/neovim-terraform-03.png)
 
 

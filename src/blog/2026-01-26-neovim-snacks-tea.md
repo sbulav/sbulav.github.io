@@ -29,7 +29,7 @@ small Neovim plugin that wraps around the
 [`tea`](https://gitea.com/gitea/tea) CLI to bring Forgejo/Gitea
 functionality directly into Neovim.
 
-<img width="3070" height="2196" alt="ss_1769422957" src="https://github.com/user-attachments/assets/3c57db80-101c-4ca0-b817-4fa8fffcda62" />
+![Snacks picker with tea issues](../assets/images/neovim-snacks-tea-01.png)
 
 ---
 
@@ -112,7 +112,7 @@ For existing PR, plugin handles:
 
 Also you can create new PR:
 
-<img width="3270" height="1012" alt="ss_1769423937" src="https://github.com/user-attachments/assets/fa2e156a-752f-4f04-877e-770776beed8a" />
+![Snacks picker tea preview](../assets/images/neovim-snacks-tea-02.png)
 
 ## Closing Thoughts
 

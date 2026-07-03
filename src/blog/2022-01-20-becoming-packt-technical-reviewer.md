@@ -13,9 +13,9 @@ I've became a technical reviewer for the book [Kubernetes – An Enterprise Guid
 
 Today I've received my printed copy of the book:
 
-![book01](https://user-images.githubusercontent.com/28604639/150093342-118f72e8-7d59-4d92-ace3-fc903241feda.jpg)
+![book01](../assets/images/packt-technical-reviewer-01.jpg)
 
-![book02](https://user-images.githubusercontent.com/28604639/150093483-072eee36-8d56-46ff-8689-a4b67a88f9db.jpg)
+![book02](../assets/images/packt-technical-reviewer-02.jpg)
 
 I thought that I should share my thoughts if it's worth it.
 
