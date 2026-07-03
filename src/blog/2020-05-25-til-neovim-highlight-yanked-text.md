@@ -24,4 +24,4 @@ endif
 ```
 
 To achieve:
-![TextYankPost](/assets/images/neovim-yank-highlight.gif)
+<video src="/assets/images/neovim-yank-highlight.mp4" autoplay loop muted playsinline aria-label="TextYankPost"></video>

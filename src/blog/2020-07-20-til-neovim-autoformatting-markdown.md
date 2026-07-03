@@ -32,7 +32,7 @@ vnoremap <F1> <ESC>
 
 That gives me:
 
-![Highlight colorcolumn](/assets/images/neovim-highlight-colorcolumn.gif)
+<video src="/assets/images/neovim-highlight-colorcolumn.mp4" autoplay loop muted playsinline aria-label="Highlight colorcolumn"></video>
 
 ## Automatically formatting and wrapping text
 
@@ -50,4 +50,4 @@ deleted, `set fo+=a`, `:h autoformat`.
 
 Using `gq` I can quickly and controllably format blocks of text:
 
-![Highlight colorcolumn](/assets/images/neovim-text-format.gif)
+<video src="/assets/images/neovim-text-format.mp4" autoplay loop muted playsinline aria-label="Highlight colorcolumn"></video>

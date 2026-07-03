@@ -139,4 +139,4 @@ For plugin demos, I now treat recording like infrastructure:
 
 This setup takes a bit more work once, but it saves time every time you ship a new feature.
 
-![jira-oil-demo optimized](https://github.com/user-attachments/assets/fe7dba53-6017-4d99-8e15-dd9fcf4e47ec)
+<video src="/assets/images/jira-oil-demo.mp4" autoplay loop muted playsinline aria-label="jira-oil.nvim demo"></video>

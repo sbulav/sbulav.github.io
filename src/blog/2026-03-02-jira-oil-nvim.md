@@ -34,7 +34,7 @@ Jira.
 
 So, introducing **<a href="https://github.com/sbulav/jira-oil.nvim">jira-oil.nvim</a>**.
 
-![jira-oil-demo optimized](https://github.com/user-attachments/assets/fe7dba53-6017-4d99-8e15-dd9fcf4e47ec)
+<video src="/assets/images/jira-oil-demo.mp4" autoplay loop muted playsinline aria-label="jira-oil.nvim demo"></video>
 
 ---
 

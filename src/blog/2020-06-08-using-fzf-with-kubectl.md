@@ -37,7 +37,7 @@ kgjq() { (FZF_DEFAULT_OPTS='';kubectl get *$ -o json > /tmp/kgjq.json;echo ''  |
 
 Here's how it works:
 
-![fzf-jq-repl](/assets/images/fzf-jq-repl.gif)
+<video src="/assets/images/fzf-jq-repl.mp4" autoplay loop muted playsinline aria-label="fzf-jq-repl"></video>
 
 As you might guess, after you press `enter`, resulting jsonpath will pop in
 your command line. To make function work, put it into your `.bash_profile`
@@ -58,7 +58,7 @@ kg() { kubectl get $* -o name | fzf --preview 'kubectl get {} -o yaml' --bind "e
 
 It's working very well:
 
-![fzf-kubectl-repl](/assets/images/fzf-kubectl-repl.gif)
+<video src="/assets/images/fzf-kubectl-repl.mp4" autoplay loop muted playsinline aria-label="fzf-kubectl-repl"></video>
 
 The trick I'm using here is binding `enter` in fzf to execute `kubectl get`,
 passing selected resource name as parameter, and passing output to nvim(which can
@@ -95,4 +95,4 @@ So I end up using following shortcuts:
 * `shift-up` - move preview window line up
 * `shift-down` - move preview window line down
 
-![fzf-kubectl-repl2](/assets/images/fzf-kubectl-repl2.gif)
+<video src="/assets/images/fzf-kubectl-repl2.mp4" autoplay loop muted playsinline aria-label="fzf-kubectl-repl2"></video>

@@ -27,7 +27,7 @@ Vim movements can be grouped as:
 What 'train' does, is highlights all these possible motions, drawing small
 floating windows with motion key(s), which disappears when you move your cursor.
 
-![train](/assets/images/train.gif)
+<video src="/assets/images/train.mp4" autoplay loop muted playsinline aria-label="train"></video>
 
 What's really cool, is that 'train' emulates those possible moves by:
 - remember your current position
