@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@config '../../tailwind.config.mjs';
 
 @layer base {
   :root,
@@ -94,8 +93,10 @@
   }
 
   @supports (scrollbar-width: thin) {
-    scrollbar-width: thin;
-    scrollbar-color: rgb(var(--color-border)) rgb(var(--color-bg));
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: rgb(var(--color-border)) rgb(var(--color-bg));
+    }
   }
 }
 
@@ -212,7 +213,8 @@
     @apply text-accent;
   }
 
-  .prose img {
+  .prose img,
+  .prose video {
     @apply max-w-full rounded-lg border border-border my-6;
   }
 

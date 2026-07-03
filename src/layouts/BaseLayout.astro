@@ -3,6 +3,10 @@ import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import CommandBar from '../components/CommandBar.astro';
 import StatsBar from '../components/StatsBar.astro';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/600.css';
+import '@fontsource/jetbrains-mono/700.css';
 import '../styles/global.css';
 
 interface Props {
@@ -112,7 +116,7 @@ const resolvedTwitterCard = twitterCard || (ogImage ? 'summary_large_image' : 's
     <!-- Security -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://giscus.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http:; frame-src https://giscus.app; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://api.github.com;"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://giscus.app; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; media-src 'self' https://user-images.githubusercontent.com https://github.com; frame-src https://giscus.app; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://api.github.com;"
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
@@ -153,14 +157,6 @@ const resolvedTwitterCard = twitterCard || (ogImage ? 'summary_large_image' : 's
       type="application/rss+xml"
       title={siteTitle}
       href="/feed.xml"
-    />
-
-    <!-- Preload monospace font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
     />
 
     <!-- Google Analytics -->
