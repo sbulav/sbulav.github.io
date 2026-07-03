@@ -12,10 +12,40 @@ const POSTS_PER_PAGE = 5;
 const allPosts = sortPostsByDate(await getCollection('blog'));
 const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 const posts = allPosts.slice(0, POSTS_PER_PAGE);
+
+const siteUrl = Astro.site?.href || 'https://sbulav.github.io/';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      name: 'Cloud Alchemist',
+      url: siteUrl,
+      description:
+        'Personal blog with emphasis on cloud-native technologies, by a Senior DevOps Engineer experienced in AWS, Kubernetes, Terraform, ArgoCD, and NixOS.',
+      inLanguage: 'en',
+      publisher: { '@id': `${siteUrl}#person` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}#person`,
+      name: 'Sergei Bulavintsev',
+      url: `${siteUrl}about/`,
+      image: `${siteUrl}assets/images/bio-photo.jpg`,
+      jobTitle: 'Senior DevOps Engineer',
+      sameAs: [
+        'https://github.com/sbulav',
+        'https://www.linkedin.com/in/sergey-bulavintsev-3001ba45/',
+      ],
+    },
+  ],
+};
 ---
 
 <GitHubStatsProvider>
   <BaseLayout title="Cloud Alchemist">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <div class="relative">
       <Sidebar />
 

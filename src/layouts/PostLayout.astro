@@ -8,6 +8,7 @@ import { formatDate, readingTime, getPostSlug } from '../lib/utils';
 
 interface Props {
   title: string;
+  description?: string;
   date: Date;
   categories: string[];
   tags: string[];
@@ -18,7 +19,7 @@ interface Props {
   slug?: string;
 }
 
-const { title, date, categories, tags, toc = false, comments = true, body = '', headings = [], slug = '' } = Astro.props;
+const { title, description, date, categories, tags, toc = false, comments = true, body = '', headings = [], slug = '' } = Astro.props;
 const readTime = readingTime(body);
 const catPath = categories.map(c => c.toLowerCase()).join('/');
 // Extract filename from slug (e.g., "til/til-webrtc-landing-page" -> "til-webrtc-landing-page.md")
@@ -27,17 +28,41 @@ const canonicalUrl = Astro.site ? new URL(`/${slug}/`, Astro.site).href : undefi
 const ogImage = Astro.site
   ? new URL('/assets/images/bio-photo.jpg', Astro.site).href
   : '/assets/images/bio-photo.jpg';
+const metaDescription = description || `${title} - Cloud Alchemist blog post`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: metaDescription,
+  datePublished: date.toISOString(),
+  url: canonicalUrl,
+  image: ogImage,
+  keywords: tags.join(', '),
+  articleSection: categories,
+  inLanguage: 'en',
+  author: {
+    '@type': 'Person',
+    name: 'Sergei Bulavintsev',
+    url: 'https://sbulav.github.io/about/',
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalUrl,
+  },
+};
 ---
 
 <GitHubStatsProvider>
   <BaseLayout
     title={title}
-    description={`${title} - Cloud Alchemist blog post`}
+    description={metaDescription}
     canonicalUrl={canonicalUrl}
     ogType="article"
     ogImage={ogImage}
     articlePublishedTime={date.toISOString()}
   >
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <div class="relative">
       <Sidebar />
       <article class="mt-4">

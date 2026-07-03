@@ -29,6 +29,26 @@ export function formatDateLong(date: Date): string {
 }
 
 /**
+ * Generate a plain-text excerpt from markdown content.
+ * Strips code blocks, HTML tags, and markdown syntax, then
+ * truncates at a word boundary near maxLength characters.
+ */
+export function excerpt(markdown: string, maxLength = 160): string {
+  const text = markdown
+    .replace(/```[\s\S]*?```/g, " ") // fenced code blocks
+    .replace(/<[^>]+>/g, " ") // HTML tags
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ") // images
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // links -> text
+    .replace(/[#>*_`~|-]+/g, " ") // markdown punctuation
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (text.length <= maxLength) return text;
+  const cut = text.slice(0, maxLength);
+  return `${cut.slice(0, cut.lastIndexOf(" "))}…`;
+}
+
+/**
  * Estimate reading time from text content
  */
 export function readingTime(text: string): number {

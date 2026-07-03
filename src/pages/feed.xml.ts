@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import { sortPostsByDate, getPostSlug } from "../lib/utils";
+import { sortPostsByDate, getPostSlug, excerpt } from "../lib/utils";
 import type { APIContext } from "astro";
 
 export async function GET(context: APIContext) {
@@ -13,6 +13,7 @@ export async function GET(context: APIContext) {
     site: context.site!.toString(),
     items: posts.map((post) => ({
       title: post.data.title,
+      description: post.data.description || excerpt(post.body || "", 300),
       pubDate: post.data.date,
       link: `/${getPostSlug(post.id, post.data.categories)}/`,
       categories: post.data.tags,
