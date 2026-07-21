@@ -18,7 +18,7 @@
     "@astrojs/sitemap": "^3.7.0",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@tailwindcss/vite": "^4.3.2",
-    "astro": "^6.1.6",
+    "astro": "^7.1.0",
     "fuse.js": "^7.1.0",
     "sharp": "^0.33.0",
     "tailwindcss": "^4.3.2"
